@@ -153,6 +153,9 @@
             cursor: pointer;
             transition: background-color 0.3s;
          }
+         .term-header:hover {
+             background-color: var(--table-border-color);
+         }
         .term-content {
             transition: max-height 0.5s ease-in-out;
             overflow: hidden;
@@ -255,8 +258,11 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <!-- Term 1 -->
                     <div class="term-container">
-                        <h3 class="term-header text-xl p-2 flex justify-between items-center rounded-lg mb-0">
-                            <span>ترم اول (۱۹ واحد)</span>
+                        <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
+                            <div class="flex items-center gap-x-3">
+                                <i data-lucide="book-open-check" class="w-6 h-6 text-blue-500 dark:text-sky-400"></i>
+                                <span class="font-bold">ترم اول (۱۹ واحد)</span>
+                            </div>
                             <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
@@ -277,9 +283,12 @@
 
                     <!-- Term 2 -->
                     <div class="term-container">
-                         <h3 class="term-header text-xl p-2 flex justify-between items-center rounded-lg mb-0">
-                            <span>ترم دوم (۲۰ واحد)</span>
-                             <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
+                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
+                            <div class="flex items-center gap-x-3">
+                                <i data-lucide="network" class="w-6 h-6 text-blue-500 dark:text-sky-400"></i>
+                                <span class="font-bold">ترم دوم (۲۰ واحد)</span>
+                            </div>
+                            <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
                             <table class="mb-0 border-t-0">
@@ -300,9 +309,12 @@
 
                     <!-- Term 3 -->
                     <div class="term-container">
-                        <h3 class="term-header text-xl p-2 flex justify-between items-center rounded-lg mb-0">
-                            <span>ترم سوم (۱۷ واحد)</span>
-                             <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
+                        <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
+                            <div class="flex items-center gap-x-3">
+                                <i data-lucide="cpu" class="w-6 h-6 text-blue-500 dark:text-sky-400"></i>
+                                <span class="font-bold">ترم سوم (۱۷ واحد)</span>
+                            </div>
+                            <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
                             <table class="mb-0 border-t-0">
@@ -321,8 +333,11 @@
                     </div>
                     <!-- Term 4 -->
                     <div class="term-container">
-                        <h3 class="term-header text-xl p-2 flex justify-between items-center rounded-lg mb-0">
-                           <span>ترم چهارم (۱۹ واحد)</span>
+                        <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
+                            <div class="flex items-center gap-x-3">
+                                <i data-lucide="database" class="w-6 h-6 text-blue-500 dark:text-sky-400"></i>
+                                <span class="font-bold">ترم چهارم (۱۹ واحد)</span>
+                            </div>
                            <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
@@ -342,8 +357,11 @@
                     </div>
                     <!-- Term 5 -->
                     <div class="term-container">
-                         <h3 class="term-header text-xl p-2 flex justify-between items-center rounded-lg mb-0">
-                           <span>ترم پنجم (۱۷ واحد)</span>
+                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
+                            <div class="flex items-center gap-x-3">
+                                <i data-lucide="circuit-board" class="w-6 h-6 text-blue-500 dark:text-sky-400"></i>
+                                <span class="font-bold">ترم پنجم (۱۷ واحد)</span>
+                            </div>
                            <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
@@ -361,8 +379,11 @@
                     </div>
                     <!-- Term 6 -->
                      <div class="term-container">
-                         <h3 class="term-header text-xl p-2 flex justify-between items-center rounded-lg mb-0">
-                            <span>ترم ششم (۱۷ واحد)</span>
+                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
+                            <div class="flex items-center gap-x-3">
+                                <i data-lucide="brain-circuit" class="w-6 h-6 text-blue-500 dark:text-sky-400"></i>
+                                <span class="font-bold">ترم ششم (۱۷ واحد)</span>
+                            </div>
                             <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
@@ -381,8 +402,11 @@
                     </div>
                     <!-- Term 7 -->
                     <div class="term-container">
-                         <h3 class="term-header text-xl p-2 flex justify-between items-center rounded-lg mb-0">
-                           <span>ترم هفتم (۱۸ واحد)</span>
+                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
+                            <div class="flex items-center gap-x-3">
+                                <i data-lucide="file-text" class="w-6 h-6 text-blue-500 dark:text-sky-400"></i>
+                                <span class="font-bold">ترم هفتم (۱۸ واحد)</span>
+                            </div>
                            <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
@@ -402,8 +426,11 @@
                     </div>
                     <!-- Term 8 -->
                      <div class="term-container">
-                         <h3 class="term-header text-xl p-2 flex justify-between items-center rounded-lg mb-0">
-                           <span>ترم هشتم (۱۷ واحد)</span>
+                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
+                            <div class="flex items-center gap-x-3">
+                                <i data-lucide="shield-check" class="w-6 h-6 text-blue-500 dark:text-sky-400"></i>
+                                <span class="font-bold">ترم هشتم (۱۷ واحد)</span>
+                            </div>
                            <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
