@@ -29,51 +29,84 @@
             font-family: 'Vazirmatn', sans-serif;
             transition: background-color 0.3s, color 0.3s;
             padding-top: 80px; /* Space for the sticky header */
+            position: relative;
         }
 
         /* Light Mode Variables */
         :root {
-            --bg-color: #f8fafc;
-            --text-color: #111827;
+            --bg-color: #f8fafc; /* slate-50 */
+            --text-color: #111827; /* gray-900 */
             --header-bg: rgba(248, 250, 252, 0.85);
-            --table-header-bg: #e5e7eb;
-            --table-border-color: #d1d5db;
-            --table-even-row-bg: #f9fafb;
+            --table-header-bg: #e5e7eb; /* gray-200 */
+            --table-border-color: #d1d5db; /* gray-300 */
+            --table-even-row-bg: #f9fafb; /* gray-50 */
             --notes-bg: #ffffff;
-            --notes-border: #e5e7eb;
-            --summary-table-bold-bg: #e5e7eb;
-            --term-header-bg: #e5e7eb;
-            --passed-course-bg: #e0f2fe !important; /* sky-100 */
-            --passed-course-text: #374151; /* gray-700 */
-            --tab-active-bg: #3b82f6;
-            --tab-active-text: #ffffff;
-            --tab-hover-text: #374151;
-            --tab-hover-border: #d1d5db;
-            --progress-units-text: #4b5563;
+            --notes-border: #e5e7eb; /* gray-200 */
+            --summary-table-bold-bg: #e5e7eb; /* gray-200 */
+            --term-header-bg: #e5e7eb; /* gray-200 */
+            --passed-course-bg: #f3f4f6 !important; /* gray-100 */
+            --passed-course-text: #6b7280; /* gray-500 */
+            --tab-active-bg: #374151; /* gray-700 */
+            --tab-active-text: #f9fafb; /* gray-50 */
+            --tab-hover-text: #1f2937; /* gray-800 */
+            --tab-hover-border: #9ca3af; /* gray-400 */
+            --progress-units-text: #4b5563; /* gray-600 */
+            --progress-bar-color: #374151; /* gray-700 */
+            --icon-color: #374151; /* gray-700 */
+            --info-icon-color: #4b5563; /* gray-600 */
+            --checkmark-color: #ffffff;
         }
 
-        /* Dark Mode Variables */
+        /* Dark Mode Variables - Modern OLED Black & Gray Theme */
         .dark {
-            --bg-color: #0f172a; /* slate-900 */
-            --text-color: #e2e8f0; /* slate-200 */
-            --header-bg: rgba(15, 23, 42, 0.85);
-            --table-header-bg: #334155; /* slate-700 */
-            --table-border-color: #475569; /* slate-600 */
-            --table-even-row-bg: #1e293b; /* slate-800 */
-            --notes-bg: #1e293b; /* slate-800 */
-            --notes-border: #334155; /* slate-700 */
-            --summary-table-bold-bg: #334155; /* slate-700 */
-            --term-header-bg: #334155; /* slate-700 */
-            --passed-course-bg: #0c4a6e !important; /* sky-900 */
-            --passed-course-text: #cbd5e1; /* slate-300 */
-            --tab-hover-text: #d1d5db; /* gray-300 */
+            --bg-color: #000000; /* OLED Black */
+            --text-color: #e5e7eb; /* gray-200 */
+            --header-bg: rgba(0, 0, 0, 0.75); /* Transparent black for header */
+            --table-header-bg: #1f2937; /* gray-800 */
+            --table-border-color: #374151; /* gray-700 */
+            --table-even-row-bg: #111827; /* gray-900 */
+            --notes-bg: #111827; /* gray-900 */
+            --notes-border: #374151; /* gray-700 */
+            --summary-table-bold-bg: #1f2937; /* gray-800 */
+            --term-header-bg: #1f2937; /* gray-800 */
+            --passed-course-bg: #1f2937 !important; /* gray-800 */
+            --passed-course-text: #6b7280; /* gray-500 */
+            --tab-active-bg: #d1d5db; /* gray-300 */
+            --tab-active-text: #1f2937; /* gray-800 */
+            --tab-hover-text: #f9fafb; /* gray-50 */
             --tab-hover-border: #4b5563; /* gray-600 */
             --progress-units-text: #9ca3af; /* gray-400 */
+            --progress-bar-color: #d1d5db; /* gray-300 */
+            --icon-color: #d1d5db; /* gray-300 */
+            --info-icon-color: #9ca3af; /* gray-400 */
+            --checkmark-color: #1f2937; /* gray-800 */
         }
         
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
+        }
+
+        /* Animated Grid Background for Dark Mode */
+        @keyframes moveGrid {
+            from { background-position: 0 0; }
+            to { background-position: 100px 100px; }
+        }
+
+        .dark body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image:
+                linear-gradient(to right, rgba(55, 65, 81, 0.3) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(55, 65, 81, 0.3) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveGrid 4s linear infinite;
+            z-index: -1;
+            opacity: 0.7;
         }
         
         #progress-header {
@@ -98,7 +131,7 @@
             padding: 0.5rem 0.75rem;
             text-align: center;
             vertical-align: middle;
-            transition: background-color 0.3s, color 0.3s;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
         th {
             background-color: var(--table-header-bg);
@@ -147,16 +180,20 @@
         .course-passed {
             background-color: var(--passed-course-bg);
             text-decoration: line-through;
-            color: var(--passed-course-text);
+            color: var(--passed-course-text) !important;
         }
         .course-passed td {
-            color: var(--passed-course-text);
+            color: var(--passed-course-text) !important;
         }
         #progress-units {
             color: var(--progress-units-text);
         }
         .progress-bar-track {
             background-color: var(--table-header-bg);
+        }
+        #progress-bar {
+            background-color: var(--progress-bar-color);
+            transition: width 0.5s, background-color 0.3s;
         }
         .summary-bold-row {
             font-weight: bold;
@@ -169,6 +206,12 @@
          }
          .term-header:hover {
              background-color: var(--table-border-color);
+         }
+         .icon-color {
+            color: var(--icon-color);
+         }
+         .info-icon {
+            color: var(--info-icon-color);
          }
         .term-content {
             transition: max-height 0.5s ease-in-out;
@@ -207,9 +250,10 @@
             display: block;
         }
         .checkmark {
-           color: white;
+           color: var(--checkmark-color);
            width: 1rem; /* 16px */
            height: 1rem; /* 16px */
+           transition: color 0.3s;
         }
     </style>
 </head>
@@ -220,14 +264,14 @@
         <div class="max-w-4xl mx-auto">
              <div class="flex justify-between items-center mb-2">
                 <h3 class="text-lg font-bold">پیشرفت شما</h3>
-                <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-neutral-800 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-neutral-700 rounded-lg text-sm p-2.5">
                     <!-- Icons will be managed by script -->
                     <i id="theme-toggle-dark-icon" data-lucide="moon" class="w-5 h-5"></i>
                     <i id="theme-toggle-light-icon" data-lucide="sun" class="w-5 h-5"></i>
                 </button>
             </div>
             <div class="w-full rounded-full h-8 progress-bar-track">
-                <div id="progress-bar" class="bg-blue-600 h-8 rounded-full text-white flex items-center justify-center transition-all duration-500" style="width: 0%;">
+                <div id="progress-bar" class="h-8 rounded-full text-white dark:text-gray-900 flex items-center justify-center" style="width: 0%;">
                     <span id="progress-text">0%</span>
                 </div>
             </div>
@@ -275,7 +319,7 @@
                     <div class="term-container">
                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
                             <div class="flex items-center gap-x-3">
-                                <i data-lucide="book-open-check" class="w-6 h-6 text-blue-500 dark:text-sky-400"></i>
+                                <i data-lucide="book-open-check" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم اول (۱۹ واحد)</span>
                             </div>
                             <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
@@ -300,7 +344,7 @@
                     <div class="term-container">
                          <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
                             <div class="flex items-center gap-x-3">
-                                <i data-lucide="network" class="w-6 h-6 text-blue-500 dark:text-sky-400"></i>
+                                <i data-lucide="network" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم دوم (۲۰ واحد)</span>
                             </div>
                             <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
@@ -326,7 +370,7 @@
                     <div class="term-container">
                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
                             <div class="flex items-center gap-x-3">
-                                <i data-lucide="cpu" class="w-6 h-6 text-blue-500 dark:text-sky-400"></i>
+                                <i data-lucide="cpu" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم سوم (۱۷ واحد)</span>
                             </div>
                             <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
@@ -350,7 +394,7 @@
                     <div class="term-container">
                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
                             <div class="flex items-center gap-x-3">
-                                <i data-lucide="database" class="w-6 h-6 text-blue-500 dark:text-sky-400"></i>
+                                <i data-lucide="database" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم چهارم (۱۹ واحد)</span>
                             </div>
                            <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
@@ -374,7 +418,7 @@
                     <div class="term-container">
                          <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
                             <div class="flex items-center gap-x-3">
-                                <i data-lucide="circuit-board" class="w-6 h-6 text-blue-500 dark:text-sky-400"></i>
+                                <i data-lucide="circuit-board" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم پنجم (۱۷ واحد)</span>
                             </div>
                            <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
@@ -396,7 +440,7 @@
                      <div class="term-container">
                          <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
                             <div class="flex items-center gap-x-3">
-                                <i data-lucide="brain-circuit" class="w-6 h-6 text-blue-500 dark:text-sky-400"></i>
+                                <i data-lucide="brain-circuit" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم ششم (۱۷ واحد)</span>
                             </div>
                             <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
@@ -419,7 +463,7 @@
                     <div class="term-container">
                          <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
                             <div class="flex items-center gap-x-3">
-                                <i data-lucide="file-text" class="w-6 h-6 text-blue-500 dark:text-sky-400"></i>
+                                <i data-lucide="file-text" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم هفتم (۱۸ واحد)</span>
                             </div>
                            <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
@@ -443,7 +487,7 @@
                      <div class="term-container">
                          <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
                             <div class="flex items-center gap-x-3">
-                                <i data-lucide="shield-check" class="w-6 h-6 text-blue-500 dark:text-sky-400"></i>
+                                <i data-lucide="shield-check" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم هشتم (۱۷ واحد)</span>
                             </div>
                            <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
@@ -578,14 +622,14 @@
                 <i data-lucide="book-text" class="w-6 h-6 ml-2"></i>
                 یادداشت‌ها و توضیحات
              </h3>
-             <p class="flex items-start"><i data-lucide="languages" class="w-5 h-5 ml-3 shrink-0 mt-1 text-blue-500 dark:text-sky-400"></i><span>* ورودیهای مهر ۱۴۰۱ و مابعد به جای درس زبان خارجه ۳ واحدی باید به ترتیب سه درس زبان انگلیسی عمومی ترکیبی ۱ (یک واحدی)، زبان انگلیسی عمومی ترکیبی ۲ (یک واحدی) و زبان انگلیسی عمومی ترکیبی ۳ (یک واحدی) را بگذرانند. بعلاوه، ورودیهای مهر ۱۴۰۱ که درس زبان خارجه ۳ واحدی را همان ترم اول گذرانده اند، احتیاجی به گرفتن دروس زبان انگلیسی ترکیبی ندارند.</span></p>
-             <p class="flex items-start"><i data-lucide="book-check" class="w-5 h-5 ml-3 shrink-0 mt-1 text-blue-500 dark:text-sky-400"></i><span>توجه : ردیفهای ۱ تا ۸ جزء دروس معارف می‌باشند که در هر ترم فقط یکی از آنها باید اخذ شود. استثنائاً در ترم آخر می‌توان تا دو مورد از دروس معارف را اخذ نمود.</span></p>
-             <p class="flex items-start"><i data-lucide="shield-half" class="w-5 h-5 ml-3 shrink-0 mt-1 text-blue-500 dark:text-sky-400"></i><span>** گذراندن درس آشنایی با دفاع مقدس الزامی است.</span></p>
-             <p class="flex items-start"><i data-lucide="info" class="w-5 h-5 ml-3 shrink-0 mt-1 text-yellow-500 dark:text-yellow-400"></i><span>توجه ۱ : هم نیازهای دروس، داخل پرانتز نوشته شده است.</span></p>
-             <p class="flex items-start"><i data-lucide="info" class="w-5 h-5 ml-3 shrink-0 mt-1 text-yellow-500 dark:text-yellow-400"></i><span>توجه ۲ : پیش نیازهای یک درس، باید قبل از اخذ آن درس در ترم‌های قبل پاس شده باشند.</span></p>
-             <p class="flex items-start"><i data-lucide="info" class="w-5 h-5 ml-3 shrink-0 mt-1 text-yellow-500 dark:text-yellow-400"></i><span>توجه ۳ : هم نیازهای یک درس، یا باید قبل از اخذ آن درس در ترم‌های قبل پاس شده باشند و یا هم زمان با آن درس اخذ گردند.</span></p>
-             <p class="flex items-start"><i data-lucide="info" class="w-5 h-5 ml-3 shrink-0 mt-1 text-yellow-500 dark:text-yellow-400"></i><span>توجه ۴ : در صورت یکبار عدم قبولی یا غیبت در جلسه امتحان، دانشجو می‌تواند درس پیش نیاز را هم زمان با آن درس وابسته اخذ نماید.</span></p>
-             <p class="flex items-start"><i data-lucide="star" class="w-5 h-5 ml-3 shrink-0 mt-1 text-blue-500 dark:text-sky-400"></i><span>توجه ۵ : دروس اختیاری به تشخیص گروه ارائه می‌شود. از دروس اختیاری که ۸ واحد است، باید حداقل دو واحد آزمایشگاه یا کارگاه باشد و درس "آشنایی با دفاع مقدس" که گذراندن آن برای تمامی دانشجویان الزامی است، به عنوان درس اختیاری در نظر گرفته می شود.</span></p>
+             <p class="flex items-start"><i data-lucide="languages" class="w-5 h-5 ml-3 shrink-0 mt-1 icon-color"></i><span>* ورودیهای مهر ۱۴۰۱ و مابعد به جای درس زبان خارجه ۳ واحدی باید به ترتیب سه درس زبان انگلیسی عمومی ترکیبی ۱ (یک واحدی)، زبان انگلیسی عمومی ترکیبی ۲ (یک واحدی) و زبان انگلیسی عمومی ترکیبی ۳ (یک واحدی) را بگذرانند. بعلاوه، ورودیهای مهر ۱۴۰۱ که درس زبان خارجه ۳ واحدی را همان ترم اول گذرانده اند، احتیاجی به گرفتن دروس زبان انگلیسی ترکیبی ندارند.</span></p>
+             <p class="flex items-start"><i data-lucide="book-check" class="w-5 h-5 ml-3 shrink-0 mt-1 icon-color"></i><span>توجه : ردیفهای ۱ تا ۸ جزء دروس معارف می‌باشند که در هر ترم فقط یکی از آنها باید اخذ شود. استثنائاً در ترم آخر می‌توان تا دو مورد از دروس معارف را اخذ نمود.</span></p>
+             <p class="flex items-start"><i data-lucide="shield-half" class="w-5 h-5 ml-3 shrink-0 mt-1 icon-color"></i><span>** گذراندن درس آشنایی با دفاع مقدس الزامی است.</span></p>
+             <p class="flex items-start"><i data-lucide="info" class="w-5 h-5 ml-3 shrink-0 mt-1 info-icon"></i><span>توجه ۱ : هم نیازهای دروس، داخل پرانتز نوشته شده است.</span></p>
+             <p class="flex items-start"><i data-lucide="info" class="w-5 h-5 ml-3 shrink-0 mt-1 info-icon"></i><span>توجه ۲ : پیش نیازهای یک درس، باید قبل از اخذ آن درس در ترم‌های قبل پاس شده باشند.</span></p>
+             <p class="flex items-start"><i data-lucide="info" class="w-5 h-5 ml-3 shrink-0 mt-1 info-icon"></i><span>توجه ۳ : هم نیازهای یک درس، یا باید قبل از اخذ آن درس در ترم‌های قبل پاس شده باشند و یا هم زمان با آن درس اخذ گردند.</span></p>
+             <p class="flex items-start"><i data-lucide="info" class="w-5 h-5 ml-3 shrink-0 mt-1 info-icon"></i><span>توجه ۴ : در صورت یکبار عدم قبولی یا غیبت در جلسه امتحان، دانشجو می‌تواند درس پیش نیاز را هم زمان با آن درس وابسته اخذ نماید.</span></p>
+             <p class="flex items-start"><i data-lucide="star" class="w-5 h-5 ml-3 shrink-0 mt-1 icon-color"></i><span>توجه ۵ : دروس اختیاری به تشخیص گروه ارائه می‌شود. از دروس اختیاری که ۸ واحد است، باید حداقل دو واحد آزمایشگاه یا کارگاه باشد و درس "آشنایی با دفاع مقدس" که گذراندن آن برای تمامی دانشجویان الزامی است، به عنوان درس اختیاری در نظر گرفته می شود.</span></p>
         </div>
     </main>
 
@@ -602,9 +646,11 @@
                 if (htmlEl.classList.contains('dark')) {
                     themeToggleDarkIcon.style.display = 'block';
                     themeToggleLightIcon.style.display = 'none';
+                    document.body.classList.add('dark-mode');
                 } else {
                     themeToggleDarkIcon.style.display = 'none';
                     themeToggleLightIcon.style.display = 'block';
+                    document.body.classList.remove('dark-mode');
                 }
             }
 
