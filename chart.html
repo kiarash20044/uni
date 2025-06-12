@@ -210,6 +210,7 @@
         }
         .tab-button {
              transition: color 0.3s, border-color 0.3s, background-color 0.3s;
+             white-space: nowrap;
         }
         .tab-button:hover{
             color: var(--tab-hover-text);
@@ -294,6 +295,15 @@
            height: 1rem; /* 16px */
            transition: color 0.3s;
         }
+
+        /* Utility to hide scrollbar */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
     </style>
 </head>
 <body>
@@ -340,14 +350,16 @@
 
         <!-- Tab Navigation -->
         <div class="mb-4 border-b tab-container-border">
-            <div class="flex flex-wrap -mb-px justify-center" id="tab-buttons">
-                <button class="tab-button active inline-flex items-center p-4 border-b-2 border-transparent rounded-t-lg" data-tab="term-plan"><i data-lucide="calendar-days" class="w-5 h-5 ml-2"></i>برنامه ترمیک</button>
-                <button class="tab-button inline-flex items-center p-4 border-b-2 border-transparent rounded-t-lg" data-tab="general"><i data-lucide="globe" class="w-5 h-5 ml-2"></i>دروس عمومی</button>
-                <button class="tab-button inline-flex items-center p-4 border-b-2 border-transparent rounded-t-lg" data-tab="basic"><i data-lucide="flask-conical" class="w-5 h-5 ml-2"></i>دروس پایه</button>
-                <button class="tab-button inline-flex items-center p-4 border-b-2 border-transparent rounded-t-lg" data-tab="core"><i data-lucide="cpu" class="w-5 h-5 ml-2"></i>دروس اصلی</button>
-                <button class="tab-button inline-flex items-center p-4 border-b-2 border-transparent rounded-t-lg" data-tab="specialized"><i data-lucide="shield-check" class="w-5 h-5 ml-2"></i>دروس تخصصی</button>
+            <!-- This container now handles horizontal scrolling on small screens -->
+            <div class="flex overflow-x-auto -mb-px sm:justify-center no-scrollbar" id="tab-buttons">
+                <button class="tab-button active inline-flex items-center p-4 border-b-2 border-transparent rounded-t-lg flex-shrink-0" data-tab="term-plan"><i data-lucide="calendar-days" class="w-5 h-5 ml-2"></i>برنامه ترمیک</button>
+                <button class="tab-button inline-flex items-center p-4 border-b-2 border-transparent rounded-t-lg flex-shrink-0" data-tab="general"><i data-lucide="globe" class="w-5 h-5 ml-2"></i>دروس عمومی</button>
+                <button class="tab-button inline-flex items-center p-4 border-b-2 border-transparent rounded-t-lg flex-shrink-0" data-tab="basic"><i data-lucide="flask-conical" class="w-5 h-5 ml-2"></i>دروس پایه</button>
+                <button class="tab-button inline-flex items-center p-4 border-b-2 border-transparent rounded-t-lg flex-shrink-0" data-tab="core"><i data-lucide="cpu" class="w-5 h-5 ml-2"></i>دروس اصلی</button>
+                <button class="tab-button inline-flex items-center p-4 border-b-2 border-transparent rounded-t-lg flex-shrink-0" data-tab="specialized"><i data-lucide="shield-check" class="w-5 h-5 ml-2"></i>دروس تخصصی</button>
             </div>
         </div>
+
 
         <!-- Tab Content -->
         <div id="tab-contents">
