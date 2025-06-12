@@ -141,11 +141,8 @@
         }
 
         #progress-header {
-            position: sticky;
-            top: 0;
-            width: 100%;
-            z-index: 50;
             padding: 1rem;
+            margin-bottom: 2.5rem; /* Equivalent to mb-10 */
         }
         
         .dark .term-container, .dark .notes, .dark .summary-table {
@@ -296,54 +293,42 @@
                 <i data-lucide="graduation-cap" class="w-8 h-8" style="color: var(--icon-color);"></i>
                 <a href="#" class="font-bold text-lg">چارت دانشگاه</a>
             </div>
-            <div class="hidden md:flex items-center space-x-6 space-x-reverse font-semibold">
-                <a href="#">خانه</a>
-                <a href="#">درباره ما</a>
-                <a href="#">منابع</a>
-                <a href="#">تماس با ما</a>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Sticky Progress Header -->
-    <header id="progress-header">
-        <div class="max-w-4xl mx-auto">
-             <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold">واحد باقی مانده تا فارق التحصیلی</h3>
+            <div class="flex items-center space-x-4">
+                <div class="hidden md:flex items-center space-x-6 space-x-reverse font-semibold">
+                    <a href="#">خانه</a>
+                    <a href="#">درباره ما</a>
+                    <a href="#">منابع</a>
+                    <a href="#">تماس با ما</a>
+                </div>
                 <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-neutral-800 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-neutral-700 rounded-lg text-sm p-2.5">
                     <i id="theme-toggle-dark-icon" data-lucide="moon" class="w-5 h-5"></i>
                     <i id="theme-toggle-light-icon" data-lucide="sun" class="w-5 h-5"></i>
                 </button>
             </div>
-            <div class="space-y-2">
-                <div class="flex justify-between items-end">
-                    <p id="progress-units" class="text-sm font-medium">۰ از ۱۴۴ واحد</p>
-                    <span id="progress-text" class="text-lg font-bold">0%</span>
-                </div>
-                <div class="w-full rounded-full h-3 progress-bar-track">
-                    <div id="progress-bar" class="h-3 rounded-full" style="width: 0%;"></div>
-                </div>
-            </div>
-        </div>
+        </nav>
     </header>
 
     <main class="container mx-auto p-4 md:p-8">
         <!-- Main Title -->
-        <h1 class="text-3xl grow text-center mb-6">چارت مهندسی کامپیوتر (کارشناسی پیوسته) - ورودی‌های ۱۴۰۱ و ۱۴۰۲</h1>
+        <h1 class="text-3xl grow text-center mb-10">چارت مهندسی کامپیوتر (کارشناسی پیوسته) - ورودی‌های ۱۴۰۱ و ۱۴۰۲</h1>
 
-        <!-- Summary Table -->
-        <div class="max-w-md mx-auto mb-10">
-            <table class="w-full text-base summary-table">
-                <tbody>
-                    <tr><td class="font-bold">درس‌های عمومی</td><td>۲۶ واحد</td></tr>
-                    <tr><td class="font-bold">درس‌های پایه</td><td>۲۰ واحد</td></tr>
-                    <tr><td class="font-bold">درس‌های اصلی</td><td>۵۹ واحد</td></tr>
-                    <tr><td class="font-bold">درس‌های تخصصی</td><td>۳۱ واحد</td></tr>
-                    <tr><td class="font-bold">درس‌های اختیاری</td><td>۶ واحد</td></tr>
-                    <tr class="summary-bold-row"><td>جمع واحد</td><td>۱۴۴ واحد</td></tr>
-                </tbody>
-            </table>
-        </div>
+        <!-- Progress Header -->
+        <header id="progress-header">
+            <div class="max-w-4xl mx-auto">
+                 <div class="flex justify-start items-center mb-4">
+                    <h3 class="text-xl font-bold text-right">واحد باقی مانده تا فارق التحصیلی</h3>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex justify-between items-end">
+                        <p id="progress-units" class="text-sm font-medium">۰ از ۱۴۴ واحد</p>
+                        <span id="progress-text" class="text-lg font-bold">0%</span>
+                    </div>
+                    <div class="w-full rounded-full h-3 progress-bar-track">
+                        <div id="progress-bar" class="h-3 rounded-full" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
 
         <!-- Tab Navigation -->
         <div class="mb-4 border-b tab-container-border">
