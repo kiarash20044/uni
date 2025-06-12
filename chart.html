@@ -29,6 +29,7 @@
             font-family: 'Vazirmatn', sans-serif;
             transition: background-color 0.3s, color 0.3s;
             position: relative;
+            overflow-x: hidden;
         }
 
         /* Light Mode Variables */
@@ -60,33 +61,33 @@
             --checkmark-color: #ffffff;
         }
 
-        /* Dark Mode Variables - Modern OLED Black & Gray Theme */
+        /* Dark Mode Variables - Glassmorphism & Dark Grey Theme */
         .dark {
-            --bg-color: #000000; /* OLED Black */
+            --bg-color: #0c0a09; /* neutral-950 */
             --text-color: #e5e7eb; /* gray-200 */
-            --header-bg: rgba(0, 0, 0, 0.75); /* Transparent black for header */
-            --top-nav-bg: #111827;
-            --top-nav-border: #374151;
-            --top-nav-text: #9ca3af;
+            --header-bg: rgba(12, 10, 9, 0.6); /* neutral-950 with transparency */
+            --top-nav-bg: rgba(12, 10, 9, 0.6);
+            --top-nav-border: rgba(255, 255, 255, 0.1);
+            --top-nav-text: #d4d4d8; /* zinc-300 */
             --top-nav-hover-text: #ffffff;
-            --table-header-bg: #1f2937; /* gray-800 */
-            --table-border-color: #374151; /* gray-700 */
-            --table-even-row-bg: #111827; /* gray-900 */
-            --notes-bg: #111827; /* gray-900 */
-            --notes-border: #374151; /* gray-700 */
-            --summary-table-bold-bg: #1f2937; /* gray-800 */
-            --term-header-bg: #1f2937; /* gray-800 */
+            --table-header-bg: rgba(255, 255, 255, 0.05);
+            --table-border-color: rgba(255, 255, 255, 0.1);
+            --table-even-row-bg: transparent;
+            --notes-bg: rgba(31, 41, 55, 0.5);
+            --notes-border: rgba(255, 255, 255, 0.1);
+            --summary-table-bold-bg: rgba(255, 255, 255, 0.1);
+            --term-header-bg: transparent;
             --passed-course-bg: #1f2937 !important; /* gray-800 */
             --passed-course-text: #6b7280; /* gray-500 */
-            --tab-active-bg: #d1d5db; /* gray-300 */
-            --tab-active-text: #1f2937; /* gray-800 */
+            --tab-active-bg: #374151; /* gray-700 */
+            --tab-active-text: #f9fafb; /* gray-50 */
             --tab-hover-text: #f9fafb; /* gray-50 */
             --tab-hover-border: #4b5563; /* gray-600 */
-            --progress-units-text: #9ca3af; /* gray-400 */
-            --progress-bar-bg: linear-gradient(90deg, #9ca3af 0%, #e5e7eb 100%);
+            --progress-units-text: #d1d5db; /* gray-300 */
+            --progress-bar-bg: linear-gradient(90deg, #6b7280 0%, #d1d5db 100%);
             --icon-color: #d1d5db; /* gray-300 */
             --info-icon-color: #9ca3af; /* gray-400 */
-            --checkmark-color: #1f2937; /* gray-800 */
+            --checkmark-color: #f3f4f6; /* gray-100 */
         }
         
         body {
@@ -94,10 +95,13 @@
             color: var(--text-color);
         }
 
-        /* Animated Grid Background for Dark Mode */
-        @keyframes moveGrid {
-            from { background-position: 0 0; }
-            to { background-position: 100px 100px; }
+        /* Static Grid Background & Moving Neon Glow for Dark Mode */
+        @keyframes moveNeonGlow {
+            0% { transform: translate(20vw, -40vh); }
+            25% { transform: translate(-30vw, 20vh); }
+            50% { transform: translate(30vw, 50vh); }
+            75% { transform: translate(50vw, -10vh); }
+            100% { transform: translate(20vw, -40vh); }
         }
 
         .dark body::before {
@@ -108,37 +112,56 @@
             width: 100vw;
             height: 100vh;
             background-image:
-                linear-gradient(to right, rgba(55, 65, 81, 0.3) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(55, 65, 81, 0.3) 1px, transparent 1px);
+                linear-gradient(to right, rgba(55, 65, 81, 0.15) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(55, 65, 81, 0.15) 1px, transparent 1px);
             background-size: 50px 50px;
-            animation: moveGrid 4s linear infinite;
-            z-index: -1;
-            opacity: 0.7;
+            z-index: -2;
         }
 
-        #top-nav {
-            background-color: var(--top-nav-bg);
+        .dark body::after {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(56, 189, 248, 0) 60%); /* sky-400 */
+            border-radius: 50%;
+            z-index: -1;
+            animation: moveNeonGlow 25s ease-in-out infinite;
+        }
+        
+        /* Glassmorphism Elements */
+        #top-nav, #progress-header {
+            background-color: var(--header-bg);
             border-bottom: 1px solid var(--top-nav-border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             transition: background-color 0.3s, border-color 0.3s;
         }
+
+        #progress-header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+            padding: 1rem;
+        }
+        
+        .dark .term-container, .dark .notes, .dark .summary-table {
+            background: rgba(31, 41, 55, 0.3); /* gray-800 with transparency */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+        }
+
         #top-nav a {
             color: var(--top-nav-text);
             transition: color 0.3s;
         }
         #top-nav a:hover {
             color: var(--top-nav-hover-text);
-        }
-        
-        #progress-header {
-            position: sticky;
-            top: 0;
-            width: 100%;
-            background-color: var(--header-bg);
-            backdrop-filter: blur(8px);
-            z-index: 50;
-            padding: 1rem;
-            border-bottom: 1px solid var(--table-border-color);
-            transition: background-color 0.3s, border-color 0.3s;
         }
 
         #progress-bar {
@@ -173,7 +196,6 @@
         .notes {
             background-color: var(--notes-bg);
             padding: 1.5rem;
-            border-radius: 0.5rem;
             border: 1px solid var(--notes-border);
             margin-top: 2rem;
         }
@@ -195,13 +217,9 @@
         .tab-container-border {
             border-color: var(--table-border-color);
         }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        /* Style for passed courses */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
         .course-passed {
             background-color: var(--passed-course-bg);
             text-decoration: line-through;
@@ -210,12 +228,8 @@
         .course-passed td {
             color: var(--passed-course-text) !important;
         }
-        #progress-units {
-            color: var(--progress-units-text);
-        }
-        .progress-bar-track {
-            background-color: var(--table-header-bg);
-        }
+        #progress-units { color: var(--progress-units-text); }
+        .progress-bar-track { background-color: var(--table-header-bg); }
         .summary-bold-row {
             font-weight: bold;
             background-color: var(--summary-table-bold-bg);
@@ -225,25 +239,20 @@
             cursor: pointer;
             transition: background-color 0.3s;
          }
-         .term-header:hover {
-             background-color: var(--table-border-color);
+         .dark .term-header:hover {
+            background-color: rgba(255, 255, 255, 0.1);
          }
-         .icon-color {
-            color: var(--icon-color);
+         .light .term-header:hover {
+            background-color: var(--table-border-color);
          }
-         .info-icon {
-            color: var(--info-icon-color);
-         }
+         .icon-color { color: var(--icon-color); }
+         .info-icon { color: var(--info-icon-color); }
         .term-content {
             transition: max-height 0.5s ease-in-out;
             overflow: hidden;
         }
-        .term-toggle-icon {
-             transition: transform 0.3s ease-in-out;
-        }
-        .term-toggle-icon.rotate-180 {
-            transform: rotate(180deg);
-        }
+        .term-toggle-icon { transition: transform 0.3s ease-in-out; }
+        .term-toggle-icon.rotate-180 { transform: rotate(180deg); }
 
         /* Custom Checkbox */
         .custom-checkbox-label {
@@ -324,7 +333,7 @@
 
         <!-- Summary Table -->
         <div class="max-w-md mx-auto mb-10">
-            <table class="w-full text-base">
+            <table class="w-full text-base summary-table">
                 <tbody>
                     <tr><td class="font-bold">درس‌های عمومی</td><td>۲۶ واحد</td></tr>
                     <tr><td class="font-bold">درس‌های پایه</td><td>۲۰ واحد</td></tr>
@@ -356,7 +365,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <!-- Term 1 -->
                     <div class="term-container">
-                        <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
+                        <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg mb-0">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="book-open-check" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم اول (۱۹ واحد)</span>
@@ -381,7 +390,7 @@
 
                     <!-- Term 2 -->
                     <div class="term-container">
-                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
+                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg mb-0">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="network" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم دوم (۲۰ واحد)</span>
@@ -407,7 +416,7 @@
 
                     <!-- Term 3 -->
                     <div class="term-container">
-                        <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
+                        <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg mb-0">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="cpu" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم سوم (۱۷ واحد)</span>
@@ -431,7 +440,7 @@
                     </div>
                     <!-- Term 4 -->
                     <div class="term-container">
-                        <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
+                        <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg mb-0">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="database" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم چهارم (۱۹ واحد)</span>
@@ -455,7 +464,7 @@
                     </div>
                     <!-- Term 5 -->
                     <div class="term-container">
-                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
+                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg mb-0">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="circuit-board" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم پنجم (۱۷ واحد)</span>
@@ -477,7 +486,7 @@
                     </div>
                     <!-- Term 6 -->
                      <div class="term-container">
-                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
+                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg mb-0">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="brain-circuit" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم ششم (۱۷ واحد)</span>
@@ -500,7 +509,7 @@
                     </div>
                     <!-- Term 7 -->
                     <div class="term-container">
-                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
+                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg mb-0">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="file-text" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم هفتم (۱۸ واحد)</span>
@@ -524,7 +533,7 @@
                     </div>
                     <!-- Term 8 -->
                      <div class="term-container">
-                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-lg mb-0">
+                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg mb-0">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="shield-check" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم هشتم (۱۷ واحد)</span>
@@ -552,7 +561,7 @@
             <!-- General Courses -->
             <div id="general" class="tab-content">
                  <h2 class="text-2xl mt-8 mb-6">دروس عمومی</h2>
-                 <div class="max-w-4xl mx-auto">
+                 <div class="max-w-4xl mx-auto term-container p-4">
                     <table>
                         <thead><tr><th>ردیف</th><th>نام درس</th><th>واحد</th><th>پیش نیاز</th><th>هم نیاز</th></tr></thead>
                         <tbody>
@@ -578,7 +587,7 @@
             <!-- Basic Courses -->
             <div id="basic" class="tab-content">
                  <h2 class="text-2xl mt-8 mb-6">دروس پایه</h2>
-                 <div class="max-w-4xl mx-auto">
+                 <div class="max-w-4xl mx-auto term-container p-4">
                     <table>
                         <thead><tr><th>ردیف</th><th>نام درس</th><th>واحد</th><th>پیش نیاز</th><th>هم نیاز</th></tr></thead>
                         <tbody>
@@ -598,7 +607,7 @@
             <!-- Core Courses -->
             <div id="core" class="tab-content">
                 <h2 class="text-2xl mt-8 mb-6">دروس اصلی</h2>
-                <div class="max-w-4xl mx-auto">
+                <div class="max-w-4xl mx-auto term-container p-4">
                     <table>
                         <thead><tr><th>ردیف</th><th>نام درس</th><th>واحد</th><th>پیش نیاز</th><th>هم نیاز</th></tr></thead>
                         <tbody>
@@ -633,7 +642,7 @@
             <!-- Specialized Courses -->
             <div id="specialized" class="tab-content">
                 <h2 class="text-2xl mt-8 mb-6">دروس تخصصی</h2>
-                <div class="max-w-4xl mx-auto">
+                <div class="max-w-4xl mx-auto term-container p-4">
                     <table>
                         <thead><tr><th>ردیف</th><th>نام درس</th><th>واحد</th><th>پیش نیاز</th><th>هم نیاز</th></tr></thead>
                         <tbody>
@@ -685,11 +694,9 @@
                 if (htmlEl.classList.contains('dark')) {
                     themeToggleDarkIcon.style.display = 'block';
                     themeToggleLightIcon.style.display = 'none';
-                    document.body.classList.add('dark-mode');
                 } else {
                     themeToggleDarkIcon.style.display = 'none';
                     themeToggleLightIcon.style.display = 'block';
-                    document.body.classList.remove('dark-mode');
                 }
             }
 
@@ -734,7 +741,7 @@
             const TOTAL_UNITS = 144;
             const termPlanContainer = document.getElementById('term-plan');
             const allCheckboxLabels = termPlanContainer.querySelectorAll('.custom-checkbox-label');
-            const allCheckboxes = termPlanContainer.querySelectorAll('.course-checkbox');
+            const allCheckboxes = document.querySelectorAll('.course-checkbox'); // Select all checkboxes on the page
             const progressBar = document.getElementById('progress-bar');
             const progressText = document.getElementById('progress-text');
             const progressUnits = document.getElementById('progress-units');
@@ -783,9 +790,9 @@
                 updateProgress();
             }
             
-            allCheckboxLabels.forEach(label => {
-                const checkbox = label.querySelector('.course-checkbox');
-                checkbox.addEventListener('change', () => {
+            // Event listener for all checkboxes
+            document.querySelectorAll('.course-checkbox').forEach(checkbox => {
+                 checkbox.addEventListener('change', () => {
                      updateRowStyle(checkbox);
                      updateProgress();
                      saveProgress();
@@ -801,9 +808,13 @@
 
             termContainers.forEach(container => {
                 const header = container.querySelector('.term-header');
+                if (!header) return;
                 const content = container.querySelector('.term-content');
                 const icon = header.querySelector('.term-toggle-icon');
-                const termTitle = header.querySelector('span').textContent.trim();
+                const termTitleElement = header.querySelector('span');
+                if (!content || !icon || !termTitleElement) return;
+                
+                const termTitle = termTitleElement.textContent.trim();
 
                 const expandSection = () => {
                     header.classList.remove('rounded-lg');
@@ -824,9 +835,12 @@
                 const checkboxesInTerm = Array.from(container.querySelectorAll('.course-checkbox'));
                 const allChecked = checkboxesInTerm.length > 0 && checkboxesInTerm.every(cb => cb.checked);
 
-                if (collapsibleState[termTitle]) { // 1. Check for saved user preference first
-                    collapsibleState[termTitle] === 'expanded' ? expandSection() : collapseSection();
-                } else { // 2. If no preference, apply default logic (collapse if all courses passed)
+                // Initial state logic
+                if (collapsibleState[termTitle] === 'expanded') {
+                    expandSection();
+                } else if (collapsibleState[termTitle] === 'collapsed') {
+                    collapseSection();
+                } else {
                     allChecked ? collapseSection() : expandSection();
                 }
 
