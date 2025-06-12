@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>چارت مهندسی کامپیوتر</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
@@ -203,8 +204,8 @@
              <div class="flex justify-between items-center mb-2">
                 <h3 class="text-lg font-bold">پیشرفت شما</h3>
                 <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
-                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    <i id="theme-toggle-dark-icon" data-lucide="moon" class="hidden w-5 h-5"></i>
+                    <i id="theme-toggle-light-icon" data-lucide="sun" class="hidden w-5 h-5"></i>
                 </button>
             </div>
             <div class="w-full rounded-full h-8 progress-bar-track">
@@ -237,11 +238,11 @@
         <!-- Tab Navigation -->
         <div class="mb-4 border-b tab-container-border">
             <div class="flex flex-wrap -mb-px justify-center" id="tab-buttons">
-                <button class="tab-button active inline-block p-4 border-b-2 border-transparent rounded-t-lg" data-tab="term-plan">برنامه ترمیک</button>
-                <button class="tab-button inline-block p-4 border-b-2 border-transparent rounded-t-lg" data-tab="general">دروس عمومی</button>
-                <button class="tab-button inline-block p-4 border-b-2 border-transparent rounded-t-lg" data-tab="basic">دروس پایه</button>
-                <button class="tab-button inline-block p-4 border-b-2 border-transparent rounded-t-lg" data-tab="core">دروس اصلی</button>
-                <button class="tab-button inline-block p-4 border-b-2 border-transparent rounded-t-lg" data-tab="specialized">دروس تخصصی</button>
+                <button class="tab-button active inline-flex items-center p-4 border-b-2 border-transparent rounded-t-lg" data-tab="term-plan"><i data-lucide="calendar-days" class="w-5 h-5 ml-2"></i>برنامه ترمیک</button>
+                <button class="tab-button inline-flex items-center p-4 border-b-2 border-transparent rounded-t-lg" data-tab="general"><i data-lucide="globe" class="w-5 h-5 ml-2"></i>دروس عمومی</button>
+                <button class="tab-button inline-flex items-center p-4 border-b-2 border-transparent rounded-t-lg" data-tab="basic"><i data-lucide="flask-conical" class="w-5 h-5 ml-2"></i>دروس پایه</button>
+                <button class="tab-button inline-flex items-center p-4 border-b-2 border-transparent rounded-t-lg" data-tab="core"><i data-lucide="cpu" class="w-5 h-5 ml-2"></i>دروس اصلی</button>
+                <button class="tab-button inline-flex items-center p-4 border-b-2 border-transparent rounded-t-lg" data-tab="specialized"><i data-lucide="shield-check" class="w-5 h-5 ml-2"></i>دروس تخصصی</button>
             </div>
         </div>
 
@@ -256,7 +257,7 @@
                     <div class="term-container">
                         <h3 class="term-header text-xl p-2 flex justify-between items-center rounded-lg mb-0">
                             <span>ترم اول (۱۹ واحد)</span>
-                            <svg class="term-toggle-icon w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
                             <table class="mb-0 border-t-0">
@@ -278,7 +279,7 @@
                     <div class="term-container">
                          <h3 class="term-header text-xl p-2 flex justify-between items-center rounded-lg mb-0">
                             <span>ترم دوم (۲۰ واحد)</span>
-                            <svg class="term-toggle-icon w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                             <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
                             <table class="mb-0 border-t-0">
@@ -301,7 +302,7 @@
                     <div class="term-container">
                         <h3 class="term-header text-xl p-2 flex justify-between items-center rounded-lg mb-0">
                             <span>ترم سوم (۱۷ واحد)</span>
-                            <svg class="term-toggle-icon w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                             <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
                             <table class="mb-0 border-t-0">
@@ -322,7 +323,7 @@
                     <div class="term-container">
                         <h3 class="term-header text-xl p-2 flex justify-between items-center rounded-lg mb-0">
                            <span>ترم چهارم (۱۹ واحد)</span>
-                           <svg class="term-toggle-icon w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                           <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
                             <table class="mb-0 border-t-0">
@@ -343,7 +344,7 @@
                     <div class="term-container">
                          <h3 class="term-header text-xl p-2 flex justify-between items-center rounded-lg mb-0">
                            <span>ترم پنجم (۱۷ واحد)</span>
-                           <svg class="term-toggle-icon w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                           <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
                             <table class="mb-0 border-t-0">
@@ -362,7 +363,7 @@
                      <div class="term-container">
                          <h3 class="term-header text-xl p-2 flex justify-between items-center rounded-lg mb-0">
                             <span>ترم ششم (۱۷ واحد)</span>
-                            <svg class="term-toggle-icon w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
                             <table class="mb-0 border-t-0">
@@ -382,7 +383,7 @@
                     <div class="term-container">
                          <h3 class="term-header text-xl p-2 flex justify-between items-center rounded-lg mb-0">
                            <span>ترم هفتم (۱۸ واحد)</span>
-                           <svg class="term-toggle-icon w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                           <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
                            <table class="mb-0 border-t-0">
@@ -403,7 +404,7 @@
                      <div class="term-container">
                          <h3 class="term-header text-xl p-2 flex justify-between items-center rounded-lg mb-0">
                            <span>ترم هشتم (۱۷ واحد)</span>
-                           <svg class="term-toggle-icon w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                           <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
                             <table class="mb-0 border-t-0">
@@ -531,6 +532,10 @@
 
         <!-- Notes -->
         <div class="notes text-right space-y-4">
+             <h3 class="text-xl font-bold mb-4 flex items-center justify-center">
+                <i data-lucide="book-text" class="w-6 h-6 ml-2"></i>
+                یادداشت‌ها و توضیحات
+             </h3>
              <p>* ورودیهای مهر ۱۴۰۱ و مابعد به جای درس زبان خارجه ۳ واحدی باید به ترتیب سه درس زبان انگلیسی عمومی ترکیبی ۱ (یک واحدی)، زبان انگلیسی عمومی ترکیبی ۲ (یک واحدی) و زبان انگلیسی عمومی ترکیبی ۳ (یک واحدی) را بگذرانند. بعلاوه، ورودیهای مهر ۱۴۰۱ که درس زبان خارجه ۳ واحدی را همان ترم اول گذرانده اند، احتیاجی به گرفتن دروس زبان انگلیسی ترکیبی ندارند.</p>
              <p>توجه : ردیفهای ۱ تا ۸ جزء دروس معارف می‌باشند که در هر ترم فقط یکی از آنها باید اخذ شود. استثنائاً در ترم آخر می‌توان تا دو مورد از دروس معارف را اخذ نمود.</p>
              <p>** گذراندن درس آشنایی با دفاع مقدس الزامی است.</p>
@@ -700,8 +705,10 @@
                     localStorage.setItem('collapsibleState', JSON.stringify(collapsibleState));
                 });
             });
+            
+            // Render all Lucide icons
+            lucide.createIcons();
         });
     </script>
 </body>
 </html>
-
