@@ -132,7 +132,7 @@
         }
         
         /* Glassmorphism Elements */
-        #top-nav, #progress-header {
+        #top-nav {
             background-color: var(--header-bg);
             border-bottom: 1px solid var(--top-nav-border);
             backdrop-filter: blur(12px);
@@ -140,11 +140,6 @@
             transition: background-color 0.3s, border-color 0.3s;
         }
 
-        #progress-header {
-            padding: 1rem;
-            margin-bottom: 2.5rem; /* Equivalent to mb-10 */
-        }
-        
         .dark .term-container, .dark .notes, .dark .summary-table {
             background: rgba(31, 41, 55, 0.3); /* gray-800 with transparency */
             backdrop-filter: blur(12px);
@@ -164,6 +159,23 @@
         #progress-bar {
             background: var(--progress-bar-bg);
             transition: width 0.5s ease-out;
+        }
+
+        /* Unified Hero Section Styling */
+        .hero-section {
+            padding: 2.5rem 1.5rem; /* p-10 px-6 */
+            margin-bottom: 2.5rem; /* mb-10 */
+            border-radius: 0.75rem; /* rounded-xl */
+            transition: background-color 0.3s, border-color 0.3s;
+            background-color: var(--notes-bg);
+            border: 1px solid var(--notes-border);
+        }
+
+        .dark .hero-section {
+            background: rgba(31, 41, 55, 0.3); /* Same as term containers */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         table {
@@ -287,7 +299,7 @@
 <body>
     
     <!-- Non-sticky Top Navigation -->
-    <header id="top-nav" class="py-3">
+    <header id="top-nav" class="py-3 sticky top-0 z-10">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <div class="flex items-center space-x-4 space-x-reverse">
                 <i data-lucide="graduation-cap" class="w-8 h-8" style="color: var(--icon-color);"></i>
@@ -309,26 +321,22 @@
     </header>
 
     <main class="container mx-auto p-4 md:p-8">
-        <!-- Main Title -->
-        <h1 class="text-3xl grow text-center mb-10">چارت مهندسی کامپیوتر (کارشناسی پیوسته) - ورودی‌های ۱۴۰۱ و ۱۴۰۲</h1>
-
-        <!-- Progress Header -->
-        <header id="progress-header">
-            <div class="max-w-4xl mx-auto">
-                 <div class="flex justify-start items-center mb-4">
-                    <h3 class="text-xl font-bold text-right">واحد باقی مانده تا فارق التحصیلی</h3>
+        <!-- Unified Hero Section -->
+        <section class="hero-section text-center">
+            <h1 class="text-3xl lg:text-4xl font-bold mb-4">چارت مهندسی کامپیوتر (کارشناسی پیوسته)</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">ورودی‌های ۱۴۰۱ و ۱۴۰۲</p>
+            
+            <div class="max-w-2xl mx-auto text-right">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="text-lg font-bold">میزان پیشرفت</h3>
+                    <span id="progress-text" class="text-lg font-bold">0%</span>
                 </div>
-                <div class="space-y-2">
-                    <div class="flex justify-between items-end">
-                        <p id="progress-units" class="text-sm font-medium">۰ از ۱۴۴ واحد</p>
-                        <span id="progress-text" class="text-lg font-bold">0%</span>
-                    </div>
-                    <div class="w-full rounded-full h-3 progress-bar-track">
-                        <div id="progress-bar" class="h-3 rounded-full" style="width: 0%;"></div>
-                    </div>
+                <div class="w-full rounded-full h-3 progress-bar-track mb-2">
+                    <div id="progress-bar" class="h-3 rounded-full" style="width: 0%;"></div>
                 </div>
+                <p id="progress-units" class="text-sm font-medium text-left">۰ از ۱۴۴ واحد</p>
             </div>
-        </header>
+        </section>
 
         <!-- Tab Navigation -->
         <div class="mb-4 border-b tab-container-border">
