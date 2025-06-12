@@ -28,7 +28,6 @@
         body {
             font-family: 'Vazirmatn', sans-serif;
             transition: background-color 0.3s, color 0.3s;
-            padding-top: 80px; /* Space for the sticky header */
             position: relative;
         }
 
@@ -36,7 +35,11 @@
         :root {
             --bg-color: #f8fafc; /* slate-50 */
             --text-color: #111827; /* gray-900 */
-            --header-bg: rgba(248, 250, 252, 0.85);
+            --header-bg: rgba(248, 250, 252, 0.9);
+            --top-nav-bg: #ffffff;
+            --top-nav-border: #e5e7eb;
+            --top-nav-text: #374151;
+            --top-nav-hover-text: #000000;
             --table-header-bg: #e5e7eb; /* gray-200 */
             --table-border-color: #d1d5db; /* gray-300 */
             --table-even-row-bg: #f9fafb; /* gray-50 */
@@ -51,7 +54,7 @@
             --tab-hover-text: #1f2937; /* gray-800 */
             --tab-hover-border: #9ca3af; /* gray-400 */
             --progress-units-text: #4b5563; /* gray-600 */
-            --progress-bar-color: #374151; /* gray-700 */
+            --progress-bar-bg: linear-gradient(90deg, #4b5563 0%, #1f2937 100%);
             --icon-color: #374151; /* gray-700 */
             --info-icon-color: #4b5563; /* gray-600 */
             --checkmark-color: #ffffff;
@@ -62,6 +65,10 @@
             --bg-color: #000000; /* OLED Black */
             --text-color: #e5e7eb; /* gray-200 */
             --header-bg: rgba(0, 0, 0, 0.75); /* Transparent black for header */
+            --top-nav-bg: #111827;
+            --top-nav-border: #374151;
+            --top-nav-text: #9ca3af;
+            --top-nav-hover-text: #ffffff;
             --table-header-bg: #1f2937; /* gray-800 */
             --table-border-color: #374151; /* gray-700 */
             --table-even-row-bg: #111827; /* gray-900 */
@@ -76,7 +83,7 @@
             --tab-hover-text: #f9fafb; /* gray-50 */
             --tab-hover-border: #4b5563; /* gray-600 */
             --progress-units-text: #9ca3af; /* gray-400 */
-            --progress-bar-color: #d1d5db; /* gray-300 */
+            --progress-bar-bg: linear-gradient(90deg, #9ca3af 0%, #e5e7eb 100%);
             --icon-color: #d1d5db; /* gray-300 */
             --info-icon-color: #9ca3af; /* gray-400 */
             --checkmark-color: #1f2937; /* gray-800 */
@@ -108,6 +115,19 @@
             z-index: -1;
             opacity: 0.7;
         }
+
+        #top-nav {
+            background-color: var(--top-nav-bg);
+            border-bottom: 1px solid var(--top-nav-border);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        #top-nav a {
+            color: var(--top-nav-text);
+            transition: color 0.3s;
+        }
+        #top-nav a:hover {
+            color: var(--top-nav-hover-text);
+        }
         
         #progress-header {
             position: sticky;
@@ -119,6 +139,11 @@
             padding: 1rem;
             border-bottom: 1px solid var(--table-border-color);
             transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        #progress-bar {
+            background: var(--progress-bar-bg);
+            transition: width 0.5s ease-out;
         }
 
         table {
@@ -191,10 +216,6 @@
         .progress-bar-track {
             background-color: var(--table-header-bg);
         }
-        #progress-bar {
-            background-color: var(--progress-bar-color);
-            transition: width 0.5s, background-color 0.3s;
-        }
         .summary-bold-row {
             font-weight: bold;
             background-color: var(--summary-table-bold-bg);
@@ -258,24 +279,42 @@
     </style>
 </head>
 <body>
+    
+    <!-- Non-sticky Top Navigation -->
+    <header id="top-nav" class="py-3">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <i data-lucide="graduation-cap" class="w-8 h-8" style="color: var(--icon-color);"></i>
+                <a href="#" class="font-bold text-lg">چارت دانشگاه</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-6 space-x-reverse font-semibold">
+                <a href="#">خانه</a>
+                <a href="#">درباره ما</a>
+                <a href="#">منابع</a>
+                <a href="#">تماس با ما</a>
+            </div>
+        </nav>
+    </header>
 
     <!-- Sticky Progress Header -->
     <header id="progress-header">
         <div class="max-w-4xl mx-auto">
-             <div class="flex justify-between items-center mb-2">
-                <h3 class="text-lg font-bold">پیشرفت شما</h3>
+             <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">پیشرفت شما</h3>
                 <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-neutral-800 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-neutral-700 rounded-lg text-sm p-2.5">
-                    <!-- Icons will be managed by script -->
                     <i id="theme-toggle-dark-icon" data-lucide="moon" class="w-5 h-5"></i>
                     <i id="theme-toggle-light-icon" data-lucide="sun" class="w-5 h-5"></i>
                 </button>
             </div>
-            <div class="w-full rounded-full h-8 progress-bar-track">
-                <div id="progress-bar" class="h-8 rounded-full text-white dark:text-gray-900 flex items-center justify-center" style="width: 0%;">
-                    <span id="progress-text">0%</span>
+            <div class="space-y-2">
+                <div class="flex justify-between items-end">
+                    <p id="progress-units" class="text-sm font-medium">۰ از ۱۴۴ واحد</p>
+                    <span id="progress-text" class="text-lg font-bold">0%</span>
+                </div>
+                <div class="w-full rounded-full h-3 progress-bar-track">
+                    <div id="progress-bar" class="h-3 rounded-full" style="width: 0%;"></div>
                 </div>
             </div>
-            <p id="progress-units" class="text-center mt-1 text-sm">۰ از ۱۴۴ واحد گذرانده شده است</p>
         </div>
     </header>
 
@@ -718,7 +757,7 @@
                 const percentage = TOTAL_UNITS > 0 ? (passedUnits / TOTAL_UNITS) * 100 : 0;
                 progressBar.style.width = `${percentage}%`;
                 progressText.textContent = `${Math.round(percentage)}%`;
-                progressUnits.textContent = `${passedUnits} از ${TOTAL_UNITS} واحد گذرانده شده است`;
+                progressUnits.textContent = `${passedUnits} از ${TOTAL_UNITS} واحد`;
             }
 
             function saveProgress() {
