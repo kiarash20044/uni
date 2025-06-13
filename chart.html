@@ -65,15 +65,15 @@
     </header>
 
     <div id="settings-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-11/12 max-w-md">
+        <div class="modal-content-area">
             <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl font-bold">Settings</h2>
-                <button id="close-modal-btn" class="text-gray-500 hover:text-gray-800 dark:hover:text-gray-200">
+                <h2 class="text-xl font-bold">تنظیمات</h2>
+                <button id="close-modal-btn" class="header-icon-btn">
                     <i data-lucide="x" class="w-6 h-6"></i>
                 </button>
             </div>
-            <div class="modal-content">
-                <pre><code></code></pre>
+            <div class="modal-body">
+                <p>این یک نگهدارنده برای تنظیمات است.</p>
             </div>
         </div>
     </div>
@@ -86,13 +86,12 @@
             
             <div class="max-w-2xl mx-auto text-right">
                 <div class="flex justify-between items-center mb-2">
-                    <h3 class="text-lg font-bold">میزان پیشرفت</h3>
-                    <span id="progress-text" class="text-lg font-bold">0%</span>
+                    <h3 id="progress-text" class="text-lg font-bold">144 واحد باقی مانده</h3>
+                    <span id="progress-percentage" class="text-lg font-bold">0%</span>
                 </div>
                 <div class="w-full rounded-full h-3 progress-bar-track mb-2">
                     <div id="progress-bar" class="h-3 rounded-full" style="width: 0%;"></div>
                 </div>
-                <p id="progress-units" class="text-sm font-medium text-left">۰ از ۱۴۴ واحد</p>
             </div>
         </section>
 
@@ -432,7 +431,7 @@
                 یادداشت‌ها و توضیحات
              </h3>
              <p class="flex items-start"><i data-lucide="languages" class="w-5 h-5 ml-3 shrink-0 mt-1 icon-color"></i><span>* ورودیهای مهر ۱۴۰۱ و مابعد به جای درس زبان خارجه ۳ واحدی باید به ترتیب سه درس زبان انگلیسی عمومی ترکیبی ۱ (یک واحدی)، زبان انگلیسی عمومی ترکیبی ۲ (یک واحدی) و زبان انگلیسی عمومی ترکیبی ۳ (یک واحدی) را بگذرانند. بعلاوه، ورودیهای مهر ۱۴۰۱ که درس زبان خارجه ۳ واحدی را همان ترم اول گذرانده اند، احتیاجی به گرفتن دروس زبان انگلیسی ترکیبی ندارند.</span></p>
-             <p class="flex items-start"><i data-lucide="book-check" class="w-5 h-6 ml-3 shrink-0 mt-1 icon-color"></i><span>توجه : ردیفهای ۱ تا ۸ جزء دروس معارف می‌باشند که در هر ترم فقط یکی از آنها باید اخذ شود. استثنائاً در ترم آخر می‌توان تا دو مورد از دروس معارف را اخذ نمود.</span></p>
+             <p class="flex items-start"><i data-lucide="book-check" class="w-5 h-5 ml-3 shrink-0 mt-1 icon-color"></i><span>توجه : ردیفهای ۱ تا ۸ جزء دروس معارف می‌باشند که در هر ترم فقط یکی از آنها باید اخذ شود. استثنائاً در ترم آخر می‌توان تا دو مورد از دروس معارف را اخذ نمود.</span></p>
              <p class="flex items-start"><i data-lucide="shield-half" class="w-5 h-5 ml-3 shrink-0 mt-1 icon-color"></i><span>** گذراندن درس آشنایی با دفاع مقدس الزامی است.</span></p>
              <p class="flex items-start"><i data-lucide="info" class="w-5 h-5 ml-3 shrink-0 mt-1 info-icon"></i><span>توجه ۱ : هم نیازهای دروس، داخل پرانتز نوشته شده است.</span></p>
              <p class="flex items-start"><i data-lucide="info" class="w-5 h-5 ml-3 shrink-0 mt-1 info-icon"></i><span>توجه ۲ : پیش نیازهای یک درس، باید قبل از اخذ آن درس در ترم‌های قبل پاس شده باشند.</span></p>
