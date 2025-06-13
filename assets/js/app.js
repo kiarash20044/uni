@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const allCheckboxes = document.querySelectorAll('.course-checkbox'); // Select all checkboxes on the page
     const progressBar = document.getElementById('progress-bar');
     const progressText = document.getElementById('progress-text');
-    const progressUnits = document.getElementById('progress-units');
+    const progressPercentage = document.getElementById('progress-percentage');
 
     function updateRowStyle(checkbox) {
         const row = checkbox.closest('tr');
@@ -131,10 +131,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        const remainingUnits = TOTAL_UNITS - passedUnits;
         const percentage = TOTAL_UNITS > 0 ? (passedUnits / TOTAL_UNITS) * 100 : 0;
+
         if(progressBar) progressBar.style.width = `${percentage}%`;
-        if(progressText) progressText.textContent = `${Math.round(percentage)}%`;
-        if(progressUnits) progressUnits.textContent = `${passedUnits} из ${TOTAL_UNITS} واحد`;
+        if(progressText) progressText.textContent = `${remainingUnits} واحد باقی مانده`;
+        if(progressPercentage) progressPercentage.textContent = `${Math.round(percentage)}%`;
     }
 
     function saveProgress() {
