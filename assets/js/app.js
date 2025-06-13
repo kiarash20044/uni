@@ -249,22 +249,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeSidebarBtn = document.getElementById('close-sidebar');
     const sidebarBackdrop = document.getElementById('sidebar-backdrop');
 
-    const toggleSidebar = (force) => {
-        const shouldOpen = force !== undefined ? force : !mobileSidebar.classList.contains('is-open');
-        mobileSidebar.classList.toggle('is-open', shouldOpen);
-        sidebarBackdrop.classList.toggle('is-visible', shouldOpen);
-        document.body.classList.toggle('sidebar-open', shouldOpen);
+    const openSidebar = () => {
+        mobileSidebar.classList.add('is-open');
+        sidebarBackdrop.classList.remove('hidden');
+        document.body.classList.add('sidebar-open');
+    };
+
+    const closeSidebar = () => {
+        mobileSidebar.classList.remove('is-open');
+        sidebarBackdrop.classList.add('hidden');
+        document.body.classList.remove('sidebar-open');
     };
 
     if (hamburgerBtn) {
-        hamburgerBtn.addEventListener('click', () => toggleSidebar(true));
+        hamburgerBtn.addEventListener('click', openSidebar);
     }
     if (closeSidebarBtn) {
-        closeSidebarBtn.addEventListener('click', () => toggleSidebar(false));
+        closeSidebarBtn.addEventListener('click', closeSidebar);
     }
     if (sidebarBackdrop) {
-        sidebarBackdrop.addEventListener('click', () => toggleSidebar(false));
+        sidebarBackdrop.addEventListener('click', closeSidebar);
     }
+
 
     // Render all Lucide icons on the page
     lucide.createIcons();
