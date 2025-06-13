@@ -109,8 +109,8 @@ body {
     --term-container-border: #e5e7eb; /* gray-200 */
     --term-header-bg: #f9fafb; /* gray-50 */
     --term-header-hover-bg: #f3f4f6; /* gray-100 */
-    --passed-course-bg: #d1fae5 !important; /* green-100 */
-    --passed-course-text: #065f46 !important; /* green-800 */
+    --passed-course-bg: #f3f4f6 !important;
+    --passed-course-text: #9ca3af !important; /* gray-400 */
     --tab-active-bg: #374151; /* gray-700 */
     --tab-active-text: #f9fafb; /* gray-50 */
     --tab-hover-text: #1f2937; /* gray-800 */
@@ -122,6 +122,8 @@ body {
     --checkmark-color: #ffffff;
     --unit-badge-bg: #e5e7eb; /* gray-200 */
     --unit-badge-text: #4b5563; /* gray-600 */
+    --modal-bg: #ffffff;
+    --modal-text-color: #111827;
 }
 
 .dark {
@@ -146,8 +148,8 @@ body {
     --term-container-border: rgba(255, 255, 255, 0.1);
     --term-header-bg: transparent;
     --term-header-hover-bg: rgba(255, 255, 255, 0.1);
-    --passed-course-bg: #052e16 !important; /* green-950 */
-    --passed-course-text: #a7f3d0 !important; /* green-200 */
+    --passed-course-bg: #1f2937 !important; /* gray-800 */
+    --passed-course-text: #6b7280 !important; /* gray-500 */
     --tab-active-bg: #e5e7eb; /* gray-200 */
     --tab-active-text: #111827; /* gray-900 */
     --tab-hover-text: #f9fafb; /* gray-50 */
@@ -159,6 +161,8 @@ body {
     --checkmark-color: #111827; /* gray-900 */
     --unit-badge-bg: #374151; /* gray-700 */
     --unit-badge-text: #d1d5db; /* gray-300 */
+    --modal-bg: #1f2937; /* gray-800 */
+    --modal-text-color: #e5e7eb;
 }
 
 
@@ -238,6 +242,21 @@ body {
 #sidebar-backdrop.show { opacity: 1; }
 #sidebar-backdrop.hide { opacity: 0; pointer-events: none; }
 
+/* --- Settings Modal --- */
+.modal-content-area {
+    background-color: var(--modal-bg);
+    color: var(--modal-text-color);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    width: 91.666667%; /* w-11/12 */
+    max-width: 28rem; /* max-w-md */
+    border: 1px solid var(--term-container-border);
+}
+.modal-body {
+    margin-top: 1rem;
+}
+
+
 /* --- Main Content & Cards --- */
 .hero-section {
     padding: 2.5rem 1.5rem;
@@ -310,7 +329,7 @@ th, td {
     padding: 0.75rem;
     text-align: center;
     vertical-align: middle;
-    transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition: border-color 0.3s ease-in-out;
 }
 th {
     background-color: var(--table-header-bg);
@@ -319,6 +338,7 @@ th {
 }
 tbody tr:nth-child(even) {
     background-color: var(--table-even-row-bg);
+    transition: background-color 0.3s ease-in-out;
 }
 h1, h2, h3 {
     color: var(--text-color);
@@ -327,7 +347,6 @@ h1, h2, h3 {
 .course-passed {
     background-color: var(--passed-course-bg);
     color: var(--passed-course-text);
-    box-shadow: inset 4px 0 0 0 var(--passed-course-text);
 }
 .course-passed td {
     color: var(--passed-course-text);
@@ -335,6 +354,7 @@ h1, h2, h3 {
 .summary-bold-row {
     font-weight: bold;
     background-color: var(--summary-table-bold-bg);
+    transition: background-color 0.3s ease-in-out;
 }
 
 /* Tabs */
