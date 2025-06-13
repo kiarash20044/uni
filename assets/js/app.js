@@ -5,7 +5,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
     const htmlEl = document.documentElement;
 
-    // Function to update the icon visibility based on the current theme
+    // Improved theme detection and switching
+    function setTheme(theme) {
+        if (theme === 'dark') {
+            htmlEl.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            htmlEl.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        }
+        updateThemeIcons();
+    }
+
+    function getPreferredTheme() {
+        if (localStorage.getItem('theme')) {
+            return localStorage.getItem('theme');
+        }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
     function updateThemeIcons() {
         if (htmlEl.classList.contains('dark')) {
             themeToggleDarkIcon.style.display = 'block';
@@ -16,24 +34,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Set initial icon state on load
-    updateThemeIcons();
+    // Set initial theme and icons
+    setTheme(getPreferredTheme());
+
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+            setTheme(e.matches ? 'dark' : 'light');
+        }
+    });
 
     // Add click listener to the toggle button
-    themeToggleBtn.addEventListener('click', () => {
-        // Toggle the 'dark' class
-        htmlEl.classList.toggle('dark');
-        
-        // Update localStorage with the new theme
-        if (htmlEl.classList.contains('dark')) {
-            localStorage.theme = 'dark';
-        } else {
-            localStorage.theme = 'light';
-        }
-        
-        // Update the icons
-        updateThemeIcons();
-    });
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            setTheme(htmlEl.classList.contains('dark') ? 'light' : 'dark');
+        });
+    }
 
 
     // --- Tab Navigation Logic ---
