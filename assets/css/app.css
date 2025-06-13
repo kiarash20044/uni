@@ -342,25 +342,38 @@ body.sidebar-open {
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
+/* === START: UPDATED STICKY PROGRESS BAR STYLES === */
 #progress-container.is-sticky {
     background-color: var(--sticky-progress-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--header-border);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
     z-index: 20;
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
-    padding-left: 1rem; /* Added for full-width effect */
-    padding-right: 1rem; /* Added for full-width effect */
+
+    /* Make the container full-width */
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    /* We remove the original margin-bottom when sticky */
+    margin-bottom: 0 !important; 
 }
 
-#progress-container.is-sticky .progress-bar-wrapper {
-    max-width: 100%;
+/* This rule constrains the content inside the now full-width sticky bar */
+#progress-container.is-sticky > div {
+    max-width: 72rem; /* max-w-7xl, same as the main container */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .dark #progress-container.is-sticky {
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
 }
+/* === END: UPDATED STICKY PROGRESS BAR STYLES === */
 
 
 .term-container, .notes, .max-w-4xl.term-container {
