@@ -6,7 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const htmlEl = document.documentElement;
 
     // Improved theme detection and switching
-    function setTheme(theme) {
+    function setTheme(theme, smooth = false) {
+        if (smooth) {
+            htmlEl.classList.add('theme-transition');
+            // Remove the class after transition duration
+            setTimeout(() => {
+                htmlEl.classList.remove('theme-transition');
+            }, 400); // match CSS duration
+        }
         if (theme === 'dark') {
             htmlEl.classList.add('dark');
             localStorage.setItem('theme', 'dark');
@@ -47,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add click listener to the toggle button
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
-            setTheme(htmlEl.classList.contains('dark') ? 'light' : 'dark');
+            setTheme(htmlEl.classList.contains('dark') ? 'light' : 'dark', true);
         });
     }
 

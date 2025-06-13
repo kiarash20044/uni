@@ -1,9 +1,13 @@
 /* General Styles */
 body {
     font-family: 'Vazirmatn', sans-serif;
-    transition: background-color 0.3s, color 0.3s;
     position: relative;
     overflow-x: hidden;
+}
+
+/* Smooth theme transition for html and body */
+html.theme-transition, body.theme-transition {
+    transition: background-color 0.4s cubic-bezier(0.4,0,0.2,1), color 0.4s cubic-bezier(0.4,0,0.2,1);
 }
 
 /* Light Mode Variables */
