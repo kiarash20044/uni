@@ -75,48 +75,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Tab Navigation Logic ---
-    const tabButtonsContainer = document.getElementById('tab-buttons');
+    const tabButtons = document.getElementById('tab-buttons');
     const tabContents = document.getElementById('tab-contents');
-    const tabUnderline = document.querySelector('#tab-buttons::after');
 
-
-    function updateUnderline(activeTab) {
-        const underline = tabButtonsContainer.style;
-        underline.setProperty('--underline-width', `${activeTab.offsetWidth}px`);
-        underline.setProperty('--underline-offset', `${activeTab.offsetLeft}px`);
-    }
-
-    tabButtonsContainer.addEventListener('click', (event) => {
+    tabButtons.addEventListener('click', (event) => {
         const selectedTab = event.target.closest('.tab-button');
         if (!selectedTab) return;
 
-        // Remove active from all buttons and content
-        tabButtonsContainer.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+        tabButtons.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
         tabContents.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
 
-        // Add active to clicked button and corresponding content
         selectedTab.classList.add('active');
         const tabId = selectedTab.dataset.tab;
         document.getElementById(tabId)?.classList.add('active');
-
-        // Move the underline
-        const underline = document.querySelector('#tab-buttons::after');
-        if (underline) {
-            underline.style.width = `${selectedTab.offsetWidth}px`;
-            underline.style.left = `${selectedTab.offsetLeft}px`;
-        }
-
     });
-
-    // Set initial underline position
-    const initialActiveTab = document.querySelector('.tab-button.active');
-    if (initialActiveTab) {
-        const underline = document.querySelector('#tab-buttons::after');
-        if (underline) {
-            underline.style.width = `${initialActiveTab.offsetWidth}px`;
-            underline.style.left = `${initialActiveTab.offsetLeft}px`;
-        }
-    }
 
 
     // --- Progress Bar & Course Checkbox Logic ---
@@ -134,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
             checkbox.checked ? row.classList.add('course-passed') : row.classList.remove('course-passed');
         }
     }
-    
+
     function updateProgress() {
         let passedUnits = 0;
         allCheckboxes.forEach(checkbox => {
@@ -167,11 +139,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (courseName && savedProgress[courseName]) {
                 checkbox.checked = true;
             }
-            updateRowStyle(checkbox); 
+            updateRowStyle(checkbox);
         });
         updateProgress();
     }
-    
+
     // Event listener for all checkboxes
     document.querySelectorAll('.course-checkbox').forEach(checkbox => {
          checkbox.addEventListener('change', () => {
@@ -193,9 +165,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!header) return;
         const content = container.querySelector('.term-content');
         const icon = header.querySelector('.term-toggle-icon');
-        const termTitleElement = header.querySelector('span');
+        const termTitleElement = header.querySelector('span.font-bold');
         if (!content || !icon || !termTitleElement) return;
-        
+
         const termTitle = termTitleElement.textContent.trim();
 
         const expandSection = () => {
@@ -213,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
             icon.classList.remove('rotate-180');
             collapsibleState[termTitle] = 'collapsed';
         };
-        
+
         const checkboxesInTerm = Array.from(container.querySelectorAll('.course-checkbox'));
         const allChecked = checkboxesInTerm.length > 0 && checkboxesInTerm.every(cb => cb.checked);
 
@@ -232,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('collapsibleState', JSON.stringify(collapsibleState));
         });
     });
-    
+
     // --- Hamburger & Sidebar Logic ---
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mobileSidebar = document.getElementById('mobile-sidebar');
