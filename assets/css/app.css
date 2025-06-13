@@ -8,14 +8,15 @@ body {
 }
 
 /* Smooth theme transition for html and body */
-html.theme-transition, 
+html.theme-transition,
 body.theme-transition,
-html.theme-transition *, 
-html.theme-transition *:before, 
+html.theme-transition *,
+html.theme-transition *:before,
 html.theme-transition *:after {
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out, border-color 0.5s ease-in-out !important;
     will-change: background-color, color, border-color;
 }
+
 
 /* --- Theme Variables --- */
 :root {
@@ -51,6 +52,8 @@ html.theme-transition *:after {
     --icon-color: #374151; /* gray-700 */
     --info-icon-color: #4b5563; /* gray-600 */
     --checkmark-color: #ffffff;
+    --unit-badge-bg: #e5e7eb; /* gray-200 */
+    --unit-badge-text: #4b5563; /* gray-600 */
 }
 
 .dark {
@@ -86,6 +89,8 @@ html.theme-transition *:after {
     --icon-color: #d1d5db; /* gray-300 */
     --info-icon-color: #9ca3af; /* gray-400 */
     --checkmark-color: #111827; /* gray-900 */
+    --unit-badge-bg: #374151; /* gray-700 */
+    --unit-badge-text: #d1d5db; /* gray-300 */
 }
 
 /* Dark Mode Background Effects */
@@ -130,7 +135,7 @@ html.theme-transition *:after {
     border-bottom: 1px solid var(--header-border);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    position: sticky;
+    /* position: sticky; */ /* Sticky header disabled */
     top: 0;
     z-index: 20;
     padding-top: 0.5rem;
@@ -242,6 +247,15 @@ html.theme-transition *:after {
 .term-toggle-icon { transition: transform 0.3s ease-in-out; }
 .term-toggle-icon.rotate-180 { transform: rotate(180deg); }
 
+/* Unit Badge */
+.unit-badge {
+    background-color: var(--unit-badge-bg);
+    color: var(--unit-badge-text);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
 
 /* Table Styles */
 table {
@@ -279,24 +293,47 @@ h1, h2, h3 {
 
 /* Tabs */
 .tab-button {
-     white-space: nowrap;
-     color: var(--nav-link-color);
+    white-space: nowrap;
+    color: var(--nav-link-color);
+    position: relative;
+    transition: color 0.3s;
 }
-.tab-button:hover{
+
+.tab-button:hover {
     color: var(--tab-hover-text);
-    border-color: var(--tab-hover-border) !important;
 }
+
 .tab-button.active {
+    color: var(--tab-active-text);
+}
+
+.dark .tab-button.active {
+    color: var(--tab-active-text);
+}
+
+.tab-container-border {
+    border-color: var(--table-border-color);
+    position: relative;
+}
+
+#tab-buttons {
+    position: relative;
+}
+
+#tab-buttons::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; /* Position it on the border */
+    left: 0;
+    height: 2px;
     background-color: var(--tab-active-bg);
-    color: var(--tab-active-text);
-    border-color: var(--tab-active-bg) !important;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-.dark .tab-button.active:hover {
-    color: var(--tab-active-text);
-}
-.tab-container-border { border-color: var(--table-border-color); }
+
+
 .tab-content { display: none; }
 .tab-content.active { display: block; }
+
 
 /* Progress Bar */
 #progress-units { color: var(--progress-units-text); }
