@@ -407,36 +407,47 @@ html.dark {
 }
 
 /* Custom styles for theme toggle and settings button */
-.theme-toggle-btn, .settings-btn {
+.theme-toggle-btn, .settings-btn, #hamburger-btn, #close-sidebar {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     background: var(--table-header-bg);
     color: var(--icon-color);
     border: none;
     border-radius: 0.5rem;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
     box-shadow: none;
     outline: none;
     padding: 0;
 }
-.theme-toggle-btn:focus, .settings-btn:focus {
+.theme-toggle-btn:focus, .settings-btn:focus, #hamburger-btn:focus, #close-sidebar:focus {
     outline: none;
     box-shadow: 0 0 0 2px var(--tab-hover-border);
 }
-.theme-toggle-btn:hover, .settings-btn:hover {
+.theme-toggle-btn:hover, .settings-btn:hover, #hamburger-btn:hover, #close-sidebar:hover {
     background: var(--tab-hover-border);
     color: var(--tab-active-text);
 }
-.theme-toggle-btn:active, .settings-btn:active {
+.theme-toggle-btn:active, .settings-btn:active, #hamburger-btn:active, #close-sidebar:active {
     background: var(--tab-active-bg);
     color: var(--tab-active-text);
 }
 
-/* Remove default ring/focus for toggle */
-#theme-toggle:focus, #theme-toggle:active {
-    outline: none !important;
-    box-shadow: none !important;
+/* Sidebar styles */
+#mobile-sidebar {
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    border-left: 1px solid var(--table-border-color);
+}
+#sidebar-backdrop {
+    transition: opacity 0.3s;
+}
+#sidebar-backdrop.show {
+    display: block !important;
+    opacity: 1;
+}
+#sidebar-backdrop.hide {
+    opacity: 0;
+    pointer-events: none;
 }

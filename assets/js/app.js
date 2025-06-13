@@ -190,6 +190,39 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
+    // --- Hamburger & Sidebar Logic ---
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileSidebar = document.getElementById('mobile-sidebar');
+    const closeSidebarBtn = document.getElementById('close-sidebar');
+    const sidebarBackdrop = document.getElementById('sidebar-backdrop');
+
+    function openSidebar() {
+        mobileSidebar.classList.remove('translate-x-full');
+        mobileSidebar.classList.add('translate-x-0');
+        sidebarBackdrop.classList.add('show');
+        sidebarBackdrop.classList.remove('hide', 'hidden');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeSidebar() {
+        mobileSidebar.classList.remove('translate-x-0');
+        mobileSidebar.classList.add('translate-x-full');
+        sidebarBackdrop.classList.add('hide');
+        sidebarBackdrop.classList.remove('show');
+        setTimeout(() => {
+            sidebarBackdrop.classList.add('hidden');
+            document.body.style.overflow = '';
+        }, 300);
+    }
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', openSidebar);
+    }
+    if (closeSidebarBtn) {
+        closeSidebarBtn.addEventListener('click', closeSidebar);
+    }
+    if (sidebarBackdrop) {
+        sidebarBackdrop.addEventListener('click', closeSidebar);
+    }
+
     // Render all Lucide icons on the page
     lucide.createIcons();
 });
