@@ -321,7 +321,7 @@ body.sidebar-open {
     padding: 1.5rem;
     border-radius: 0.75rem;
     width: 91.666667%; /* w-11/12 */
-    max-width: 28rem; /* max-w-md */
+    max-w: 28rem; /* max-w-md */
     border: 1px solid var(--term-container-border);
 }
 .modal-body {
@@ -342,38 +342,37 @@ body.sidebar-open {
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
-/* === START: UPDATED STICKY PROGRESS BAR STYLES === */
+/* === CORRECTED STICKY PROGRESS BAR STYLES === */
 #progress-container.is-sticky {
     background-color: var(--sticky-progress-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--header-border);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     z-index: 20;
-    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 
-    /* Make the container full-width */
+    /* This makes the container full-width, breaking out of its parent */
     width: 100vw;
     left: 50%;
     transform: translateX(-50%);
-    
-    /* We remove the original margin-bottom when sticky */
-    margin-bottom: 0 !important; 
 }
 
-/* This rule constrains the content inside the now full-width sticky bar */
-#progress-container.is-sticky > div {
-    max-width: 72rem; /* max-w-7xl, same as the main container */
+#progress-container.is-sticky .progress-bar-wrapper {
+    /* This overrides the inline `max-w-2xl` and centers the content
+       to align with the rest of the page (max-w-7xl) */
+    max-width: 72rem;
     margin-left: auto;
     margin-right: auto;
     padding-left: 1rem;
     padding-right: 1rem;
+    transition: max-width 0.3s ease-in-out;
 }
 
 .dark #progress-container.is-sticky {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
-/* === END: UPDATED STICKY PROGRESS BAR STYLES === */
+/* === END CORRECTION === */
 
 
 .term-container, .notes, .max-w-4xl.term-container {
