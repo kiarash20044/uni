@@ -59,7 +59,7 @@ html.theme-transition *:after {
 .dark {
     --bg-color: #0c0a09; /* neutral-950 */
     --text-color: #e5e7eb; /* gray-200 */
-    --header-bg: rgba(12, 10, 9, 0.7); 
+    --header-bg: rgba(12, 10, 9, 0.7);
     --header-border: rgba(255, 255, 255, 0.1);
     --nav-link-color: #d4d4d8; /* zinc-300 */
     --nav-link-hover-bg: rgba(255, 255, 255, 0.1);
@@ -295,44 +295,35 @@ h1, h2, h3 {
 .tab-button {
     white-space: nowrap;
     color: var(--nav-link-color);
-    position: relative;
-    transition: color 0.3s;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .tab-button:hover {
     color: var(--tab-hover-text);
+    border-color: var(--tab-hover-border) !important;
 }
 
 .tab-button.active {
+    background-color: var(--tab-active-bg);
     color: var(--tab-active-text);
+    border-color: var(--tab-active-bg) !important;
 }
 
-.dark .tab-button.active {
+.dark .tab-button.active:hover {
     color: var(--tab-active-text);
 }
 
 .tab-container-border {
     border-color: var(--table-border-color);
-    position: relative;
 }
 
-#tab-buttons {
-    position: relative;
+.tab-content {
+    display: none;
 }
 
-#tab-buttons::after {
-    content: '';
-    position: absolute;
-    bottom: -1px; /* Position it on the border */
-    left: 0;
-    height: 2px;
-    background-color: var(--tab-active-bg);
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+.tab-content.active {
+    display: block;
 }
-
-
-.tab-content { display: none; }
-.tab-content.active { display: block; }
 
 
 /* Progress Bar */
