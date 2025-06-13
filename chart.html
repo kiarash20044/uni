@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="assets/css/app.css">
     
     <!-- Theme switcher script to prevent FOUC (Flash of Unstyled Content) -->
@@ -23,52 +24,55 @@
             document.documentElement.classList.remove('dark');
         }
     </script>
-
-   
 </head>
 <body>
     
-    <!-- Non-sticky Top Navigation -->
-    <header id="top-nav" class="py-3 sticky top-0 z-10">
+    <!-- Top Navigation Header -->
+    <header id="top-nav">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-            <!-- Right: Menus only (hidden on mobile) -->
-            <div class="hidden md:flex items-center space-x-6 space-x-reverse font-semibold">
-                <a href="#">خانه</a>
-                <a href="#">درباره ما</a>
-                <a href="#">منابع</a>
-                <a href="#">تماس با ما</a>
-            </div>
-            <!-- Hamburger for mobile -->
-            <button id="hamburger-btn" type="button" class="md:hidden theme-toggle-btn ml-2" aria-label="Open menu">
-                <i data-lucide="menu" class="w-5 h-5"></i>
-            </button>
-            <!-- Left: Theme toggle and settings icon -->
+            <!-- Left Side: Hamburger (Mobile) & Nav Links (Desktop) -->
             <div class="flex items-center gap-x-2">
-                <button id="theme-toggle" type="button" class="theme-toggle-btn">
+                 <!-- Hamburger for mobile -->
+                <button id="hamburger-btn" type="button" class="header-icon-btn md:hidden" aria-label="Open menu">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+                <!-- Desktop Nav Links -->
+                <div class="hidden md:flex items-center space-x-6 space-x-reverse font-semibold">
+                    <a href="#" class="nav-link">خانه</a>
+                    <a href="#" class="nav-link">درباره ما</a>
+                    <a href="#" class="nav-link">منابع</a>
+                    <a href="#" class="nav-link">تماس با ما</a>
+                </div>
+            </div>
+
+            <!-- Right Side: Action Buttons -->
+            <div class="flex items-center gap-x-2">
+                <button id="theme-toggle" type="button" class="header-icon-btn" aria-label="Toggle theme">
                     <i id="theme-toggle-dark-icon" data-lucide="moon" class="w-5 h-5"></i>
                     <i id="theme-toggle-light-icon" data-lucide="sun" class="w-5 h-5"></i>
                 </button>
-                <button id="settings-btn" type="button" class="settings-btn">
+                <button id="settings-btn" type="button" class="header-icon-btn" aria-label="Settings">
                     <i data-lucide="settings" class="w-5 h-5"></i>
                 </button>
             </div>
         </nav>
+
         <!-- Mobile Sidebar -->
-        <div id="mobile-sidebar" class="fixed top-0 right-0 h-full w-64 bg-white dark:bg-neutral-900 shadow-lg z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
-            <div class="flex justify-between items-center p-4 border-b border-gray-200 dark:border-neutral-700">
+        <div id="mobile-sidebar" class="fixed top-0 right-0 h-full w-64 z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+            <div class="flex justify-between items-center p-4">
                 <span class="font-bold text-lg">منو</span>
-                <button id="close-sidebar" class="theme-toggle-btn" aria-label="بستن منو">
+                <button id="close-sidebar" class="header-icon-btn" aria-label="بستن منو">
                     <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
             </div>
-            <nav class="flex flex-col p-4 space-y-4 font-semibold">
-                <a href="#">خانه</a>
-                <a href="#">درباره ما</a>
-                <a href="#">منابع</a>
-                <a href="#">تماس با ما</a>
+            <nav class="flex flex-col p-4 space-y-2 font-semibold">
+                <a href="#" class="nav-link-mobile">خانه</a>
+                <a href="#" class="nav-link-mobile">درباره ما</a>
+                <a href="#" class="nav-link-mobile">منابع</a>
+                <a href="#" class="nav-link-mobile">تماس با ما</a>
             </nav>
         </div>
-        <div id="sidebar-backdrop" class="fixed inset-0 bg-black bg-opacity-30 z-40 hidden md:hidden"></div>
+        <div id="sidebar-backdrop" class="fixed inset-0 bg-black bg-opacity-30 z-40 hidden"></div>
     </header>
 
     <main class="container mx-auto p-4 md:p-8">
@@ -91,7 +95,6 @@
 
         <!-- Tab Navigation -->
         <div class="mb-4 border-b tab-container-border">
-            <!-- This container now handles horizontal scrolling on small screens -->
             <div class="flex overflow-x-auto -mb-px sm:justify-center no-scrollbar" id="tab-buttons">
                 <button class="tab-button active inline-flex items-center p-4 border-b-2 border-transparent rounded-t-lg flex-shrink-0" data-tab="term-plan"><i data-lucide="calendar-days" class="w-5 h-5 ml-2"></i>برنامه ترمیک</button>
                 <button class="tab-button inline-flex items-center p-4 border-b-2 border-transparent rounded-t-lg flex-shrink-0" data-tab="general"><i data-lucide="globe" class="w-5 h-5 ml-2"></i>دروس عمومی</button>
@@ -111,7 +114,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <!-- Term 1 -->
                     <div class="term-container">
-                        <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg mb-0">
+                        <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="book-open-check" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم اول (۱۹ واحد)</span>
@@ -119,24 +122,26 @@
                             <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
-                            <table class="mb-0 border-t-0">
-                                <thead><tr><th>گذرانده</th><th>نام درس</th><th>واحد</th><th>نوع</th><th>پیش نیاز و (هم نیاز)</th></tr></thead>
-                                <tbody>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>ریاضی عمومی ۱</td><td>۳</td><td>پایه</td><td>(ریاضیات پایه)</td></tr>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>فیزیک ۱</td><td>۳</td><td>پایه</td><td>(ریاضی عمومی ۱)</td></tr>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>مبانی کامپیوتر و برنامه سازی</td><td>۳</td><td>اصلی</td><td>-</td></tr>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>فارسی عمومی</td><td>۳</td><td>عمومی</td><td>-</td></tr>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="1"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>آشنایی با قرآن کریم</td><td>۱</td><td>عمومی</td><td>-</td></tr>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>زبان خارجه</td><td>۳</td><td>عمومی</td><td>-</td></tr>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>عمومی (معارف)</td><td>۳</td><td>عمومی</td><td>-</td></tr>
-                                </tbody>
-                            </table>
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead><tr><th>گذرانده</th><th>نام درس</th><th>واحد</th><th>نوع</th><th>پیش نیاز و (هم نیاز)</th></tr></thead>
+                                    <tbody>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>ریاضی عمومی ۱</td><td>۳</td><td>پایه</td><td>(ریاضیات پایه)</td></tr>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>فیزیک ۱</td><td>۳</td><td>پایه</td><td>(ریاضی عمومی ۱)</td></tr>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>مبانی کامپیوتر و برنامه سازی</td><td>۳</td><td>اصلی</td><td>-</td></tr>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>فارسی عمومی</td><td>۳</td><td>عمومی</td><td>-</td></tr>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="1"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>آشنایی با قرآن کریم</td><td>۱</td><td>عمومی</td><td>-</td></tr>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>زبان خارجه</td><td>۳</td><td>عمومی</td><td>-</td></tr>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>عمومی (معارف)</td><td>۳</td><td>عمومی</td><td>-</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Term 2 -->
                     <div class="term-container">
-                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg mb-0">
+                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="network" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم دوم (۲۰ واحد)</span>
@@ -144,25 +149,27 @@
                             <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
-                            <table class="mb-0 border-t-0">
-                               <thead><tr><th>گذرانده</th><th>نام درس</th><th>واحد</th><th>نوع</th><th>پیش نیاز و (هم نیاز)</th></tr></thead>
-                                <tbody>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>ریاضی عمومی ۲</td><td>۳</td><td>پایه</td><td>ریاضی عمومی ۱</td></tr>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>معادلات دیفرانسیل</td><td>۳</td><td>پایه</td><td>ریاضی عمومی ۱</td></tr>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>ریاضیات گسسته</td><td>۳</td><td>اصلی</td><td>(ریاضی عمومی ۱)</td></tr>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>فیزیک ۲</td><td>۳</td><td>پایه</td><td>ریاضی عمومی ۱</td></tr>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>برنامه سازی پیشرفته</td><td>۳</td><td>اصلی</td><td>مبانی کامپیوتر و برنامه سازی</td></tr>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="1"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>کارگاه کامپیوتر</td><td>۱</td><td>اصلی</td><td>(مبانی کامپیوتر و برنامه سازی)</td></tr>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="2"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>اندیشه ها و وصایای امام</td><td>۲</td><td>عمومی</td><td>-</td></tr>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="2"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>تربیت بدنی</td><td>۲</td><td>عمومی</td><td>-</td></tr>
-                                </tbody>
-                            </table>
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                   <thead><tr><th>گذرانده</th><th>نام درس</th><th>واحد</th><th>نوع</th><th>پیش نیاز و (هم نیاز)</th></tr></thead>
+                                    <tbody>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>ریاضی عمومی ۲</td><td>۳</td><td>پایه</td><td>ریاضی عمومی ۱</td></tr>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>معادلات دیفرانسیل</td><td>۳</td><td>پایه</td><td>ریاضی عمومی ۱</td></tr>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>ریاضیات گسسته</td><td>۳</td><td>اصلی</td><td>(ریاضی عمومی ۱)</td></tr>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>فیزیک ۲</td><td>۳</td><td>پایه</td><td>ریاضی عمومی ۱</td></tr>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>برنامه سازی پیشرفته</td><td>۳</td><td>اصلی</td><td>مبانی کامپیوتر و برنامه سازی</td></tr>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="1"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>کارگاه کامپیوتر</td><td>۱</td><td>اصلی</td><td>(مبانی کامپیوتر و برنامه سازی)</td></tr>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="2"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>اندیشه ها و وصایای امام</td><td>۲</td><td>عمومی</td><td>-</td></tr>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="2"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>تربیت بدنی</td><td>۲</td><td>عمومی</td><td>-</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Term 3 -->
                     <div class="term-container">
-                        <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg mb-0">
+                        <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="cpu" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم سوم (۱۷ واحد)</span>
@@ -170,23 +177,25 @@
                             <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
-                            <table class="mb-0 border-t-0">
-                               <thead><tr><th>گذرانده</th><th>نام درس</th><th>واحد</th><th>نوع</th><th>پیش نیاز و (هم نیاز)</th></tr></thead>
-                                <tbody>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>ریاضیات مهندسی</td><td>۳</td><td>اصلی</td><td>ریاضی عمومی ۲ و معادلات دیفرانسیل</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>مدارهای الکتریکی</td><td>۳</td><td>اصلی</td><td>(فیزیک ۲)</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>مدارهای منطقی</td><td>۳</td><td>اصلی</td><td>ریاضیات گسسته</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>ساختمان‌های داده</td><td>۳</td><td>اصلی</td><td>برنامه سازی پیشرفته</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="2"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>اخلاق اسلامی</td><td>۲</td><td>عمومی</td><td>-</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="2"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>انقلاب اسلامی</td><td>۲</td><td>عمومی</td><td>-</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="1"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>ورزش ۱</td><td>۱</td><td>عمومی</td><td>(تربیت بدنی)</td></tr>
-                                </tbody>
-                            </table>
+                             <div class="overflow-x-auto">
+                                <table class="w-full">
+                                   <thead><tr><th>گذرانده</th><th>نام درس</th><th>واحد</th><th>نوع</th><th>پیش نیاز و (هم نیاز)</th></tr></thead>
+                                    <tbody>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>ریاضیات مهندسی</td><td>۳</td><td>اصلی</td><td>ریاضی عمومی ۲ و معادلات دیفرانسیل</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>مدارهای الکتریکی</td><td>۳</td><td>اصلی</td><td>(فیزیک ۲)</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>مدارهای منطقی</td><td>۳</td><td>اصلی</td><td>ریاضیات گسسته</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>ساختمان‌های داده</td><td>۳</td><td>اصلی</td><td>برنامه سازی پیشرفته</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="2"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>اخلاق اسلامی</td><td>۲</td><td>عمومی</td><td>-</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="2"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>انقلاب اسلامی</td><td>۲</td><td>عمومی</td><td>-</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="1"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>ورزش ۱</td><td>۱</td><td>عمومی</td><td>(تربیت بدنی)</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <!-- Term 4 -->
                     <div class="term-container">
-                        <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg mb-0">
+                        <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="database" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم چهارم (۱۹ واحد)</span>
@@ -194,23 +203,25 @@
                            <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
-                            <table class="mb-0 border-t-0">
-                               <thead><tr><th>گذرانده</th><th>نام درس</th><th>واحد</th><th>نوع</th><th>پیش نیاز و (هم نیاز)</th></tr></thead>
-                                <tbody>
-                                     <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>پایگاه داده ها</td><td>۳</td><td>تخصصی</td><td>ساختمان‌های داده</td></tr>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>آمار و احتمال مهندسی</td><td>۳</td><td>پایه</td><td>ریاضی عمومی ۲</td></tr>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>معماری کامپیوتر</td><td>۳</td><td>اصلی</td><td>مدارهای منطقی</td></tr>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>نظریه زبان‌ها و ماشین‌ها</td><td>۳</td><td>اصلی</td><td>ساختمان‌های داده</td></tr>
-                                     <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>طراحی الگوریتم‌ها</td><td>۳</td><td>اصلی</td><td>ساختمان‌های داده</td></tr>
-                                     <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="2"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>تاریخ تحلیلی صدر اسلام</td><td>۲</td><td>عمومی</td><td>-</td></tr>
-                                     <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="2"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>دانش خانواده و جمعیت</td><td>۲</td><td>عمومی</td><td>-</td></tr>
-                                </tbody>
-                            </table>
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                   <thead><tr><th>گذرانده</th><th>نام درس</th><th>واحد</th><th>نوع</th><th>پیش نیاز و (هم نیاز)</th></tr></thead>
+                                    <tbody>
+                                         <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>پایگاه داده ها</td><td>۳</td><td>تخصصی</td><td>ساختمان‌های داده</td></tr>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>آمار و احتمال مهندسی</td><td>۳</td><td>پایه</td><td>ریاضی عمومی ۲</td></tr>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>معماری کامپیوتر</td><td>۳</td><td>اصلی</td><td>مدارهای منطقی</td></tr>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>نظریه زبان‌ها و ماشین‌ها</td><td>۳</td><td>اصلی</td><td>ساختمان‌های داده</td></tr>
+                                         <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>طراحی الگوریتم‌ها</td><td>۳</td><td>اصلی</td><td>ساختمان‌های داده</td></tr>
+                                         <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="2"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>تاریخ تحلیلی صدر اسلام</td><td>۲</td><td>عمومی</td><td>-</td></tr>
+                                         <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="2"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>دانش خانواده و جمعیت</td><td>۲</td><td>عمومی</td><td>-</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <!-- Term 5 -->
                     <div class="term-container">
-                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg mb-0">
+                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="circuit-board" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم پنجم (۱۷ واحد)</span>
@@ -218,21 +229,23 @@
                            <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
-                            <table class="mb-0 border-t-0">
-                               <thead><tr><th>گذرانده</th><th>نام درس</th><th>واحد</th><th>نوع</th><th>پیش نیاز و (هم نیاز)</th></tr></thead>
-                                <tbody>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>سیگنال‌ها و سیستم‌ها</td><td>۳</td><td>اصلی</td><td>ریاضیات مهندسی</td></tr>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>طراحی کامپیوتری سیستم‌های دیجیتال</td><td>۳</td><td>اصلی</td><td>معماری کامپیوتر</td></tr>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="4"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>ریزپردازنده و زبان اسمبلی</td><td>۴</td><td>اصلی</td><td>معماری کامپیوتر</td></tr>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>سیستم‌های عامل</td><td>۳</td><td>اصلی</td><td>(ساختمان‌های داده)</td></tr>
-                                    <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="4"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>شبکه های کامپیوتری</td><td>۴</td><td>اصلی</td><td>(سیستم‌های عامل)</td></tr>
-                                </tbody>
-                            </table>
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                   <thead><tr><th>گذرانده</th><th>نام درس</th><th>واحد</th><th>نوع</th><th>پیش نیاز و (هم نیاز)</th></tr></thead>
+                                    <tbody>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>سیگنال‌ها و سیستم‌ها</td><td>۳</td><td>اصلی</td><td>ریاضیات مهندسی</td></tr>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>طراحی کامپیوتری سیستم‌های دیجیتال</td><td>۳</td><td>اصلی</td><td>معماری کامپیوتر</td></tr>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="4"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>ریزپردازنده و زبان اسمبلی</td><td>۴</td><td>اصلی</td><td>معماری کامپیوتر</td></tr>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>سیستم‌های عامل</td><td>۳</td><td>اصلی</td><td>(ساختمان‌های داده)</td></tr>
+                                        <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="4"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>شبکه های کامپیوتری</td><td>۴</td><td>اصلی</td><td>(سیستم‌های عامل)</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <!-- Term 6 -->
                      <div class="term-container">
-                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg mb-0">
+                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="brain-circuit" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم ششم (۱۷ واحد)</span>
@@ -240,22 +253,24 @@
                             <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
-                            <table class="mb-0 border-t-0">
-                               <thead><tr><th>گذرانده</th><th>نام درس</th><th>واحد</th><th>نوع</th><th>پیش نیاز و (هم نیاز)</th></tr></thead>
-                                <tbody>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>هوش مصنوعی و سیستم‌های خبره</td><td>۳</td><td>اصلی</td><td>ساختمان‌های داده</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>تحلیل و طراحی سیستم‌ها</td><td>۳</td><td>تخصصی</td><td>پایگاه داده‌ها</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>اصول طراحی کامپایلر</td><td>۳</td><td>اصلی</td><td>نظریه زبان‌ها و ماشین‌ها</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>مهندسی نرم افزار</td><td>۳</td><td>تخصصی</td><td>تحلیل و طراحی سیستم‌ها</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>طراحی شیء گرای سیستم‌ها</td><td>۳</td><td>تخصصی</td><td>برنامه سازی پیشرفته</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="2"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>تاریخ و تمدن اسلامی</td><td>۲</td><td>عمومی</td><td>-</td></tr>
-                                </tbody>
-                            </table>
+                           <div class="overflow-x-auto">
+                                <table class="w-full">
+                                   <thead><tr><th>گذرانده</th><th>نام درس</th><th>واحد</th><th>نوع</th><th>پیش نیاز و (هم نیاز)</th></tr></thead>
+                                    <tbody>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>هوش مصنوعی و سیستم‌های خبره</td><td>۳</td><td>اصلی</td><td>ساختمان‌های داده</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>تحلیل و طراحی سیستم‌ها</td><td>۳</td><td>تخصصی</td><td>پایگاه داده‌ها</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>اصول طراحی کامپایلر</td><td>۳</td><td>اصلی</td><td>نظریه زبان‌ها و ماشین‌ها</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>مهندسی نرم افزار</td><td>۳</td><td>تخصصی</td><td>تحلیل و طراحی سیستم‌ها</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>طراحی شیء گرای سیستم‌ها</td><td>۳</td><td>تخصصی</td><td>برنامه سازی پیشرفته</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="2"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>تاریخ و تمدن اسلامی</td><td>۲</td><td>عمومی</td><td>-</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <!-- Term 7 -->
                     <div class="term-container">
-                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg mb-0">
+                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="file-text" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم هفتم (۱۸ واحد)</span>
@@ -263,23 +278,25 @@
                            <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
-                           <table class="mb-0 border-t-0">
-                               <thead><tr><th>گذرانده</th><th>نام درس</th><th>واحد</th><th>نوع</th><th>پیش نیاز و (هم نیاز)</th></tr></thead>
-                                <tbody>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="2"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>روش پژوهش و ارائه</td><td>۲</td><td>اصلی</td><td>-</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>طراحی زبان‌های برنامه سازی</td><td>۳</td><td>تخصصی</td><td>اصول طراحی کامپایلر</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>مبانی داده کاوی</td><td>۳</td><td>تخصصی</td><td>پایگاه داده‌ها</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>اختیاری ۱</td><td>۳</td><td>اختیاری</td><td>-</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>اختیاری ۲</td><td>۳</td><td>اختیاری</td><td>-</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>اختیاری ۳</td><td>۳</td><td>اختیاری</td><td>-</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="1"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>آشنایی با دفاع مقدس</td><td>۱</td><td>اختیاری</td><td>-</td></tr>
-                                </tbody>
-                            </table>
+                           <div class="overflow-x-auto">
+                                <table class="w-full">
+                                   <thead><tr><th>گذرانده</th><th>نام درس</th><th>واحد</th><th>نوع</th><th>پیش نیاز و (هم نیاز)</th></tr></thead>
+                                    <tbody>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="2"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>روش پژوهش و ارائه</td><td>۲</td><td>اصلی</td><td>-</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>طراحی زبان‌های برنامه سازی</td><td>۳</td><td>تخصصی</td><td>اصول طراحی کامپایلر</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>مبانی داده کاوی</td><td>۳</td><td>تخصصی</td><td>پایگاه داده‌ها</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>اختیاری ۱</td><td>۳</td><td>اختیاری</td><td>-</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>اختیاری ۲</td><td>۳</td><td>اختیاری</td><td>-</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>اختیاری ۳</td><td>۳</td><td>اختیاری</td><td>-</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="1"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>آشنایی با دفاع مقدس</td><td>۱</td><td>اختیاری</td><td>-</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <!-- Term 8 -->
                      <div class="term-container">
-                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg mb-0">
+                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="shield-check" class="w-6 h-6 icon-color"></i>
                                 <span class="font-bold">ترم هشتم (۱۷ واحد)</span>
@@ -287,17 +304,19 @@
                            <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
                         <div class="term-content">
-                            <table class="mb-0 border-t-0">
-                               <thead><tr><th>گذرانده</th><th>نام درس</th><th>واحد</th><th>نوع</th><th>پیش نیاز و (هم نیاز)</th></tr></thead>
-                               <tbody>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>آزمون نرم افزار</td><td>۳</td><td>تخصصی</td><td>مهندسی نرم افزار</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>امنیت شبکه</td><td>۳</td><td>تخصصی</td><td>شبکه های کامپیوتری</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>مهندسی اینترنت</td><td>۳</td><td>تخصصی</td><td>شبکه‌های کامپیوتری</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>اختیاری ۴</td><td>۳</td><td>اختیاری</td><td>-</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="4"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>پروژه</td><td>۴</td><td>تخصصی</td><td>۱۰۰ واحد</td></tr>
-                                   <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="1"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>کارآموزی</td><td>۱</td><td>تخصصی</td><td>۱۰۰ واحد</td></tr>
-                               </tbody>
-                            </table>
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                   <thead><tr><th>گذرانده</th><th>نام درس</th><th>واحد</th><th>نوع</th><th>پیش نیاز و (هم نیاز)</th></tr></thead>
+                                   <tbody>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>آزمون نرم افزار</td><td>۳</td><td>تخصصی</td><td>مهندسی نرم افزار</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>امنیت شبکه</td><td>۳</td><td>تخصصی</td><td>شبکه های کامپیوتری</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>مهندسی اینترنت</td><td>۳</td><td>تخصصی</td><td>شبکه‌های کامپیوتری</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="3"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>اختیاری ۴</td><td>۳</td><td>اختیاری</td><td>-</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="4"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>پروژه</td><td>۴</td><td>تخصصی</td><td>۱۰۰ واحد</td></tr>
+                                       <tr><td><label class="custom-checkbox-label"><input type="checkbox" class="course-checkbox hidden" data-unit="1"><span class="custom-checkbox"><svg class="checkmark hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></label></td><td>کارآموزی</td><td>۱</td><td>تخصصی</td><td>۱۰۰ واحد</td></tr>
+                                   </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -308,104 +327,112 @@
             <div id="general" class="tab-content">
                  <h2 class="text-2xl mt-8 mb-6">دروس عمومی</h2>
                  <div class="max-w-4xl mx-auto term-container p-4">
-                    <table>
-                        <thead><tr><th>ردیف</th><th>نام درس</th><th>واحد</th><th>پیش نیاز</th><th>هم نیاز</th></tr></thead>
-                        <tbody>
-                            <tr><td>۱</td><td>اندیشه اسلامی ۱</td><td>۲</td><td></td><td></td></tr>
-                            <tr><td>۲</td><td>اندیشه اسلامی ۲</td><td>۲</td><td>اندیشه اسلامی ۱</td><td></td></tr>
-                            <tr><td>۳</td><td>اخلاق اسلامی</td><td>۲</td><td></td><td></td></tr>
-                            <tr><td>۴</td><td>انقلاب اسلامی ایران</td><td>۲</td><td></td><td></td></tr>
-                            <tr><td>۵</td><td>تاریخ تحلیلی صدر اسلام</td><td>۲</td><td></td><td></td></tr>
-                            <tr><td>۶</td><td>تفسیر موضوعی نهج البلاغه</td><td>۲</td><td></td><td></td></tr>
-                            <tr><td>۷</td><td>دانش خانواده و جمعیت</td><td>۲</td><td></td><td></td></tr>
-                            <tr><td>۸</td><td>تاریخ فرهنگ و تمدن اسلام و ایران</td><td>۲</td><td></td><td></td></tr>
-                            <tr><td>۹</td><td>زبان خارجه*</td><td>۳</td><td></td><td></td></tr>
-                            <tr><td>۱۰</td><td>تربیت بدنی</td><td>۰.۵+۰.۵</td><td></td><td></td></tr>
-                            <tr><td>۱۱</td><td>ورزش ۱</td><td>۱</td><td>تربیت بدنی</td><td></td></tr>
-                            <tr><td>۱۲</td><td>فارسی عمومی</td><td>۳</td><td></td><td></td></tr>
-                            <tr><td>۱۳</td><td>اندیشه ها و وصایای حضرت امام (ره)</td><td>۱</td><td></td><td></td></tr>
-                            <tr><td>۱۴</td><td>انس با قرآن</td><td>۱</td><td></td><td></td></tr>
-                            <tr class="summary-bold-row"><td colspan="2">جمع واحد</td><td>۲۶</td><td colspan="2"></td></tr>
-                        </tbody>
-                    </table>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead><tr><th>ردیف</th><th>نام درس</th><th>واحد</th><th>پیش نیاز</th><th>هم نیاز</th></tr></thead>
+                            <tbody>
+                                <tr><td>۱</td><td>اندیشه اسلامی ۱</td><td>۲</td><td></td><td></td></tr>
+                                <tr><td>۲</td><td>اندیشه اسلامی ۲</td><td>۲</td><td>اندیشه اسلامی ۱</td><td></td></tr>
+                                <tr><td>۳</td><td>اخلاق اسلامی</td><td>۲</td><td></td><td></td></tr>
+                                <tr><td>۴</td><td>انقلاب اسلامی ایران</td><td>۲</td><td></td><td></td></tr>
+                                <tr><td>۵</td><td>تاریخ تحلیلی صدر اسلام</td><td>۲</td><td></td><td></td></tr>
+                                <tr><td>۶</td><td>تفسیر موضوعی نهج البلاغه</td><td>۲</td><td></td><td></td></tr>
+                                <tr><td>۷</td><td>دانش خانواده و جمعیت</td><td>۲</td><td></td><td></td></tr>
+                                <tr><td>۸</td><td>تاریخ فرهنگ و تمدن اسلام و ایران</td><td>۲</td><td></td><td></td></tr>
+                                <tr><td>۹</td><td>زبان خارجه*</td><td>۳</td><td></td><td></td></tr>
+                                <tr><td>۱۰</td><td>تربیت بدنی</td><td>۰.۵+۰.۵</td><td></td><td></td></tr>
+                                <tr><td>۱۱</td><td>ورزش ۱</td><td>۱</td><td>تربیت بدنی</td><td></td></tr>
+                                <tr><td>۱۲</td><td>فارسی عمومی</td><td>۳</td><td></td><td></td></tr>
+                                <tr><td>۱۳</td><td>اندیشه ها و وصایای حضرت امام (ره)</td><td>۱</td><td></td><td></td></tr>
+                                <tr><td>۱۴</td><td>انس با قرآن</td><td>۱</td><td></td><td></td></tr>
+                                <tr class="summary-bold-row"><td colspan="2">جمع واحد</td><td>۲۶</td><td colspan="2"></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <!-- Basic Courses -->
             <div id="basic" class="tab-content">
                  <h2 class="text-2xl mt-8 mb-6">دروس پایه</h2>
                  <div class="max-w-4xl mx-auto term-container p-4">
-                    <table>
-                        <thead><tr><th>ردیف</th><th>نام درس</th><th>واحد</th><th>پیش نیاز</th><th>هم نیاز</th></tr></thead>
-                        <tbody>
-                            <tr><td>۱</td><td>ریاضی عمومی ۱</td><td>۳</td><td></td><td></td></tr>
-                            <tr><td>۲</td><td>ریاضی عمومی ۲</td><td>۳</td><td>ریاضی عمومی ۱</td><td></td></tr>
-                            <tr><td>۳</td><td>فیزیک ۱</td><td>۳</td><td></td><td></td></tr>
-                            <tr><td>۴</td><td>فیزیک ۲</td><td>۳</td><td>ریاضی عمومی ۱</td><td></td></tr>
-                            <tr><td>۵</td><td>آمار و احتمال مهندسی</td><td>۳</td><td>ریاضی عمومی ۲</td><td></td></tr>
-                            <tr><td>۶</td><td>معادلات دیفرانسیل</td><td>۳</td><td>ریاضی عمومی ۱</td><td></td></tr>
-                            <tr><td>۷</td><td>کارگاه کامپیوتر</td><td>۱</td><td></td><td>مبانی کامپیوتر و برنامه سازی</td></tr>
-                            <tr><td>۸</td><td>آزمایشگاه فیزیک ۲</td><td>۱</td><td>فیزیک ۲</td><td></td></tr>
-                            <tr class="summary-bold-row"><td colspan="2">جمع واحد</td><td>۲۰</td><td colspan="2"></td></tr>
-                        </tbody>
-                    </table>
+                     <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead><tr><th>ردیف</th><th>نام درس</th><th>واحد</th><th>پیش نیاز</th><th>هم نیاز</th></tr></thead>
+                            <tbody>
+                                <tr><td>۱</td><td>ریاضی عمومی ۱</td><td>۳</td><td></td><td></td></tr>
+                                <tr><td>۲</td><td>ریاضی عمومی ۲</td><td>۳</td><td>ریاضی عمومی ۱</td><td></td></tr>
+                                <tr><td>۳</td><td>فیزیک ۱</td><td>۳</td><td></td><td></td></tr>
+                                <tr><td>۴</td><td>فیزیک ۲</td><td>۳</td><td>ریاضی عمومی ۱</td><td></td></tr>
+                                <tr><td>۵</td><td>آمار و احتمال مهندسی</td><td>۳</td><td>ریاضی عمومی ۲</td><td></td></tr>
+                                <tr><td>۶</td><td>معادلات دیفرانسیل</td><td>۳</td><td>ریاضی عمومی ۱</td><td></td></tr>
+                                <tr><td>۷</td><td>کارگاه کامپیوتر</td><td>۱</td><td></td><td>مبانی کامپیوتر و برنامه سازی</td></tr>
+                                <tr><td>۸</td><td>آزمایشگاه فیزیک ۲</td><td>۱</td><td>فیزیک ۲</td><td></td></tr>
+                                <tr class="summary-bold-row"><td colspan="2">جمع واحد</td><td>۲۰</td><td colspan="2"></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <!-- Core Courses -->
             <div id="core" class="tab-content">
                 <h2 class="text-2xl mt-8 mb-6">دروس اصلی</h2>
                 <div class="max-w-4xl mx-auto term-container p-4">
-                    <table>
-                        <thead><tr><th>ردیف</th><th>نام درس</th><th>واحد</th><th>پیش نیاز</th><th>هم نیاز</th></tr></thead>
-                        <tbody>
-                            <tr><td>۱</td><td>مبانی کامپیوتر و برنامه سازی</td><td>۳</td><td></td><td></td></tr>
-                            <tr><td>۲</td><td>مدارهای الکتریکی</td><td>۳</td><td></td><td>معادلات دیفرانسیل</td></tr>
-                            <tr><td>۳</td><td>ریاضیات گسسته</td><td>۳</td><td></td><td>ریاضی عمومی ۱ - مبانی کامپیوتر و برنامه سازی</td></tr>
-                            <tr><td>۴</td><td>برنامه سازی پیشرفته</td><td>۳</td><td>مبانی کامپیوتر و برنامه سازی</td><td></td></tr>
-                            <tr><td>۵</td><td>ساختمانهای داده</td><td>۳</td><td>ریاضیات گسسته - برنامه سازی پیشرفته</td><td></td></tr>
-                            <tr><td>۶</td><td>مدارهای منطقی</td><td>۳</td><td></td><td>ریاضیات گسسته</td></tr>
-                            <tr><td>۷</td><td>نظریه زبانها و ماشینها</td><td>۳</td><td>ساختمانهای داده</td><td></td></tr>
-                            <tr><td>۸</td><td>زبان تخصصی</td><td>۲</td><td>زبان خارجه</td><td></td></tr>
-                            <tr><td>۹</td><td>روش پژوهش و ارائه</td><td>۲</td><td>زبان تخصصی</td><td></td></tr>
-                            <tr><td>۱۰</td><td>ریاضیات مهندسی</td><td>۳</td><td>ریاضی عمومی ۲ - معادلات دیفرانسیل</td><td></td></tr>
-                            <tr><td>۱۱</td><td>معماری کامپیوتر</td><td>۳</td><td>مدارهای منطقی</td><td></td></tr>
-                            <tr><td>۱۲</td><td>سیستمهای عامل</td><td>۳</td><td>ساختمانهای داده - معماری کامپیوتر</td><td></td></tr>
-                            <tr><td>۱۳</td><td>طراحی الگوریتمها</td><td>۳</td><td>ساختمانهای داده</td><td></td></tr>
-                            <tr><td>۱۴</td><td>طراحی کامپیوتری سیستمهای دیجیتال</td><td>۳</td><td>معماری کامپیوتر</td><td></td></tr>
-                            <tr><td>۱۵</td><td>سیگنالها و سیستمها</td><td>۳</td><td>ریاضیات مهندسی</td><td></td></tr>
-                            <tr><td>۱۶</td><td>ریزپردازنده و زبان اسمبلی</td><td>۳</td><td>معماری کامپیوتر</td><td></td></tr>
-                            <tr><td>۱۷</td><td>شبکه های کامپیوتری</td><td>۳</td><td>سیستمهای عامل</td><td></td></tr>
-                            <tr><td>۱۸</td><td>هوش مصنوعی و سیستمهای خبره</td><td>۳</td><td>ساختمانهای داده</td><td></td></tr>
-                            <tr><td>۱۹</td><td>اصول طراحی کامپایلر</td><td>۳</td><td>ساختمانهای داده</td><td></td></tr>
-                            <tr><td>۲۰</td><td>آزمایشگاه سیستم عامل</td><td>۱</td><td></td><td>سیستمهای عامل</td></tr>
-                            <tr><td>۲۱</td><td>آزمایشگاه مدار منطقی و معماری کامپیوتر</td><td>۱</td><td>مدارهای منطقی</td><td>معماری کامپیوتر</td></tr>
-                            <tr><td>۲۲</td><td>آزمایشگاه ریزپردازنده</td><td>۱</td><td>ریزپردازنده و زبان اسمبلی</td><td></td></tr>
-                            <tr><td>۲۳</td><td>آزمایشگاه شبکه های کامپیوتری</td><td>۱</td><td></td><td>شبکه های کامپیوتری</td></tr>
-                            <tr class="summary-bold-row"><td colspan="2">جمع واحد</td><td>۵۹</td><td colspan="2"></td></tr>
-                        </tbody>
-                    </table>
+                     <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead><tr><th>ردیف</th><th>نام درس</th><th>واحد</th><th>پیش نیاز</th><th>هم نیاز</th></tr></thead>
+                            <tbody>
+                                <tr><td>۱</td><td>مبانی کامپیوتر و برنامه سازی</td><td>۳</td><td></td><td></td></tr>
+                                <tr><td>۲</td><td>مدارهای الکتریکی</td><td>۳</td><td></td><td>معادلات دیفرانسیل</td></tr>
+                                <tr><td>۳</td><td>ریاضیات گسسته</td><td>۳</td><td></td><td>ریاضی عمومی ۱ - مبانی کامپیوتر و برنامه سازی</td></tr>
+                                <tr><td>۴</td><td>برنامه سازی پیشرفته</td><td>۳</td><td>مبانی کامپیوتر و برنامه سازی</td><td></td></tr>
+                                <tr><td>۵</td><td>ساختمانهای داده</td><td>۳</td><td>ریاضیات گسسته - برنامه سازی پیشرفته</td><td></td></tr>
+                                <tr><td>۶</td><td>مدارهای منطقی</td><td>۳</td><td></td><td>ریاضیات گسسته</td></tr>
+                                <tr><td>۷</td><td>نظریه زبانها و ماشینها</td><td>۳</td><td>ساختمانهای داده</td><td></td></tr>
+                                <tr><td>۸</td><td>زبان تخصصی</td><td>۲</td><td>زبان خارجه</td><td></td></tr>
+                                <tr><td>۹</td><td>روش پژوهش و ارائه</td><td>۲</td><td>زبان تخصصی</td><td></td></tr>
+                                <tr><td>۱۰</td><td>ریاضیات مهندسی</td><td>۳</td><td>ریاضی عمومی ۲ - معادلات دیفرانسیل</td><td></td></tr>
+                                <tr><td>۱۱</td><td>معماری کامپیوتر</td><td>۳</td><td>مدارهای منطقی</td><td></td></tr>
+                                <tr><td>۱۲</td><td>سیستمهای عامل</td><td>۳</td><td>ساختمانهای داده - معماری کامپیوتر</td><td></td></tr>
+                                <tr><td>۱۳</td><td>طراحی الگوریتمها</td><td>۳</td><td>ساختمانهای داده</td><td></td></tr>
+                                <tr><td>۱۴</td><td>طراحی کامپیوتری سیستمهای دیجیتال</td><td>۳</td><td>معماری کامپیوتر</td><td></td></tr>
+                                <tr><td>۱۵</td><td>سیگنالها و سیستمها</td><td>۳</td><td>ریاضیات مهندسی</td><td></td></tr>
+                                <tr><td>۱۶</td><td>ریزپردازنده و زبان اسمبلی</td><td>۳</td><td>معماری کامپیوتر</td><td></td></tr>
+                                <tr><td>۱۷</td><td>شبکه های کامپیوتری</td><td>۳</td><td>سیستمهای عامل</td><td></td></tr>
+                                <tr><td>۱۸</td><td>هوش مصنوعی و سیستمهای خبره</td><td>۳</td><td>ساختمانهای داده</td><td></td></tr>
+                                <tr><td>۱۹</td><td>اصول طراحی کامپایلر</td><td>۳</td><td>ساختمانهای داده</td><td></td></tr>
+                                <tr><td>۲۰</td><td>آزمایشگاه سیستم عامل</td><td>۱</td><td></td><td>سیستمهای عامل</td></tr>
+                                <tr><td>۲۱</td><td>آزمایشگاه مدار منطقی و معماری کامپیوتر</td><td>۱</td><td>مدارهای منطقی</td><td>معماری کامپیوتر</td></tr>
+                                <tr><td>۲۲</td><td>آزمایشگاه ریزپردازنده</td><td>۱</td><td>ریزپردازنده و زبان اسمبلی</td><td></td></tr>
+                                <tr><td>۲۳</td><td>آزمایشگاه شبکه های کامپیوتری</td><td>۱</td><td></td><td>شبکه های کامپیوتری</td></tr>
+                                <tr class="summary-bold-row"><td colspan="2">جمع واحد</td><td>۵۹</td><td colspan="2"></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <!-- Specialized Courses -->
             <div id="specialized" class="tab-content">
                 <h2 class="text-2xl mt-8 mb-6">دروس تخصصی</h2>
                 <div class="max-w-4xl mx-auto term-container p-4">
-                    <table>
-                        <thead><tr><th>ردیف</th><th>نام درس</th><th>واحد</th><th>پیش نیاز</th><th>هم نیاز</th></tr></thead>
-                        <tbody>
-                            <tr><td>۱</td><td>تحلیل و طراحی سیستمها</td><td>۳</td><td>برنامه سازی پیشرفته</td><td></td></tr>
-                            <tr><td>۲</td><td>پایگاه داده ها</td><td>۳</td><td>ساختمانهای داده</td><td></td></tr>
-                            <tr><td>۳</td><td>طراحی زبانهای برنامه سازی</td><td>۳</td><td>اصول طراحی کامپایلر</td><td></td></tr>
-                            <tr><td>۴</td><td>مهندسی نرم افزار</td><td>۳</td><td>تحلیل و طراحی سیستمها</td><td></td></tr>
-                            <tr><td>۵</td><td>مهندسی اینترنت</td><td>۳</td><td>شبکه های کامپیوتری</td><td>پایگاه داده ها</td></tr>
-                            <tr><td>۶</td><td>آزمون نرم افزار</td><td>۳</td><td>تحلیل و طراحی سیستمها</td><td></td></tr>
-                            <tr><td>۷</td><td>طراحی شی گرای سیستمها</td><td>۳</td><td>برنامه سازی پیشرفته</td><td></td></tr>
-                            <tr><td>۸</td><td>مبانی داده کاوی</td><td>۳</td><td>ساختمانهای داده - پایگاه داده ها</td><td></td></tr>
-                            <tr><td>۹</td><td>امنیت شبکه</td><td>۳</td><td>شبکه های کامپیوتری</td><td></td></tr>
-                            <tr><td>۱۰</td><td>کارآموزی</td><td>۱</td><td>بعد از ۱۰۰ واحد بدون دروس پیش</td><td></td></tr>
-                            <tr><td>۱۱</td><td>پروژه نرم افزار</td><td>۳</td><td>بعد از ۱۰۰ واحد بدون دروس پیش</td><td></td></tr>
-                            <tr class="summary-bold-row"><td colspan="2">جمع واحد</td><td>۳۱</td><td colspan="2"></td></tr>
-                        </tbody>
-                    </table>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead><tr><th>ردیف</th><th>نام درس</th><th>واحد</th><th>پیش نیاز</th><th>هم نیاز</th></tr></thead>
+                            <tbody>
+                                <tr><td>۱</td><td>تحلیل و طراحی سیستمها</td><td>۳</td><td>برنامه سازی پیشرفته</td><td></td></tr>
+                                <tr><td>۲</td><td>پایگاه داده ها</td><td>۳</td><td>ساختمانهای داده</td><td></td></tr>
+                                <tr><td>۳</td><td>طراحی زبانهای برنامه سازی</td><td>۳</td><td>اصول طراحی کامپایلر</td><td></td></tr>
+                                <tr><td>۴</td><td>مهندسی نرم افزار</td><td>۳</td><td>تحلیل و طراحی سیستمها</td><td></td></tr>
+                                <tr><td>۵</td><td>مهندسی اینترنت</td><td>۳</td><td>شبکه های کامپیوتری</td><td>پایگاه داده ها</td></tr>
+                                <tr><td>۶</td><td>آزمون نرم افزار</td><td>۳</td><td>تحلیل و طراحی سیستمها</td><td></td></tr>
+                                <tr><td>۷</td><td>طراحی شی گرای سیستمها</td><td>۳</td><td>برنامه سازی پیشرفته</td><td></td></tr>
+                                <tr><td>۸</td><td>مبانی داده کاوی</td><td>۳</td><td>ساختمانهای داده - پایگاه داده ها</td><td></td></tr>
+                                <tr><td>۹</td><td>امنیت شبکه</td><td>۳</td><td>شبکه های کامپیوتری</td><td></td></tr>
+                                <tr><td>۱۰</td><td>کارآموزی</td><td>۱</td><td>بعد از ۱۰۰ واحد بدون دروس پیش</td><td></td></tr>
+                                <tr><td>۱۱</td><td>پروژه نرم افزار</td><td>۳</td><td>بعد از ۱۰۰ واحد بدون دروس پیش</td><td></td></tr>
+                                <tr class="summary-bold-row"><td colspan="2">جمع واحد</td><td>۳۱</td><td colspan="2"></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -426,8 +453,14 @@
              <p class="flex items-start"><i data-lucide="star" class="w-5 h-5 ml-3 shrink-0 mt-1 icon-color"></i><span>توجه ۵ : دروس اختیاری به تشخیص گروه ارائه می‌شود. از دروس اختیاری که ۸ واحد است، باید حداقل دو واحد آزمایشگاه یا کارگاه باشد و درس "آشنایی با دفاع مقدس" که گذراندن آن برای تمامی دانشجویان الزامی است، به عنوان درس اختیاری در نظر گرفته می شود.</span></p>
         </div>
     </main>
-
-       <script src="assets/js/app.js"></script>
-
+    
+    <!-- This should be your external JS file -->
+    <script src="assets/js/app.js"></script>
+    <script>
+        // Inline script to ensure Lucide icons are rendered after the DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
 </body>
 </html>
