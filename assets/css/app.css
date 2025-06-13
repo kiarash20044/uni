@@ -130,6 +130,9 @@ body.sidebar-open {
     --modal-bg: #ffffff;
     --modal-text-color: #111827;
     --sticky-progress-bg: rgba(255, 255, 255, 0.75);
+    --term-progress-circle-bg: #e5e7eb; /* gray-200 */
+    --term-progress-circle-fill: #374151; /* gray-700 */
+    --term-progress-circle-complete: #10b981; /* green-500 */
 }
 
 .dark {
@@ -171,12 +174,14 @@ body.sidebar-open {
     --modal-bg: #1f2937; /* gray-800 */
     --modal-text-color: #e5e7eb;
     --sticky-progress-bg: rgba(12, 10, 9, 0.65);
+    --term-progress-circle-bg: #374151; /* gray-700 */
+    --term-progress-circle-fill: #e5e7eb; /* gray-200 */
 }
 
 
 /* --- Header & Navigation --- */
 #top-nav {
-    position: sticky;
+    /* position: sticky; */ /* Sticky header disabled */
     top: 0;
     background-color: var(--header-bg);
     border-bottom: 1px solid var(--header-border);
@@ -338,7 +343,7 @@ body.sidebar-open {
 }
 
 #progress-container.is-sticky {
-    background-color: var(--sticky-progress-bg);
+    background-color: var(--header-bg); /* Changed to header-bg */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--header-border);
@@ -527,6 +532,38 @@ html:not(.dark) #theme-toggle-light-icon {
 html.dark #theme-toggle-light-icon,
 html:not(.dark) #theme-toggle-dark-icon {
   display: none;
+}
+
+/* Term Progress Circle */
+.term-progress-circle {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.progress-ring {
+    transform: rotate(-90deg);
+}
+.progress-ring-circle {
+    transition: stroke-dashoffset 0.5s ease-out, stroke 0.3s ease-in-out;
+    stroke: var(--term-progress-circle-fill);
+    stroke-linecap: round;
+}
+.term-progress-circle.completed .progress-ring-circle {
+    stroke: var(--term-progress-circle-complete) !important;
+}
+
+.term-remaining-units {
+    position: absolute;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--text-color);
+    transition: color 0.3s ease-in-out;
+}
+.term-progress-circle.completed .term-remaining-units {
+    color: var(--term-progress-circle-complete);
 }
 
 /* --- Utilities --- */
