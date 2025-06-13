@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Preloader Logic ---
+    const preloader = document.getElementById('preloader');
+    
+    window.addEventListener('load', () => {
+        if (preloader) {
+            preloader.classList.add('loaded');
+            // Optional: remove the preloader from the DOM after the transition
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        }
+    });
+
     // --- Theme Switcher Logic ---
     const themeToggleBtn = document.getElementById('theme-toggle');
     const htmlEl = document.documentElement;
