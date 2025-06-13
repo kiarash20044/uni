@@ -129,7 +129,7 @@ body.sidebar-open {
     --unit-badge-text: #4b5563; /* gray-600 */
     --modal-bg: #ffffff;
     --modal-text-color: #111827;
-    --sticky-progress-bg: rgba(248, 250, 252, 0.85); /* Same as header */
+    --sticky-progress-bg: var(--header-bg);
     --term-progress-circle-bg: #e5e7eb; /* gray-200 */
     --term-progress-circle-fill: #374151; /* gray-700 */
     --term-progress-circle-complete: #10b981; /* green-500 */
@@ -173,7 +173,7 @@ body.sidebar-open {
     --unit-badge-text: #d1d5db; /* gray-300 */
     --modal-bg: #1f2937; /* gray-800 */
     --modal-text-color: #e5e7eb;
-    --sticky-progress-bg: rgba(12, 10, 9, 0.7); /* Same as header */
+    --sticky-progress-bg: var(--header-bg);
     --term-progress-circle-bg: #374151; /* gray-700 */
     --term-progress-circle-fill: #e5e7eb; /* gray-200 */
 }
@@ -504,7 +504,7 @@ h1, h2, h3 {
     border-radius: 0.375rem; /* rounded-md */
     display: flex;
     justify-content: center;
-    align: center;
+    align-items: center;
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 .course-checkbox:checked + .custom-checkbox {
