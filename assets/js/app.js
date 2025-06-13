@@ -5,14 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
     const htmlEl = document.documentElement;
 
-    // Improved theme detection and switching
     function setTheme(theme, smooth = false) {
         if (smooth) {
             htmlEl.classList.add('theme-transition');
-            // Remove the class after transition duration
             setTimeout(() => {
                 htmlEl.classList.remove('theme-transition');
-            }, 400); // match CSS duration
+            }, 500); // match CSS duration
         }
         if (theme === 'dark') {
             htmlEl.classList.add('dark');
@@ -41,39 +39,84 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Set initial theme and icons
     setTheme(getPreferredTheme());
 
-    // Listen for system theme changes
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
         if (!localStorage.getItem('theme')) {
             setTheme(e.matches ? 'dark' : 'light');
         }
     });
 
-    // Add click listener to the toggle button
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
             setTheme(htmlEl.classList.contains('dark') ? 'light' : 'dark', true);
         });
     }
 
+    // --- Settings Modal Logic ---
+    const settingsBtn = document.getElementById('settings-btn');
+    const settingsModal = document.getElementById('settings-modal');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+
+    if (settingsBtn && settingsModal && closeModalBtn) {
+        settingsBtn.addEventListener('click', () => {
+            settingsModal.classList.remove('hidden');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            settingsModal.classList.add('hidden');
+        });
+
+        settingsModal.addEventListener('click', (e) => {
+            if (e.target === settingsModal) {
+                settingsModal.classList.add('hidden');
+            }
+        });
+    }
 
     // --- Tab Navigation Logic ---
-    const tabButtons = document.getElementById('tab-buttons');
+    const tabButtonsContainer = document.getElementById('tab-buttons');
     const tabContents = document.getElementById('tab-contents');
+    const tabUnderline = document.querySelector('#tab-buttons::after');
 
-    tabButtons.addEventListener('click', (event) => {
+
+    function updateUnderline(activeTab) {
+        const underline = tabButtonsContainer.style;
+        underline.setProperty('--underline-width', `${activeTab.offsetWidth}px`);
+        underline.setProperty('--underline-offset', `${activeTab.offsetLeft}px`);
+    }
+
+    tabButtonsContainer.addEventListener('click', (event) => {
         const selectedTab = event.target.closest('.tab-button');
         if (!selectedTab) return;
 
-        tabButtons.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+        // Remove active from all buttons and content
+        tabButtonsContainer.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
         tabContents.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
 
+        // Add active to clicked button and corresponding content
         selectedTab.classList.add('active');
         const tabId = selectedTab.dataset.tab;
         document.getElementById(tabId)?.classList.add('active');
+
+        // Move the underline
+        const underline = document.querySelector('#tab-buttons::after');
+        if (underline) {
+            underline.style.width = `${selectedTab.offsetWidth}px`;
+            underline.style.left = `${selectedTab.offsetLeft}px`;
+        }
+
     });
+
+    // Set initial underline position
+    const initialActiveTab = document.querySelector('.tab-button.active');
+    if (initialActiveTab) {
+        const underline = document.querySelector('#tab-buttons::after');
+        if (underline) {
+            underline.style.width = `${initialActiveTab.offsetWidth}px`;
+            underline.style.left = `${initialActiveTab.offsetLeft}px`;
+        }
+    }
 
 
     // --- Progress Bar & Course Checkbox Logic ---
