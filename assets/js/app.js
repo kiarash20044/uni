@@ -249,26 +249,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeSidebarBtn = document.getElementById('close-sidebar');
     const sidebarBackdrop = document.getElementById('sidebar-backdrop');
 
-    const openSidebar = () => {
-        mobileSidebar.classList.add('is-open');
-        sidebarBackdrop.classList.remove('hidden');
-        document.body.classList.add('sidebar-open');
-    };
+    const toggleSidebar = (forceOpen) => {
+        const isOpen = mobileSidebar.classList.contains('is-open');
+        const shouldOpen = forceOpen !== undefined ? forceOpen : !isOpen;
 
-    const closeSidebar = () => {
-        mobileSidebar.classList.remove('is-open');
-        sidebarBackdrop.classList.add('hidden');
-        document.body.classList.remove('sidebar-open');
+        mobileSidebar.classList.toggle('is-open', shouldOpen);
+        sidebarBackdrop.classList.toggle('hidden', !shouldOpen);
+        sidebarBackdrop.classList.toggle('is-visible', shouldOpen);
+        document.body.classList.toggle('sidebar-open', shouldOpen);
     };
 
     if (hamburgerBtn) {
-        hamburgerBtn.addEventListener('click', openSidebar);
+        hamburgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleSidebar(true);
+        });
     }
     if (closeSidebarBtn) {
-        closeSidebarBtn.addEventListener('click', closeSidebar);
+        closeSidebarBtn.addEventListener('click', () => toggleSidebar(false));
     }
     if (sidebarBackdrop) {
-        sidebarBackdrop.addEventListener('click', closeSidebar);
+        sidebarBackdrop.addEventListener('click', () => toggleSidebar(false));
+    }
+
+    // --- Sidebar Dropdown Logic ---
+    const sidebar = document.getElementById('mobile-sidebar');
+    if (sidebar) {
+        sidebar.addEventListener('click', (e) => {
+            const dropdownToggle = e.target.closest('.sidebar-dropdown-toggle');
+            if (dropdownToggle) {
+                const isExpanded = dropdownToggle.getAttribute('aria-expanded') === 'true';
+                dropdownToggle.setAttribute('aria-expanded', !isExpanded);
+            }
+        });
     }
 
 
