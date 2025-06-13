@@ -115,6 +115,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressBar = document.getElementById('progress-bar');
     const progressText = document.getElementById('progress-text');
     const progressPercentage = document.getElementById('progress-percentage');
+    const progressContainer = document.getElementById('progress-container');
+
+    function toPersianDigits(n) {
+        const persian = {
+            0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴', 5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹'
+        };
+        return n.toString().replace(/\d/g, (d) => persian[d]);
+    }
 
     function updateRowStyle(checkbox) {
         const row = checkbox.closest('tr');
@@ -135,8 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const percentage = TOTAL_UNITS > 0 ? (passedUnits / TOTAL_UNITS) * 100 : 0;
 
         if(progressBar) progressBar.style.width = `${percentage}%`;
-        if(progressText) progressText.textContent = `${remainingUnits} واحد باقی مانده`;
-        if(progressPercentage) progressPercentage.textContent = `${Math.round(percentage)}%`;
+        if(progressText) progressText.textContent = `${toPersianDigits(remainingUnits)} واحد باقی مانده`;
+        if(progressPercentage) progressPercentage.textContent = `${toPersianDigits(Math.round(percentage))}%`;
     }
 
     function saveProgress() {
@@ -173,6 +181,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (termPlanContainer) {
         loadProgress();
+    }
+
+    // --- Sticky Progress Bar Logic ---
+    if (progressContainer) {
+        const observer = new IntersectionObserver(
+            ([e]) => e.target.classList.toggle('is-sticky', e.intersectionRatio < 1),
+            { threshold: [1] }
+        );
+
+        observer.observe(progressContainer);
     }
 
 
