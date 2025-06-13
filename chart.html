@@ -1,20 +1,16 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl"> <!-- Default theme is set by the script in head -->
-<head>
+<html lang="fa" dir="rtl"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>چارت مهندسی کامپیوتر</title>
-    <!-- Favicon using an emoji -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="assets/css/app.css">
     
-    <!-- Theme switcher script to prevent FOUC (Flash of Unstyled Content) -->
     <script>
         // This script is placed in the <head> to execute before the body renders.
         // It checks for a saved theme in localStorage or system preference to set the correct theme immediately.
@@ -27,16 +23,12 @@
 </head>
 <body>
     
-    <!-- Top Navigation Header -->
     <header id="top-nav">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-            <!-- Left Side: Hamburger (Mobile) & Nav Links (Desktop) -->
             <div class="flex items-center gap-x-2">
-                 <!-- Hamburger for mobile -->
-                <button id="hamburger-btn" type="button" class="header-icon-btn md:hidden" aria-label="Open menu">
+                 <button id="hamburger-btn" type="button" class="header-icon-btn md:hidden" aria-label="Open menu">
                     <i data-lucide="menu" class="w-5 h-5"></i>
                 </button>
-                <!-- Desktop Nav Links -->
                 <div class="hidden md:flex items-center space-x-6 space-x-reverse font-semibold">
                     <a href="#" class="nav-link">خانه</a>
                     <a href="#" class="nav-link">درباره ما</a>
@@ -45,7 +37,6 @@
                 </div>
             </div>
 
-            <!-- Right Side: Action Buttons -->
             <div class="flex items-center gap-x-2">
                 <button id="theme-toggle" type="button" class="header-icon-btn" aria-label="Toggle theme">
                     <i id="theme-toggle-dark-icon" data-lucide="moon" class="w-5 h-5"></i>
@@ -57,7 +48,6 @@
             </div>
         </nav>
 
-        <!-- Mobile Sidebar -->
         <div id="mobile-sidebar" class="fixed top-0 right-0 h-full w-64 z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
             <div class="flex justify-between items-center p-4">
                 <span class="font-bold text-lg">منو</span>
@@ -75,8 +65,22 @@
         <div id="sidebar-backdrop" class="fixed inset-0 bg-black bg-opacity-30 z-40 hidden"></div>
     </header>
 
+    <div id="settings-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-11/12 max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold">Settings</h2>
+                <button id="close-modal-btn" class="text-gray-500 hover:text-gray-800 dark:hover:text-gray-200">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <p>This is a placeholder for settings.</p>
+            </div>
+        </div>
+    </div>
+
+
     <main class="container mx-auto p-4 md:p-8">
-        <!-- Unified Hero Section -->
         <section class="hero-section text-center">
             <h1 class="text-3xl lg:text-4xl font-bold mb-4">چارت مهندسی کامپیوتر (کارشناسی پیوسته)</h1>
             <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">ورودی‌های ۱۴۰۱ و ۱۴۰۲</p>
@@ -93,8 +97,7 @@
             </div>
         </section>
 
-        <!-- Tab Navigation -->
-        <div class="mb-4 border-b tab-container-border">
+        <div class="mb-4 border-b tab-container-border relative">
             <div class="flex overflow-x-auto -mb-px sm:justify-center no-scrollbar" id="tab-buttons">
                 <button class="tab-button active inline-flex items-center p-4 border-b-2 border-transparent rounded-t-lg flex-shrink-0" data-tab="term-plan"><i data-lucide="calendar-days" class="w-5 h-5 ml-2"></i>برنامه ترمیک</button>
                 <button class="tab-button inline-flex items-center p-4 border-b-2 border-transparent rounded-t-lg flex-shrink-0" data-tab="general"><i data-lucide="globe" class="w-5 h-5 ml-2"></i>دروس عمومی</button>
@@ -105,19 +108,17 @@
         </div>
 
 
-        <!-- Tab Content -->
         <div id="tab-contents">
-            <!-- Term Plan -->
             <div id="term-plan" class="tab-content active">
                 <h2 class="text-2xl mt-8 mb-6">برنامه ترمیک</h2>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <!-- Term 1 -->
                     <div class="term-container">
                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="book-open-check" class="w-6 h-6 icon-color"></i>
-                                <span class="font-bold">ترم اول (۱۹ واحد)</span>
+                                <span class="font-bold">ترم اول</span>
+                                <span class="unit-badge">۱۹ واحد</span>
                             </div>
                             <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
@@ -139,12 +140,12 @@
                         </div>
                     </div>
 
-                    <!-- Term 2 -->
                     <div class="term-container">
                          <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="network" class="w-6 h-6 icon-color"></i>
-                                <span class="font-bold">ترم دوم (۲۰ واحد)</span>
+                                <span class="font-bold">ترم دوم</span>
+                                <span class="unit-badge">۲۰ واحد</span>
                             </div>
                             <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
@@ -167,12 +168,12 @@
                         </div>
                     </div>
 
-                    <!-- Term 3 -->
                     <div class="term-container">
                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="cpu" class="w-6 h-6 icon-color"></i>
-                                <span class="font-bold">ترم سوم (۱۷ واحد)</span>
+                                <span class="font-bold">ترم سوم</span>
+                                <span class="unit-badge">۱۷ واحد</span>
                             </div>
                             <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
@@ -193,12 +194,12 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Term 4 -->
                     <div class="term-container">
                         <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="database" class="w-6 h-6 icon-color"></i>
-                                <span class="font-bold">ترم چهارم (۱۹ واحد)</span>
+                                <span class="font-bold">ترم چهارم</span>
+                                <span class="unit-badge">۱۹ واحد</span>
                             </div>
                            <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
@@ -219,12 +220,12 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Term 5 -->
                     <div class="term-container">
                          <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="circuit-board" class="w-6 h-6 icon-color"></i>
-                                <span class="font-bold">ترم پنجم (۱۷ واحد)</span>
+                                <span class="font-bold">ترم پنجم</span>
+                                <span class="unit-badge">۱۷ واحد</span>
                             </div>
                            <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
@@ -243,12 +244,12 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Term 6 -->
-                     <div class="term-container">
+                    <div class="term-container">
                          <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="brain-circuit" class="w-6 h-6 icon-color"></i>
-                                <span class="font-bold">ترم ششم (۱۷ واحد)</span>
+                                <span class="font-bold">ترم ششم</span>
+                                <span class="unit-badge">۱۷ واحد</span>
                             </div>
                             <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
@@ -268,12 +269,12 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Term 7 -->
                     <div class="term-container">
                          <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="file-text" class="w-6 h-6 icon-color"></i>
-                                <span class="font-bold">ترم هفتم (۱۸ واحد)</span>
+                                <span class="font-bold">ترم هفتم</span>
+                                <span class="unit-badge">۱۸ واحد</span>
                             </div>
                            <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
@@ -294,12 +295,12 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Term 8 -->
-                     <div class="term-container">
+                    <div class="term-container">
                          <h3 class="term-header text-xl p-3 flex justify-between items-center rounded-t-lg">
                             <div class="flex items-center gap-x-3">
                                 <i data-lucide="shield-check" class="w-6 h-6 icon-color"></i>
-                                <span class="font-bold">ترم هشتم (۱۷ واحد)</span>
+                                <span class="font-bold">ترم هشتم</span>
+                                <span class="unit-badge">۱۷ واحد</span>
                             </div>
                            <i data-lucide="chevron-down" class="term-toggle-icon w-5 h-5 transition-transform"></i>
                         </h3>
@@ -322,8 +323,6 @@
                 </div>
             </div>
 
-            <!-- Other Tabs Content... -->
-            <!-- General Courses -->
             <div id="general" class="tab-content">
                  <h2 class="text-2xl mt-8 mb-6">دروس عمومی</h2>
                  <div class="max-w-4xl mx-auto term-container p-4">
@@ -351,7 +350,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Basic Courses -->
             <div id="basic" class="tab-content">
                  <h2 class="text-2xl mt-8 mb-6">دروس پایه</h2>
                  <div class="max-w-4xl mx-auto term-container p-4">
@@ -373,7 +371,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Core Courses -->
             <div id="core" class="tab-content">
                 <h2 class="text-2xl mt-8 mb-6">دروس اصلی</h2>
                 <div class="max-w-4xl mx-auto term-container p-4">
@@ -410,7 +407,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Specialized Courses -->
             <div id="specialized" class="tab-content">
                 <h2 class="text-2xl mt-8 mb-6">دروس تخصصی</h2>
                 <div class="max-w-4xl mx-auto term-container p-4">
@@ -437,7 +433,6 @@
             </div>
         </div>
 
-        <!-- Notes -->
         <div class="notes text-right space-y-4">
              <h3 class="text-xl font-bold mb-4 flex items-center justify-center">
                 <i data-lucide="book-text" class="w-6 h-6 ml-2"></i>
@@ -454,7 +449,6 @@
         </div>
     </main>
     
-    <!-- This should be your external JS file -->
     <script src="assets/js/app.js"></script>
     <script>
         // Inline script to ensure Lucide icons are rendered after the DOM is ready
