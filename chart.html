@@ -49,21 +49,84 @@
         </nav>
     </header>
 
-    <div id="sidebar-backdrop" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
-    <div id="mobile-sidebar" class="fixed top-0 right-0 h-full w-64 bg-white dark:bg-gray-800 z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
-        <div class="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700">
-            <span class="font-bold text-lg">منو</span>
+    <div id="sidebar-backdrop" class="fixed inset-0 bg-black bg-opacity-30 z-40 hidden md:hidden"></div>
+
+    <aside id="mobile-sidebar" class="fixed top-0 right-0 h-full w-72 z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col">
+        <div class="flex justify-between items-center p-4 border-b border-white/10">
+            <h2 class="font-bold text-lg flex items-center gap-2">
+                <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                <span>منوی اصلی</span>
+            </h2>
             <button id="close-sidebar" class="header-icon-btn" aria-label="بستن منو">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
         </div>
-        <nav class="flex flex-col p-4 space-y-2 font-semibold">
-            <a href="#" class="nav-link-mobile">خانه</a>
-            <a href="#" class="nav-link-mobile">درباره ما</a>
-            <a href="#" class="nav-link-mobile">منابع</a>
-            <a href="#" class="nav-link-mobile">تماс با ما</a>
+
+        <nav class="flex-grow p-4 space-y-2 font-semibold overflow-y-auto">
+            <a href="#" class="nav-link-mobile">
+                <i data-lucide="home" class="w-5 h-5"></i>
+                <span>خانه</span>
+            </a>
+            <a href="#" class="nav-link-mobile">
+                <i data-lucide="info" class="w-5 h-5"></i>
+                <span>درباره ما</span>
+            </a>
+
+            <div>
+                <button class="nav-link-mobile w-full sidebar-dropdown-toggle">
+                    <div class="flex items-center">
+                        <i data-lucide="book-marked" class="w-5 h-5"></i>
+                        <span>منابع آموزشی</span>
+                    </div>
+                    <i data-lucide="chevron-down" class="w-5 h-5 transition-transform"></i>
+                </button>
+                <div class="sidebar-dropdown">
+                    <a href="#" class="nav-link-mobile dropdown-link">
+                        <i data-lucide="file-text" class="w-5 h-5"></i>
+                        <span>مقالات</span>
+                    </a>
+                    <a href="#" class="nav-link-mobile dropdown-link">
+                        <i data-lucide="video" class="w-5 h-5"></i>
+                        <span>ویدیوها</span>
+                    </a>
+                     <a href="#" class="nav-link-mobile dropdown-link">
+                        <i data-lucide="folder" class="w-5 h-5"></i>
+                        <span>پروژه ها</span>
+                    </a>
+                </div>
+            </div>
+
+            <a href="#" class="nav-link-mobile">
+                <i data-lucide="message-square" class="w-5 h-5"></i>
+                <span>تماс با ما</span>
+            </a>
+
+            <hr class="sidebar-divider">
+
+            <p class="px-4 py-2 text-xs font-semibold uppercase text-gray-400 dark:text-gray-500">ابزارها</p>
+
+            <a href="#" class="nav-link-mobile">
+                <i data-lucide="calendar" class="w-5 h-5"></i>
+                <span>تقویم آموزشی</span>
+            </a>
+             <a href="#" class="nav-link-mobile">
+                <i data-lucide="calculator" class="w-5 h-5"></i>
+                <span>حسابگر معدل</span>
+            </a>
+
         </nav>
-    </div>
+
+        <div class="p-4 border-t border-white/10">
+            <a href="#" class="flex items-center gap-3">
+                <img class="h-10 w-10 rounded-full" src="https://via.placeholder.com/100" alt="User avatar">
+                <div>
+                    <p class="font-semibold">کاربر مهمان</p>
+                    <p class="text-sm text-gray-400">مشاهده پروفایل</p>
+                </div>
+            </a>
+        </div>
+    </aside>
+
 
     <div id="settings-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
         <div class="modal-content-area">
