@@ -125,7 +125,7 @@ body {
     --unit-badge-text: #4b5563; /* gray-600 */
     --modal-bg: #ffffff;
     --modal-text-color: #111827;
-    --sticky-progress-bg: rgba(255, 255, 255, 0.5);
+    --sticky-progress-bg: rgba(255, 255, 255, 0.75);
 }
 
 .dark {
@@ -166,20 +166,27 @@ body {
     --unit-badge-text: #d1d5db; /* gray-300 */
     --modal-bg: #1f2937; /* gray-800 */
     --modal-text-color: #e5e7eb;
-    --sticky-progress-bg: rgba(12, 10, 9, 0.5);
+    --sticky-progress-bg: rgba(12, 10, 9, 0.65);
 }
 
 
 /* --- Header & Navigation --- */
 #top-nav {
+    position: sticky;
+    top: 0;
     background-color: var(--header-bg);
     border-bottom: 1px solid var(--header-border);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    z-index: 20;
+    z-index: 30;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.dark #top-nav {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 /* Unified style for all header icon buttons */
