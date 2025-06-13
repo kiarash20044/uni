@@ -129,7 +129,7 @@ body.sidebar-open {
     --unit-badge-text: #4b5563; /* gray-600 */
     --modal-bg: #ffffff;
     --modal-text-color: #111827;
-    --sticky-progress-bg: var(--header-bg);
+    --sticky-progress-bg: var(--sidebar-bg);
     --term-progress-circle-bg: #e5e7eb; /* gray-200 */
     --term-progress-circle-fill: #374151; /* gray-700 */
     --term-progress-circle-complete: #10b981; /* green-500 */
@@ -173,7 +173,7 @@ body.sidebar-open {
     --unit-badge-text: #d1d5db; /* gray-300 */
     --modal-bg: #1f2937; /* gray-800 */
     --modal-text-color: #e5e7eb;
-    --sticky-progress-bg: var(--header-bg);
+    --sticky-progress-bg: var(--sidebar-bg);
     --term-progress-circle-bg: #374151; /* gray-700 */
     --term-progress-circle-fill: #e5e7eb; /* gray-200 */
 }
@@ -344,8 +344,8 @@ body.sidebar-open {
 
 #progress-container.is-sticky {
     background-color: var(--sticky-progress-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--header-border);
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     z-index: 20;
