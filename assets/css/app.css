@@ -5,18 +5,8 @@ body {
     overflow-x: hidden;
     background-color: var(--bg-color);
     color: var(--text-color);
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
-
-/* Smooth theme transition for html and body */
-html.theme-transition,
-body.theme-transition,
-html.theme-transition *,
-html.theme-transition *:before,
-html.theme-transition *:after {
-    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out, border-color 0.5s ease-in-out !important;
-    will-change: background-color, color, border-color;
-}
-
 
 /* --- Theme Variables --- */
 :root {
@@ -93,41 +83,6 @@ html.theme-transition *:after {
     --unit-badge-text: #d1d5db; /* gray-300 */
 }
 
-/* Dark Mode Background Effects */
-.dark body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-image:
-        linear-gradient(to right, rgba(55, 65, 81, 0.15) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(55, 65, 81, 0.15) 1px, transparent 1px);
-    background-size: 40px 40px;
-    z-index: -2;
-}
-
-@keyframes moveNeonGlow {
-    0% { transform: translate(20vw, -40vh); }
-    25% { transform: translate(-30vw, 20vh); }
-    50% { transform: translate(30vw, 50vh); }
-    75% { transform: translate(50vw, -10vh); }
-    100% { transform: translate(20vw, -40vh); }
-}
-
-.dark body::after {
-    content: '';
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, rgba(56, 189, 248, 0) 60%);
-    border-radius: 50%;
-    z-index: -1;
-    animation: moveNeonGlow 25s ease-in-out infinite;
-}
 
 /* --- Header & Navigation --- */
 #top-nav {
@@ -140,6 +95,7 @@ html.theme-transition *:after {
     z-index: 20;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
 /* Unified style for all header icon buttons */
@@ -170,6 +126,7 @@ html.theme-transition *:after {
     color: var(--nav-link-color);
     padding: 0.5rem 0.75rem;
     border-radius: 0.375rem;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 .nav-link:hover {
     background-color: var(--nav-link-hover-bg);
@@ -180,15 +137,18 @@ html.theme-transition *:after {
 #mobile-sidebar {
     background-color: var(--sidebar-bg);
     border-left: 1px solid var(--sidebar-border);
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 #mobile-sidebar .p-4 {
     border-bottom: 1px solid var(--sidebar-border);
+    transition: border-color 0.3s ease-in-out;
 }
 .nav-link-mobile {
     display: block;
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
     color: var(--nav-link-color);
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 .nav-link-mobile:hover {
      background-color: var(--nav-link-hover-bg);
@@ -207,6 +167,7 @@ html.theme-transition *:after {
     border-radius: 0.75rem;
     background-color: var(--notes-bg);
     border: 1px solid var(--notes-border);
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 .dark .hero-section {
     background: var(--term-container-bg);
@@ -218,6 +179,7 @@ html.theme-transition *:after {
     border: 1px solid var(--term-container-border);
     border-radius: 0.75rem;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 .dark .term-container, .dark .notes, .dark .max-w-4xl.term-container {
     backdrop-filter: blur(12px);
@@ -232,6 +194,7 @@ html.theme-transition *:after {
     background-color: var(--term-header-bg);
     cursor: pointer;
     border-bottom: 1px solid var(--table-border-color);
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 .term-header:hover {
     background-color: var(--term-header-hover-bg);
@@ -255,6 +218,7 @@ html.theme-transition *:after {
     border-radius: 9999px;
     font-size: 0.8rem;
     font-weight: bold;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 /* Table Styles */
@@ -268,16 +232,20 @@ th, td {
     padding: 0.75rem;
     text-align: center;
     vertical-align: middle;
+    transition: border-color 0.3s ease-in-out;
 }
 th {
     background-color: var(--table-header-bg);
     font-weight: 700;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 tbody tr:nth-child(even) {
     background-color: var(--table-even-row-bg);
+    transition: background-color 0.3s ease-in-out;
 }
 h1, h2, h3 {
     color: var(--text-color);
+    transition: color 0.3s ease-in-out;
 }
 .course-passed {
     background-color: var(--passed-course-bg);
@@ -289,13 +257,14 @@ h1, h2, h3 {
 .summary-bold-row {
     font-weight: bold;
     background-color: var(--summary-table-bold-bg);
+    transition: background-color 0.3s ease-in-out;
 }
 
 /* Tabs */
 .tab-button {
     white-space: nowrap;
     color: var(--nav-link-color);
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
 .tab-button:hover {
@@ -315,6 +284,7 @@ h1, h2, h3 {
 
 .tab-container-border {
     border-color: var(--table-border-color);
+    transition: border-color 0.3s ease-in-out;
 }
 
 .tab-content {
@@ -327,11 +297,11 @@ h1, h2, h3 {
 
 
 /* Progress Bar */
-#progress-units { color: var(--progress-units-text); }
-.progress-bar-track { background-color: var(--table-header-bg); }
+#progress-units { color: var(--progress-units-text); transition: color 0.3s ease-in-out; }
+.progress-bar-track { background-color: var(--table-header-bg); transition: background-color 0.3s ease-in-out; }
 #progress-bar {
     background: var(--progress-bar-bg);
-    transition: width 0.5s ease-out;
+    transition: width 0.5s ease-out, background-color 0.3s ease-in-out;
 }
 
 /* --- Components --- */
@@ -352,6 +322,7 @@ h1, h2, h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 .course-checkbox:checked + .custom-checkbox {
     background-color: var(--tab-active-bg);
@@ -364,10 +335,11 @@ h1, h2, h3 {
    color: var(--checkmark-color);
    width: 1rem; /* 16px */
    height: 1rem; /* 16px */
+   transition: color 0.3s ease-in-out;
 }
 
-.icon-color { color: var(--icon-color); }
-.info-icon { color: var(--info-icon-color); }
+.icon-color { color: var(--icon-color); transition: color 0.3s ease-in-out; }
+.info-icon { color: var(--info-icon-color); transition: color 0.3s ease-in-out; }
 
 /* Theme toggle icon visibility */
 #theme-toggle-dark-icon,
