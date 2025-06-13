@@ -125,7 +125,7 @@ body {
     --unit-badge-text: #4b5563; /* gray-600 */
     --modal-bg: #ffffff;
     --modal-text-color: #111827;
-    --sticky-progress-bg: rgba(248, 250, 252, 0.85);
+    --sticky-progress-bg: rgba(255, 255, 255, 0.5);
 }
 
 .dark {
@@ -166,7 +166,7 @@ body {
     --unit-badge-text: #d1d5db; /* gray-300 */
     --modal-bg: #1f2937; /* gray-800 */
     --modal-text-color: #e5e7eb;
-    --sticky-progress-bg: rgba(12, 10, 9, 0.7);
+    --sticky-progress-bg: rgba(12, 10, 9, 0.5);
 }
 
 
