@@ -125,6 +125,7 @@ body {
     --unit-badge-text: #4b5563; /* gray-600 */
     --modal-bg: #ffffff;
     --modal-text-color: #111827;
+    --sticky-progress-bg: rgba(248, 250, 252, 0.85);
 }
 
 .dark {
@@ -165,6 +166,7 @@ body {
     --unit-badge-text: #d1d5db; /* gray-300 */
     --modal-bg: #1f2937; /* gray-800 */
     --modal-text-color: #e5e7eb;
+    --sticky-progress-bg: rgba(12, 10, 9, 0.7);
 }
 
 
@@ -260,13 +262,21 @@ body {
 /* --- Main Content & Cards --- */
 .hero-section {
     padding: 1.5rem;
-    margin-bottom: 0; /* Remove margin to connect with sticky progress bar */
+    margin-bottom: 0;
     border-radius: 0.75rem;
     background-color: var(--hero-bg);
     border-bottom: 1px solid var(--header-border);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     z-index: 10;
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+#progress-container.is-sticky {
+    background-color: var(--sticky-progress-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--header-border);
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
