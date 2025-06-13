@@ -172,21 +172,15 @@ body {
 
 /* --- Header & Navigation --- */
 #top-nav {
-    position: sticky;
-    top: 0;
+    position: relative; /* Ensures z-index is respected */
     background-color: var(--header-bg);
     border-bottom: 1px solid var(--header-border);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    z-index: 30;
+    z-index: 20; /* Keep it above the progress bar (z-10) */
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.dark #top-nav {
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 /* Unified style for all header icon buttons */
@@ -284,7 +278,12 @@ body {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--header-border);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.dark #progress-container.is-sticky {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 
