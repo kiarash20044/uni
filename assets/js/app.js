@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Preloader Logic ---
     const preloader = document.getElementById('preloader');
-    
+
     window.addEventListener('load', () => {
         if (preloader) {
             preloader.classList.add('loaded');
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const storedTheme = localStorage.getItem('theme');
         const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const theme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
-        
+
         if (theme === 'dark') {
             htmlEl.classList.add('dark');
         } else {
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTheme(e.matches ? 'dark' : 'light');
         }
     });
-    
+
     // Event listener for the theme toggle button
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
@@ -250,30 +250,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebarBackdrop = document.getElementById('sidebar-backdrop');
 
     function openSidebar() {
-        if(mobileSidebar) {
-            mobileSidebar.classList.remove('translate-x-full');
-            mobileSidebar.classList.add('translate-x-0');
+        if (mobileSidebar && sidebarBackdrop) {
+            mobileSidebar.classList.add('is-open');
+            sidebarBackdrop.classList.add('is-visible');
+            document.body.classList.add('sidebar-open');
         }
-        if(sidebarBackdrop) {
-            sidebarBackdrop.classList.add('show');
-            sidebarBackdrop.classList.remove('hide', 'hidden');
-        }
-        document.body.style.overflow = 'hidden';
     }
+
     function closeSidebar() {
-        if(mobileSidebar) {
-            mobileSidebar.classList.remove('translate-x-0');
-            mobileSidebar.classList.add('translate-x-full');
-        }
-        if(sidebarBackdrop) {
-            sidebarBackdrop.classList.add('hide');
-            sidebarBackdrop.classList.remove('show');
-            setTimeout(() => {
-                sidebarBackdrop.classList.add('hidden');
-                document.body.style.overflow = '';
-            }, 300);
+        if (mobileSidebar && sidebarBackdrop) {
+            mobileSidebar.classList.remove('is-open');
+            sidebarBackdrop.classList.remove('is-visible');
+            document.body.classList.remove('sidebar-open');
         }
     }
+
     if (hamburgerBtn) {
         hamburgerBtn.addEventListener('click', openSidebar);
     }
