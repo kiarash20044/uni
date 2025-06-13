@@ -11,15 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/app.css">
     
-    <script>
-        // This script is placed in the <head> to execute before the body renders.
-        // It checks for a saved theme in localStorage or system preference to set the correct theme immediately.
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    </script>
 </head>
 <body>
     
