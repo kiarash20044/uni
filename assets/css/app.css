@@ -321,7 +321,7 @@ body.sidebar-open {
     padding: 1.5rem;
     border-radius: 0.75rem;
     width: 91.666667%; /* w-11/12 */
-    max-w: 28rem; /* max-w-md */
+    max-width: 28rem; /* max-w-md */
     border: 1px solid var(--term-container-border);
 }
 .modal-body {
@@ -342,38 +342,51 @@ body.sidebar-open {
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
-/* === CORRECTED STICKY PROGRESS BAR STYLES === */
+/* === CORRECTED AND FINAL STICKY PROGRESS BAR STYLES === */
+
+#progress-container {
+    /* Transitions for smooth effect */
+    transition: padding 0.3s ease-in-out;
+}
+
 #progress-container.is-sticky {
+    /* z-index is already 20 from Tailwind, which is good */
+}
+
+/* Add a pseudo-element for the full-width background */
+#progress-container.is-sticky::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 100%;
     background-color: var(--sticky-progress-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--header-border);
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    z-index: 20;
-    transition: all 0.3s ease-in-out;
-
-    /* This makes the container full-width, breaking out of its parent */
-    width: 100vw;
-    left: 50%;
-    transform: translateX(-50%);
+    z-index: -1; /* Place the background behind the content */
 }
 
+.dark #progress-container.is-sticky::before {
+     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Style the wrapper that contains the progress bar content */
+.progress-bar-wrapper {
+    /* Add a transition for the width change */
+    transition: max-width 0.4s ease-in-out;
+}
+
+/* When the container is sticky, make the inner wrapper wider */
 #progress-container.is-sticky .progress-bar-wrapper {
-    /* This overrides the inline `max-w-2xl` and centers the content
-       to align with the rest of the page (max-w-7xl) */
-    max-width: 72rem;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    transition: max-width 0.3s ease-in-out;
+    /* Override original max-w-2xl to match the page's main content width */
+    max-width: 72rem; /* max-w-7xl */
 }
 
-.dark #progress-container.is-sticky {
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-/* === END CORRECTION === */
-
+/* === END FINAL STYLES === */
 
 .term-container, .notes, .max-w-4xl.term-container {
     background-color: var(--term-container-bg);
