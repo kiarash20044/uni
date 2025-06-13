@@ -10,6 +10,12 @@ html.theme-transition, body.theme-transition {
     transition: background-color 0.4s cubic-bezier(0.4,0,0.2,1), color 0.4s cubic-bezier(0.4,0,0.2,1);
 }
 
+/* Smooth theme transition for all elements */
+html.theme-transition *, html.theme-transition {
+    transition: background-color 0.4s cubic-bezier(0.4,0,0.2,1), color 0.4s cubic-bezier(0.4,0,0.2,1), border-color 0.4s cubic-bezier(0.4,0,0.2,1);
+    will-change: background-color, color, border-color;
+}
+
 /* Light Mode Variables */
 :root {
     --bg-color: #f8fafc; /* slate-50 */
