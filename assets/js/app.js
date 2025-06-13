@@ -116,6 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressText = document.getElementById('progress-text');
     const progressPercentage = document.getElementById('progress-percentage');
     const progressContainer = document.getElementById('progress-container');
+    const termContainers = document.querySelectorAll('.term-container');
 
     function toPersianDigits(n) {
         const persian = {
@@ -147,6 +148,45 @@ document.addEventListener('DOMContentLoaded', () => {
         if(progressPercentage) progressPercentage.textContent = `${toPersianDigits(Math.round(percentage))}%`;
     }
 
+    function updateTermProgress(termContainer) {
+        const checkboxes = termContainer.querySelectorAll('.course-checkbox');
+        const circle = termContainer.querySelector('.progress-ring-circle');
+        const remainingUnitsText = termContainer.querySelector('.term-remaining-units');
+        const progressCircleContainer = termContainer.querySelector('.term-progress-circle');
+
+
+        if (!checkboxes.length || !circle || !remainingUnitsText) return;
+
+        let totalUnits = 0;
+        let passedUnits = 0;
+
+        checkboxes.forEach(checkbox => {
+            const unit = parseInt(checkbox.dataset.unit) || 0;
+            totalUnits += unit;
+            if (checkbox.checked) {
+                passedUnits += unit;
+            }
+        });
+
+        const remainingUnits = totalUnits - passedUnits;
+        const percentage = totalUnits > 0 ? (passedUnits / totalUnits) * 100 : 0;
+        const radius = circle.r.baseVal.value;
+        const circumference = radius * 2 * Math.PI;
+        const offset = circumference - (percentage / 100) * circumference;
+
+        circle.style.strokeDasharray = `${circumference} ${circumference}`;
+        circle.style.strokeDashoffset = offset;
+        remainingUnitsText.textContent = toPersianDigits(remainingUnits);
+
+        if (remainingUnits === 0) {
+            progressCircleContainer.classList.add('completed');
+             remainingUnitsText.innerHTML = '<i data-lucide="check" class="w-5 h-5"></i>';
+             lucide.createIcons();
+        } else {
+            progressCircleContainer.classList.remove('completed');
+        }
+    }
+
     function saveProgress() {
         const progress = {};
         allCheckboxes.forEach(checkbox => {
@@ -168,6 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
             updateRowStyle(checkbox);
         });
         updateProgress();
+        termContainers.forEach(updateTermProgress);
     }
 
     // Event listener for all checkboxes
@@ -175,6 +216,10 @@ document.addEventListener('DOMContentLoaded', () => {
          checkbox.addEventListener('change', () => {
              updateRowStyle(checkbox);
              updateProgress();
+             const termContainer = checkbox.closest('.term-container');
+             if(termContainer) {
+                updateTermProgress(termContainer);
+             }
              saveProgress();
         });
     });
@@ -196,7 +241,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Collapsible Term Sections Logic ---
     const collapsibleState = JSON.parse(localStorage.getItem('collapsibleState') || '{}');
-    const termContainers = document.querySelectorAll('.term-container');
 
     termContainers.forEach(container => {
         const header = container.querySelector('.term-header');
