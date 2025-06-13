@@ -1,17 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Theme Switcher Logic ---
     const themeToggleBtn = document.getElementById('theme-toggle');
-    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
     const htmlEl = document.documentElement;
 
-    function setTheme(theme, smooth = false) {
-        if (smooth) {
-            htmlEl.classList.add('theme-transition');
-            setTimeout(() => {
-                htmlEl.classList.remove('theme-transition');
-            }, 500); // match CSS duration
+    // Immediately apply theme on initial load
+    (function applyTheme() {
+        const storedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
+        
+        if (theme === 'dark') {
+            htmlEl.classList.add('dark');
+        } else {
+            htmlEl.classList.remove('dark');
         }
+        updateThemeIcons();
+    })();
+
+    function setTheme(theme) {
         if (theme === 'dark') {
             htmlEl.classList.add('dark');
             localStorage.setItem('theme', 'dark');
@@ -22,34 +28,30 @@ document.addEventListener('DOMContentLoaded', () => {
         updateThemeIcons();
     }
 
-    function getPreferredTheme() {
-        if (localStorage.getItem('theme')) {
-            return localStorage.getItem('theme');
-        }
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-
     function updateThemeIcons() {
-        if (htmlEl.classList.contains('dark')) {
-            themeToggleDarkIcon.style.display = 'block';
-            themeToggleLightIcon.style.display = 'none';
-        } else {
-            themeToggleDarkIcon.style.display = 'none';
-            themeToggleLightIcon.style.display = 'block';
+        const isDark = htmlEl.classList.contains('dark');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (darkIcon && lightIcon) {
+            darkIcon.style.display = isDark ? 'block' : 'none';
+            lightIcon.style.display = isDark ? 'none' : 'block';
         }
     }
 
-    setTheme(getPreferredTheme());
-
+    // Listen for system theme changes
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        // Only change the theme if the user hasn't manually set one
         if (!localStorage.getItem('theme')) {
             setTheme(e.matches ? 'dark' : 'light');
         }
     });
-
+    
+    // Event listener for the theme toggle button
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
-            setTheme(htmlEl.classList.contains('dark') ? 'light' : 'dark', true);
+            const isDark = htmlEl.classList.contains('dark');
+            setTheme(isDark ? 'light' : 'dark');
         });
     }
 
@@ -78,23 +80,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.getElementById('tab-buttons');
     const tabContents = document.getElementById('tab-contents');
 
-    tabButtons.addEventListener('click', (event) => {
-        const selectedTab = event.target.closest('.tab-button');
-        if (!selectedTab) return;
+    if (tabButtons && tabContents) {
+        tabButtons.addEventListener('click', (event) => {
+            const selectedTab = event.target.closest('.tab-button');
+            if (!selectedTab) return;
 
-        tabButtons.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
-        tabContents.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            tabButtons.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+            tabContents.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
 
-        selectedTab.classList.add('active');
-        const tabId = selectedTab.dataset.tab;
-        document.getElementById(tabId)?.classList.add('active');
-    });
+            selectedTab.classList.add('active');
+            const tabId = selectedTab.dataset.tab;
+            document.getElementById(tabId)?.classList.add('active');
+        });
+    }
 
 
     // --- Progress Bar & Course Checkbox Logic ---
     const TOTAL_UNITS = 144;
     const termPlanContainer = document.getElementById('term-plan');
-    const allCheckboxLabels = termPlanContainer.querySelectorAll('.custom-checkbox-label');
     const allCheckboxes = document.querySelectorAll('.course-checkbox'); // Select all checkboxes on the page
     const progressBar = document.getElementById('progress-bar');
     const progressText = document.getElementById('progress-text');
@@ -116,9 +119,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const percentage = TOTAL_UNITS > 0 ? (passedUnits / TOTAL_UNITS) * 100 : 0;
-        progressBar.style.width = `${percentage}%`;
-        progressText.textContent = `${Math.round(percentage)}%`;
-        progressUnits.textContent = `${passedUnits} از ${TOTAL_UNITS} واحد`;
+        if(progressBar) progressBar.style.width = `${percentage}%`;
+        if(progressText) progressText.textContent = `${Math.round(percentage)}%`;
+        if(progressUnits) progressUnits.textContent = `${passedUnits} из ${TOTAL_UNITS} واحد`;
     }
 
     function saveProgress() {
@@ -153,7 +156,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    loadProgress();
+    if (termPlanContainer) {
+        loadProgress();
+    }
 
 
     // --- Collapsible Term Sections Logic ---
@@ -212,21 +217,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebarBackdrop = document.getElementById('sidebar-backdrop');
 
     function openSidebar() {
-        mobileSidebar.classList.remove('translate-x-full');
-        mobileSidebar.classList.add('translate-x-0');
-        sidebarBackdrop.classList.add('show');
-        sidebarBackdrop.classList.remove('hide', 'hidden');
+        if(mobileSidebar) {
+            mobileSidebar.classList.remove('translate-x-full');
+            mobileSidebar.classList.add('translate-x-0');
+        }
+        if(sidebarBackdrop) {
+            sidebarBackdrop.classList.add('show');
+            sidebarBackdrop.classList.remove('hide', 'hidden');
+        }
         document.body.style.overflow = 'hidden';
     }
     function closeSidebar() {
-        mobileSidebar.classList.remove('translate-x-0');
-        mobileSidebar.classList.add('translate-x-full');
-        sidebarBackdrop.classList.add('hide');
-        sidebarBackdrop.classList.remove('show');
-        setTimeout(() => {
-            sidebarBackdrop.classList.add('hidden');
-            document.body.style.overflow = '';
-        }, 300);
+        if(mobileSidebar) {
+            mobileSidebar.classList.remove('translate-x-0');
+            mobileSidebar.classList.add('translate-x-full');
+        }
+        if(sidebarBackdrop) {
+            sidebarBackdrop.classList.add('hide');
+            sidebarBackdrop.classList.remove('show');
+            setTimeout(() => {
+                sidebarBackdrop.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        }
     }
     if (hamburgerBtn) {
         hamburgerBtn.addEventListener('click', openSidebar);
