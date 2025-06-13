@@ -311,14 +311,17 @@ body.sidebar-open {
 
 /* --- Settings Modal --- */
 .modal-content-area {
-    background-color: var(--modal-bg);
+    background-color: var(--sidebar-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     color: var(--modal-text-color);
     padding: 1.5rem;
     border-radius: 0.75rem;
     width: 91.666667%; /* w-11/12 */
     max-width: 28rem; /* max-w-md */
-    border: 1px solid var(--term-container-border);
+    border: 1px solid var(--sidebar-border);
 }
+
 .modal-body {
     margin-top: 1rem;
 }
@@ -353,17 +356,22 @@ body.sidebar-open {
 
 
 .term-container, .notes, .max-w-4xl.term-container {
-    background-color: var(--term-container-bg);
-    border: 1px solid var(--term-container-border);
+    background-color: var(--sidebar-bg);
+    border: 1px solid var(--sidebar-border);
     border-radius: 0.75rem;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
-}
-.dark .term-container, .dark .notes, .dark .max-w-4xl.term-container {
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     box-shadow: none;
 }
+
+.dark .term-container, .dark .notes, .dark .max-w-4xl.term-container {
+    background-color: var(--sidebar-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: none;
+}
+
 .notes {
     padding: 1.5rem;
     margin-top: 2rem;
@@ -461,8 +469,17 @@ h1, h2, h3 {
 }
 
 .tab-container-border {
-    border-color: var(--table-border-color);
-    transition: border-color 0.3s ease-in-out;
+    background-color: var(--sidebar-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--sidebar-border);
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+    border-bottom: none;
+}
+
+#tab-buttons {
+    margin-bottom: 0;
 }
 
 .tab-content {
