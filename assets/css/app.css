@@ -350,6 +350,12 @@ body.sidebar-open {
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     z-index: 20;
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    padding-left: 1rem; /* Added for full-width effect */
+    padding-right: 1rem; /* Added for full-width effect */
+}
+
+#progress-container.is-sticky .progress-bar-wrapper {
+    max-width: 100%;
 }
 
 .dark #progress-container.is-sticky {
