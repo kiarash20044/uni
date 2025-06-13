@@ -249,30 +249,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeSidebarBtn = document.getElementById('close-sidebar');
     const sidebarBackdrop = document.getElementById('sidebar-backdrop');
 
-    function openSidebar() {
-        if (mobileSidebar && sidebarBackdrop) {
-            mobileSidebar.classList.add('is-open');
-            sidebarBackdrop.classList.add('is-visible');
-            document.body.classList.add('sidebar-open');
-        }
-    }
-
-    function closeSidebar() {
-        if (mobileSidebar && sidebarBackdrop) {
-            mobileSidebar.classList.remove('is-open');
-            sidebarBackdrop.classList.remove('is-visible');
-            document.body.classList.remove('sidebar-open');
-        }
-    }
+    const toggleSidebar = (force) => {
+        const shouldOpen = force !== undefined ? force : !mobileSidebar.classList.contains('is-open');
+        mobileSidebar.classList.toggle('is-open', shouldOpen);
+        sidebarBackdrop.classList.toggle('is-visible', shouldOpen);
+        document.body.classList.toggle('sidebar-open', shouldOpen);
+    };
 
     if (hamburgerBtn) {
-        hamburgerBtn.addEventListener('click', openSidebar);
+        hamburgerBtn.addEventListener('click', () => toggleSidebar(true));
     }
     if (closeSidebarBtn) {
-        closeSidebarBtn.addEventListener('click', closeSidebar);
+        closeSidebarBtn.addEventListener('click', () => toggleSidebar(false));
     }
     if (sidebarBackdrop) {
-        sidebarBackdrop.addEventListener('click', closeSidebar);
+        sidebarBackdrop.addEventListener('click', () => toggleSidebar(false));
     }
 
     // Render all Lucide icons on the page
