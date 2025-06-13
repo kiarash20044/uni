@@ -405,3 +405,38 @@ html.dark {
   background: #18181b;
   color: #f3f4f6;
 }
+
+/* Custom styles for theme toggle and settings button */
+.theme-toggle-btn, .settings-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: var(--table-header-bg);
+    color: var(--icon-color);
+    border: none;
+    border-radius: 0.5rem;
+    transition: background 0.2s, color 0.2s;
+    box-shadow: none;
+    outline: none;
+    padding: 0;
+}
+.theme-toggle-btn:focus, .settings-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--tab-hover-border);
+}
+.theme-toggle-btn:hover, .settings-btn:hover {
+    background: var(--tab-hover-border);
+    color: var(--tab-active-text);
+}
+.theme-toggle-btn:active, .settings-btn:active {
+    background: var(--tab-active-bg);
+    color: var(--tab-active-text);
+}
+
+/* Remove default ring/focus for toggle */
+#theme-toggle:focus, #theme-toggle:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
