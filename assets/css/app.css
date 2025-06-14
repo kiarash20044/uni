@@ -51,7 +51,7 @@ body.sidebar-open {
   No custom or colorful variables remain. Only neutral, gray, and semantic colors.
 */
 :root {
-    /* Gray/Neutral Palette */
+    /* Gray/Neutral Palette Only (shadcn) */
     --color-background: #f8fafc; /* gray-50 */
     --color-surface: #ffffff; /* white */
     --color-surface-muted: #f1f5f9; /* gray-100 */
@@ -59,18 +59,15 @@ body.sidebar-open {
     --color-border: #e5e7eb; /* gray-200 */
     --color-shadow: rgba(16, 24, 40, 0.06);
 
-    /* Text */
     --color-text: #0f172a; /* gray-900 */
     --color-text-muted: #64748b; /* gray-500 */
     --color-text-inverse: #f8fafc; /* gray-50 */
 
-    /* States (shadcn semantic) */
     --color-success: #22c55e; /* green-500 */
     --color-warning: #facc15; /* yellow-400 */
     --color-error: #ef4444; /* red-500 */
-    --color-info: #0ea5e9; /* sky-500 */
+    --color-info: #64748b; /* gray-500 as info */
 
-    /* Component Semantics */
     --header-bg: var(--color-surface);
     --header-border: var(--color-border);
     --sidebar-bg: var(--color-surface);
