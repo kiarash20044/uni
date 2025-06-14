@@ -322,9 +322,12 @@ body.sidebar-open {
     margin-bottom: 2.5rem;
     border-radius: 1.25rem;
     overflow: hidden;
-    background: linear-gradient(120deg, var(--tab-active-bg) 0%, var(--tab-active-text) 100%);
+    background: rgba(255, 255, 255, 0.18);
     box-shadow: 0 4px 32px 0 rgba(31,41,55,0.08);
     padding: 2.5rem 1.5rem 2.5rem 1.5rem;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 }
 .hero-bg-shape {
     position: absolute;
@@ -332,7 +335,7 @@ body.sidebar-open {
     left: 50%;
     width: 120%;
     height: 180%;
-    background: radial-gradient(circle at 60% 40%, rgba(255,255,255,0.18) 0%, rgba(0,0,0,0) 70%);
+    background: radial-gradient(circle at 60% 40%, rgba(255,255,255,0.22) 0%, rgba(0,0,0,0) 70%);
     transform: translateX(-50%) rotate(-8deg);
     z-index: 1;
 }
@@ -344,16 +347,28 @@ body.sidebar-open {
 .hero-title {
     font-size: 2.2rem;
     font-weight: 800;
-    color: var(--tab-active-text);
+    color: var(--tab-active-bg);
     margin-bottom: 0.5rem;
     letter-spacing: -1px;
     text-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 .hero-subtitle {
     font-size: 1.25rem;
-    color: #f3f4f6;
+    color: #374151;
     opacity: 0.92;
     font-weight: 500;
+}
+.dark .hero-section-modern {
+    background: rgba(31, 41, 55, 0.32);
+    border: 1.5px solid rgba(255,255,255,0.08);
+}
+.hero-section-modern {
+    transition: background 0.3s, border 0.3s, box-shadow 0.3s;
+}
+@media (max-width: 600px) {
+    .hero-section-modern { min-height: 120px; padding: 1.5rem 0.5rem; }
+    .hero-title { font-size: 1.2rem; }
+    .hero-subtitle { font-size: 1rem; }
 }
 
 /* --- Improved Progress Bar --- */
