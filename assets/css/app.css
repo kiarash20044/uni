@@ -352,8 +352,8 @@ body.sidebar-open {
     transition: padding 0.3s ease-in-out;
     position: sticky;
     top: 0;
-    z-index: 10;
-    position: relative; /* Needed for sticky background pseudo-element */
+    z-index: 1000;
+    background: var(--sticky-progress-bg, #fff); /* Prevents transparency issues */
 }
 #progress-container::before {
     content: '';
@@ -605,7 +605,7 @@ html:not(.dark) #theme-toggle-dark-icon {
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
 .progress-bar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  position: relative;
+  top: auto;
+  z-index: auto;
 }
