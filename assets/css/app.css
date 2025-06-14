@@ -351,12 +351,15 @@ body.sidebar-open {
 #progress-container {
     /* Transitions for smooth effect */
     transition: padding 0.3s ease-in-out;
-    position: relative; /* Ensure sticky background works */
+    /* Do NOT set position here, let Tailwind's sticky work */
 }
 
-/* Removed empty #progress-container.is-sticky ruleset */
+#progress-container.is-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
 
-/* Add a pseudo-element for the full-width background */
 #progress-container.is-sticky::before {
     content: '';
     position: absolute;
@@ -370,24 +373,17 @@ body.sidebar-open {
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--header-border);
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    z-index: -1; /* Place the background behind the content */
+    z-index: -1;
 }
 
-.dark #progress-container.is-sticky::before {
-     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-/* Style the wrapper that contains the progress bar content */
 .progress-bar-wrapper {
-    /* Add a transition for the width change */
     transition: max-width 0.4s ease-in-out;
-    width: 100%; /* Ensure wrapper fills container */
+    width: 100%;
+    position: relative; /* For sticky background pseudo-element */
 }
 
-/* When the container is sticky, make the inner wrapper wider */
 #progress-container.is-sticky .progress-bar-wrapper {
-    /* Override original max-w-2xl to match the page's main content width */
-    max-width: 72rem; /* max-w-7xl */
+    max-width: 72rem;
 }
 
 /* === END FINAL STYLES === */
