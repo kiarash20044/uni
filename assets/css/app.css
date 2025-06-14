@@ -349,15 +349,13 @@ body.sidebar-open {
 /* === CORRECTED AND FINAL STICKY PROGRESS BAR STYLES === */
 
 #progress-container {
-    /* Transitions for smooth effect */
     transition: padding 0.3s ease-in-out;
     position: sticky;
     top: 0;
     z-index: 10;
     position: relative; /* Needed for sticky background pseudo-element */
 }
-
-#progress-container.is-sticky::before {
+#progress-container::before {
     content: '';
     position: absolute;
     top: 0;
@@ -371,16 +369,24 @@ body.sidebar-open {
     border-bottom: 1px solid var(--header-border);
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
 }
-
+#progress-container.is-sticky::before {
+    opacity: 1;
+}
+.dark #progress-container.is-sticky::before {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
 .progress-bar-wrapper {
     transition: max-width 0.4s ease-in-out;
     width: 100%;
-    /* Remove position: relative here */
 }
-
 #progress-container.is-sticky .progress-bar-wrapper {
     max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* === END FINAL STYLES === */
