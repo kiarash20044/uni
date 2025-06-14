@@ -159,7 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let totalUnits = 0;
         let passedUnits = 0;
-
         checkboxes.forEach(checkbox => {
             const unit = parseInt(checkbox.dataset.unit) || 0;
             totalUnits += unit;
@@ -167,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 passedUnits += unit;
             }
         });
-
+        // Always use totalUnits for this term, not a global
         const remainingUnits = totalUnits - passedUnits;
         const percentage = totalUnits > 0 ? (passedUnits / totalUnits) * 100 : 0;
         const radius = circle.r.baseVal.value;
@@ -176,19 +175,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         circle.style.strokeDasharray = `${circumference} ${circumference}`;
         circle.style.strokeDashoffset = offset;
-        remainingUnitsText.textContent = toPersianDigits(remainingUnits);
 
         if (remainingUnits === 0) {
             progressCircleContainer.classList.remove('placeholder');
             progressCircleContainer.classList.add('completed');
             remainingUnitsText.innerHTML = '<i data-lucide="check" class="w-5 h-5"></i>';
             lucide.createIcons();
-        } else if (passedUnits === 0) {
-            progressCircleContainer.classList.remove('completed');
-            progressCircleContainer.classList.add('placeholder');
-            remainingUnitsText.textContent = toPersianDigits(remainingUnits);
         } else {
-            progressCircleContainer.classList.remove('completed', 'placeholder');
+            progressCircleContainer.classList.remove('completed');
+            if (passedUnits === 0) {
+                progressCircleContainer.classList.add('placeholder');
+            } else {
+                progressCircleContainer.classList.remove('placeholder');
+            }
             remainingUnitsText.textContent = toPersianDigits(remainingUnits);
         }
     }
