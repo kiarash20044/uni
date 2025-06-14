@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (passedUnits === 0) {
             progressCircleContainer.classList.remove('completed');
             progressCircleContainer.classList.add('placeholder');
-            remainingUnitsText.textContent = '';
+            remainingUnitsText.textContent = toPersianDigits(remainingUnits);
         } else {
             progressCircleContainer.classList.remove('completed', 'placeholder');
             remainingUnitsText.textContent = toPersianDigits(remainingUnits);
