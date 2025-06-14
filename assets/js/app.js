@@ -179,11 +179,17 @@ document.addEventListener('DOMContentLoaded', () => {
         remainingUnitsText.textContent = toPersianDigits(remainingUnits);
 
         if (remainingUnits === 0) {
+            progressCircleContainer.classList.remove('placeholder');
             progressCircleContainer.classList.add('completed');
-             remainingUnitsText.innerHTML = '<i data-lucide="check" class="w-5 h-5"></i>';
-             lucide.createIcons();
-        } else {
+            remainingUnitsText.innerHTML = '<i data-lucide="check" class="w-5 h-5"></i>';
+            lucide.createIcons();
+        } else if (passedUnits === 0) {
             progressCircleContainer.classList.remove('completed');
+            progressCircleContainer.classList.add('placeholder');
+            remainingUnitsText.textContent = '';
+        } else {
+            progressCircleContainer.classList.remove('completed', 'placeholder');
+            remainingUnitsText.textContent = toPersianDigits(remainingUnits);
         }
     }
 

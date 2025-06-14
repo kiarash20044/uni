@@ -584,6 +584,10 @@ html:not(.dark) #theme-toggle-dark-icon {
     transition: stroke-dashoffset 0.5s ease-out, stroke 0.3s ease-in-out;
     stroke: var(--term-progress-circle-fill);
     stroke-linecap: round;
+    fill: transparent !important;
+}
+.term-progress-circle.placeholder .progress-ring-circle {
+    stroke: #e5e7eb !important; /* gray-200 */
 }
 .term-progress-circle.completed .progress-ring-circle {
     stroke: var(--term-progress-circle-complete) !important;
@@ -598,6 +602,17 @@ html:not(.dark) #theme-toggle-dark-icon {
 }
 .term-progress-circle.completed .term-remaining-units {
     color: var(--term-progress-circle-complete);
+}
+
+/* Placeholder for Term Progress Circle */
+.term-placeholder {
+    color: #bbb;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 /* --- Utilities --- */
