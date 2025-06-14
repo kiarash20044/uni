@@ -351,13 +351,10 @@ body.sidebar-open {
 #progress-container {
     /* Transitions for smooth effect */
     transition: padding 0.3s ease-in-out;
-    /* Do NOT set position here, let Tailwind's sticky work */
-}
-
-#progress-container.is-sticky {
     position: sticky;
     top: 0;
     z-index: 10;
+    position: relative; /* Needed for sticky background pseudo-element */
 }
 
 #progress-container.is-sticky::before {
@@ -379,7 +376,7 @@ body.sidebar-open {
 .progress-bar-wrapper {
     transition: max-width 0.4s ease-in-out;
     width: 100%;
-    position: relative; /* For sticky background pseudo-element */
+    /* Remove position: relative here */
 }
 
 #progress-container.is-sticky .progress-bar-wrapper {
