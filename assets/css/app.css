@@ -312,6 +312,89 @@ body.sidebar-open {
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
+/* --- Modern Hero Section --- */
+.hero-section-modern {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+    margin-bottom: 2.5rem;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    background: linear-gradient(120deg, var(--tab-active-bg) 0%, var(--tab-active-text) 100%);
+    box-shadow: 0 4px 32px 0 rgba(31,41,55,0.08);
+    padding: 2.5rem 1.5rem 2.5rem 1.5rem;
+}
+.hero-bg-shape {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    width: 120%;
+    height: 180%;
+    background: radial-gradient(circle at 60% 40%, rgba(255,255,255,0.18) 0%, rgba(0,0,0,0) 70%);
+    transform: translateX(-50%) rotate(-8deg);
+    z-index: 1;
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+.hero-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--tab-active-text);
+    margin-bottom: 0.5rem;
+    letter-spacing: -1px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: #f3f4f6;
+    opacity: 0.92;
+    font-weight: 500;
+}
+
+/* --- Improved Progress Bar --- */
+#progress-container {
+    background: var(--sticky-progress-bg, #fff);
+    border-radius: 1rem;
+    box-shadow: 0 2px 12px 0 rgba(31,41,55,0.06);
+    padding: 1.5rem 1rem 1.5rem 1rem;
+    margin-bottom: 2.5rem;
+}
+.progress-bar-wrapper {
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    background: none;
+}
+.progress-bar-track {
+    background: linear-gradient(90deg, #e5e7eb 0%, #f3f4f6 100%);
+    height: 10px;
+    border-radius: 5px;
+    box-shadow: 0 1px 4px 0 rgba(31,41,55,0.04);
+}
+#progress-bar {
+    height: 10px;
+    border-radius: 5px;
+    background: linear-gradient(90deg, var(--tab-active-bg) 0%, var(--tab-active-text) 100%);
+    box-shadow: 0 1px 8px 0 rgba(31,41,55,0.08);
+}
+#progress-text, #progress-percentage {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--tab-active-bg);
+    letter-spacing: 0.5px;
+}
+@media (max-width: 600px) {
+    .hero-section-modern { min-height: 120px; padding: 1.5rem 0.5rem; }
+    .hero-title { font-size: 1.2rem; }
+    .hero-subtitle { font-size: 1rem; }
+    #progress-container { padding: 1rem 0.5rem; }
+}
+
 /* === CORRECTED AND FINAL STICKY PROGRESS BAR STYLES === */
 
 #progress-container {
