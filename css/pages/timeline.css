@@ -1,0 +1,140 @@
+/* css/pages/Timeline.css */
+
+.timeline-page-container {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    height: 100%;
+    overflow: hidden;
+}
+
+.timeline-form-container, .timeline-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.timeline-form-container {
+    background: var(--glass-bg-darker);
+    border: 1px solid var(--glass-border-color);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+}
+
+.timeline-container {
+    overflow-y: auto;
+    padding-right: 1rem;
+}
+
+.timeline {
+    position: relative;
+    padding: 1rem 0;
+}
+
+/* The central line of the timeline */
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-image: linear-gradient(to bottom, var(--accent-color), var(--bg-secondary));
+    border-radius: 3px;
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 60px;
+    margin-bottom: 2.5rem;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    border: 3px solid var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.timeline-icon svg {
+    width: 22px;
+    height: 22px;
+    color: var(--accent-color);
+}
+
+.timeline-content {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border-color-light);
+    border-radius: var(--border-radius-md);
+    padding: 1rem 1.5rem;
+    transition: var(--transition-fast);
+}
+
+.timeline-item:hover .timeline-content {
+    background: var(--glass-bg-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.timeline-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+    font-family: var(--font-monospace);
+}
+
+.timeline-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Event Type Specific Colors */
+.timeline-item[data-event-type="exam"] .timeline-marker { border-color: #ff3860; }
+.timeline-item[data-event-type="exam"] .timeline-icon svg { color: #ff3860; }
+
+.timeline-item[data-event-type="deadline"] .timeline-marker { border-color: #ffdd57; }
+.timeline-item[data-event-type="deadline"] .timeline-icon svg { color: #ffdd57; }
+
+.timeline-item[data-event-type="holiday"] .timeline-marker { border-color: #23d160; }
+.timeline-item[data-event-type="holiday"] .timeline-icon svg { color: #23d160; }
+
+/* Form Styles */
+.timeline-form-container .label {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+.timeline-form-container .input,
+.timeline-form-container .select select {
+    background-color: var(--glass-bg) !important;
+    border-color: var(--glass-border-color-light) !important;
+    color: var(--text-primary) !important;
+    box-shadow: none !important;
+}
+.timeline-form-container .select::after {
+    border-color: var(--accent-color) !important;
+}
+
+/* Make date picker icon visible */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.8) sepia(1) saturate(5) hue-rotate(var(--accent-color-hue));
+}
+
+@media screen and (max-width: 1023px) {
+    .timeline-page-container {
+        grid-template-columns: 1fr;
+    }
+    .timeline-form-container {
+        margin-bottom: 2rem;
+    }
+}
