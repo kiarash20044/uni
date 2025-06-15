@@ -3,72 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>داشبورد دانشجویی (Student Dashboard)</title>
-    <meta name="description" content="A modern dashboard for students to track academic progress.">
-
+    <title>Student Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/effects.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/rtl.css">
+
+    <link rel="stylesheet" href="css/components/Sidebar.css">
+    <link rel="stylesheet" href="css/components/StatCard.css">
+    <link rel="stylesheet" href="css/components/Kanban.css">
 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body data-theme="dark">
 
-    <div id="app-loading-screen">
-        <div class="spinner"></div>
+    <div id="app-loading-screen" class="app-loading-screen">
+        <div class="loader"></div>
     </div>
 
     <div id="app-container" class="is-hidden">
-        <aside id="sidebar" class="sidebar"></aside>
-
-        <main id="main-content">
-            <nav id="top-nav" class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
-                <div class="navbar-brand">
-                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                    </a>
+        <aside class="sidebar is-hidden-mobile"></aside>
+        
+        <main class="main-content">
+            <nav class="top-nav"></nav>
+            <div id="page-content" class="page-content">
                 </div>
-                <div id="navbarBasicExample" class="navbar-menu">
-                    <div class="navbar-start">
-                        <div id="breadcrumb-container" class="navbar-item"></div>
-                    </div>
-                    <div class="navbar-end">
-                        <div class="navbar-item">
-                            <div class="buttons">
-                                <button id="theme-toggle" class="button is-primary is-light">
-                                    <span class="icon">&#9728;&#65039;</span>
-                                </button>
-                                <button id="lang-toggle" class="button is-info is-light">EN/FA</button>
-                            </div>
-                        </div>
-                        <div class="navbar-item has-dropdown is-hoverable">
-                            <a class="navbar-link">
-                                <figure class="image is-24x24">
-                                    <img class="is-rounded" src="https://bulma.io/images/placeholders/24x24.png" alt="User Avatar">
-                                </figure>
-                                <span id="username-display"></span>
-                            </a>
-                            <div class="navbar-dropdown is-right">
-                                <a class="navbar-item">Profile</a>
-                                <a class="navbar-item">Settings</a>
-                                <hr class="navbar-divider">
-                                <a id="export-data-btn" class="navbar-item">Export Data</a>
-                                <a id="import-data-btn" class="navbar-item">Import Data</a>
-                                <hr class="navbar-divider">
-                                <a class="navbar-item">Logout</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
-            <div id="page-content-wrapper"></div>
         </main>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script> <script src="js/app.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>
+
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>
