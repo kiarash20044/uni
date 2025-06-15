@@ -16,6 +16,8 @@ export class I18nService {
                 welcome_back: 'Welcome Back',
                 current_gpa: 'Current GPA',
                 completed_credits: 'Completed Credits',
+                // ✨ NEW Translation
+                semesterProgress: 'Semester Progress (Weeks)',
                 upcoming_deadlines: 'Upcoming Deadlines',
                 recent_grades: 'Recent Grades',
                 todo: 'To Do',
@@ -28,7 +30,6 @@ export class I18nService {
                 theme_purple: 'Purple',
                 theme_green: 'Green',
                 theme_orange: 'Orange',
-                // ✨ NEW Translations
                 backupRestore: 'Data Backup & Restore',
                 backupDescription: 'Create snapshots of your app data. You can restore your settings and tasks from a backup at any time.',
                 createBackup: 'Create New Backup',
@@ -50,6 +51,8 @@ export class I18nService {
                 welcome_back: 'خوش آمدید',
                 current_gpa: 'معدل کل',
                 completed_credits: 'واحدهای گذرانده',
+                // ✨ NEW Translation
+                semesterProgress: 'پیشرفت ترم (هفته)',
                 upcoming_deadlines: 'ددلاین‌های پیش‌رو',
                 recent_grades: 'نمرات اخیر',
                 todo: 'برای انجام',
@@ -62,7 +65,6 @@ export class I18nService {
                 theme_purple: 'بنفش',
                 theme_green: 'سبز',
                 theme_orange: 'نارنجی',
-                // ✨ NEW Translations
                 backupRestore: 'پشتیبان‌گیری و بازیابی اطلاعات',
                 backupDescription: 'از اطلاعات برنامه خود (مانند کارها و تنظیمات) نسخه پشتیبان تهیه کنید. شما می‌توانید در هر زمان اطلاعات خود را از یک نسخه پشتیبان بازیابی کنید.',
                 createBackup: 'ایجاد نسخه پشتیبان جدید',
