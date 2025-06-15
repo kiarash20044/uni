@@ -22,13 +22,21 @@ export class I18nService {
                 inProgress: 'In Progress',
                 done: 'Done',
                 addTask: 'Add a task',
-                // ✨ NEW Translations
                 themeSettings: 'Theme Settings',
                 accentColor: 'Accent Color',
                 theme_cyan: 'Cyan (Default)',
                 theme_purple: 'Purple',
                 theme_green: 'Green',
                 theme_orange: 'Orange',
+                // ✨ NEW Translations
+                backupRestore: 'Data Backup & Restore',
+                backupDescription: 'Create snapshots of your app data. You can restore your settings and tasks from a backup at any time.',
+                createBackup: 'Create New Backup',
+                noBackups: 'No backups found.',
+                backupFrom: 'Backup from',
+                restore: 'Restore',
+                restoreConfirm: 'Are you sure you want to restore this backup? Your current data will be overwritten.',
+                restoreSuccess: 'Data restored successfully! The application will now reload.',
             },
             fa: {
                 dashboard: 'داشبورد',
@@ -48,13 +56,21 @@ export class I18nService {
                 inProgress: 'در حال انجام',
                 done: 'انجام شده',
                 addTask: 'افزودن کار جدید',
-                // ✨ NEW Translations
                 themeSettings: 'تنظیمات پوسته',
                 accentColor: 'رنگ اصلی',
                 theme_cyan: 'فیروزه‌ای (پیش‌فرض)',
                 theme_purple: 'بنفش',
                 theme_green: 'سبز',
                 theme_orange: 'نارنجی',
+                // ✨ NEW Translations
+                backupRestore: 'پشتیبان‌گیری و بازیابی اطلاعات',
+                backupDescription: 'از اطلاعات برنامه خود (مانند کارها و تنظیمات) نسخه پشتیبان تهیه کنید. شما می‌توانید در هر زمان اطلاعات خود را از یک نسخه پشتیبان بازیابی کنید.',
+                createBackup: 'ایجاد نسخه پشتیبان جدید',
+                noBackups: 'هیچ نسخه پشتیبانی یافت نشد.',
+                backupFrom: 'پشتیبان از تاریخ',
+                restore: 'بازیابی',
+                restoreConfirm: 'آیا از بازیابی این نسخه پشتیبان مطمئن هستید؟ اطلاعات فعلی شما بازنویسی خواهد شد.',
+                restoreSuccess: 'اطلاعات با موفقیت بازیابی شد! برنامه اکنون مجدداً بارگیری می‌شود.',
             }
         };
     }
