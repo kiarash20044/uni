@@ -47,4 +47,12 @@ export function exportElementToPdf(elementId, pageTitle, filename) {
         pdf.text(pageTitle, pdfWidth / 2, 15, { align: 'center' });
 
         // Add the captured image
-        pdf.addImage(imgData)
+        pdf.addImage(imgData, 'PNG', 10, 25, imgWidth, imgHeight);
+
+        // Save the PDF
+        pdf.save(filename);
+    }).catch(err => {
+        if(printButton) printButton.style.display = 'block';
+        console.error('Error generating PDF:', err);
+    });
+}
