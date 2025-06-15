@@ -1,75 +1,48 @@
 // js/router.js
-import { animatePageOut, animatePageIn } from './utils/animations.js';
+
+import { initSidebar } from './components/Sidebar.js';
 
 export function createRouter(appState, i18n) {
     const routes = {};
-    const pageContentWrapper = document.getElementById('page-content-wrapper');
-    const breadcrumbContainer = document.getElementById('breadcrumb-container');
+    const pageContent = document.getElementById('page-content');
 
-    // Function to add a route
     function addRoute(path, renderer) {
         routes[path] = renderer;
     }
 
-    // Function to update breadcrumbs
-    function updateBreadcrumbs(path) {
-        const pathSegments = path.split('/').filter(p => p);
-        let currentPath = '';
-        const breadcrumbs = [
-            `<a href="/">${i18n.translate('home')}</a>`
-        ];
-
-        pathSegments.forEach(segment => {
-            currentPath += `/${segment}`;
-            // Capitalize the segment for display, use translation if available
-            const translatedSegment = i18n.translate(segment);
-            breadcrumbs.push(`<a href="${currentPath}">${translatedSegment}</a>`);
-        });
-
-        breadcrumbContainer.innerHTML = breadcrumbs.join('<span>&nbsp;/&nbsp;</span>');
-        breadcrumbContainer.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', e => {
-                e.preventDefault();
-                navigateTo(link.getAttribute('href'));
-            });
-        });
+    function navigate(path) {
+        window.history.pushState({}, path, window.location.origin + path);
+        handleLocation();
     }
 
-    // Main rendering function
-    function render(path) {
-        const renderer = routes[path] || (() => `<h1>404 - ${i18n.translate('pageNotFound')}</h1>`);
-        
-        // Use the renderer function to get the new HTML content
-        pageContentWrapper.innerHTML = renderer(appState, i18n);
-        
-        updateBreadcrumbs(path);
-        animatePageIn(pageContentWrapper);
-    }
-
-    // Function to navigate to a new path
-    function navigateTo(path) {
-        const currentPath = window.location.pathname;
-        if (path === currentPath) return; // Don't reload if path is the same
-
-        animatePageOut(pageContentWrapper, () => {
-            window.history.pushState({}, path, window.location.origin + path);
-            render(path);
-        });
-    }
-
-    // Handle back/forward browser navigation
-    window.onpopstate = () => {
-        render(window.location.pathname);
-    };
-
-    // Initial load handler
     function handleLocation() {
-        render(window.location.pathname);
+        const path = window.location.pathname;
+        const renderer = routes[path] || routes['/']; // Fallback to home page
+
+        if (pageContent && typeof renderer === 'function') {
+            // Clear previous content
+            pageContent.innerHTML = '';
+            
+            // Render new content
+            const newContent = renderer(appState, i18n);
+
+            if (typeof newContent === 'string') {
+                pageContent.innerHTML = newContent;
+            } else if (newContent instanceof HTMLElement) {
+                pageContent.appendChild(newContent);
+            }
+            
+            // Re-initialize sidebar to update the active link
+            initSidebar({ getCurrentPath: () => path, navigate }, i18n);
+        }
     }
+
+    window.onpopstate = handleLocation;
 
     return {
         addRoute,
-        navigateTo,
-        handleLocation
+        navigate,
+        handleLocation,
+        getCurrentPath: () => window.location.pathname
     };
 }
