@@ -1,1 +1,52 @@
-# ...existing content from /workspaces/uni/student-dashboard/src/styles/_variables.scss...
+/* css/variables.css */
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;600&display=swap');
+
+:root {
+    /* Font Families */
+    --font-primary: 'Vazirmatn', 'Poppins', sans-serif;
+    --font-english: 'Poppins', sans-serif;
+    --font-monospace: 'Fira Code', monospace;
+
+    /* Spacing & Sizing */
+    --spacing-unit: 8px;
+    --sidebar-width: 260px;
+    --top-nav-height: 60px;
+    --card-border-radius: 12px;
+
+    /* Transitions */
+    --transition-speed-fast: 0.2s;
+    --transition-speed-normal: 0.4s;
+    --transition-cubic: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
+    /* Effects */
+    --glass-blur: 10px;
+    --neon-glow-intensity: 0px 0px 12px;
+}
+
+/* Light Theme Variables */
+body[data-theme="light"] {
+    --bg-primary: #f4f7fc;
+    --bg-secondary: #ffffff;
+    --bg-overlay: rgba(255, 255, 255, 0.1);
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --border-color: #e2e8f0;
+    --accent-primary: #4f46e5;
+    --accent-secondary: #10b981;
+    --accent-glow: var(--accent-primary);
+    --shadow-color: rgba(71, 85, 105, 0.1);
+}
+
+/* Dark Theme Variables */
+body[data-theme="dark"] {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-overlay: rgba(30, 41, 59, 0.1);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --border-color: #334155;
+    --accent-primary: #818cf8;
+    --accent-secondary: #34d399;
+    --accent-glow: #a78bfa;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+}
