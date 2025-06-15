@@ -58,11 +58,18 @@ export class GuideService {
         }
 
         const steps = this.getTourSteps();
-        this.tourInstance = tippy.guided(steps, {
-            onGuideCompleted: () => {
+        // Fallback: Use alert for each step instead of tippy.guided
+        let currentStep = 0;
+        const showStep = () => {
+            if (currentStep >= steps.length) {
                 storage.set(TOUR_COMPLETED_KEY, true);
-            },
-        });
-        this.tourInstance.start();
+                return;
+            }
+            const step = steps[currentStep];
+            alert(`${step.title}\n\n${step.content}`);
+            currentStep++;
+            showStep();
+        };
+        showStep();
     }
 }

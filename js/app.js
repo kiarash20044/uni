@@ -18,15 +18,26 @@ import { renderSettingsPage } from './pages/settings.js';
  */
 function registerServiceWorker() {
     if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/service-worker.js')
-                .then(registration => {
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                })
-                .catch(err => {
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-        });
+        // Only register if the file exists (works in dev, not in production on 404)
+        fetch('/service-worker.js', { method: 'HEAD' })
+            .then(res => {
+                if (res.ok) {
+                    window.addEventListener('load', () => {
+                        navigator.serviceWorker.register('/service-worker.js')
+                            .then(registration => {
+                                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                            })
+                            .catch(err => {
+                                console.log('ServiceWorker registration failed: ', err);
+                            });
+                    });
+                } else {
+                    console.warn('ServiceWorker file not found, skipping registration.');
+                }
+            })
+            .catch(() => {
+                console.warn('ServiceWorker file not found, skipping registration.');
+            });
     }
 }
 
