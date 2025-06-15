@@ -1,0 +1,68 @@
+/* css/components/Tour.css */
+
+/* Tippy.js Custom Theme */
+.tippy-box[data-theme~='translucent'] {
+    background-color: var(--glass-bg-darker);
+    color: var(--text-primary);
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--glass-border-color);
+    backdrop-filter: blur(10px);
+    font-family: var(--font-primary);
+}
+.tippy-box[data-theme~='translucent'][data-placement^='top'] > .tippy-arrow::before {
+    border-top-color: var(--glass-border-color);
+}
+.tippy-box[data-theme~='translucent'][data-placement^='bottom'] > .tippy-arrow::before {
+    border-bottom-color: var(--glass-border-color);
+}
+
+/* Guided Tour Styles */
+.tippy-guided-container {
+    padding: 1rem;
+}
+
+.tippy-guided-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    text-shadow: 0 0 8px var(--accent-glow);
+    margin-bottom: 0.5rem;
+}
+
+.tippy-guided-content {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.tippy-guided-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.tippy-guided-progress {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.tippy-guided-button {
+    background-color: transparent;
+    border: 1px solid var(--glass-border-color-light);
+    color: var(--text-secondary);
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.tippy-guided-button:hover {
+    color: var(--text-primary);
+    border-color: var(--accent-color);
+}
+
+.tippy-guided-button.is-primary {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #fff;
+}
