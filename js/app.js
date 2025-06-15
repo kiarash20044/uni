@@ -7,7 +7,7 @@ import { I18nService } from './services/i18nService.js';
 import { initTopNav } from './components/TopNav.js';
 import { GuideService } from './services/guideService.js';
 import { initTooltips } from './components/Tooltips.js';
-import { KeyboardService } from './services/keyboardService.js'; // ✨ NEW
+import { KeyboardService } from './services/keyboardService.js';
 import { renderHomePage } from './pages/home.js';
 import { renderTasksPage } from './pages/tasks.js';
 import { renderSchedulePage } from './pages/schedule.js';
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const i18n = new I18nService(appState);
     const router = createRouter(appState, i18n);
     const guideService = new GuideService(appState, i18n);
-    const keyboardService = new KeyboardService(router); // ✨ NEW
+    const keyboardService = new KeyboardService(router);
 
     // 2. Initial Setup
     const appContainer = document.getElementById('app-container');
@@ -53,15 +53,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. Initialize UI Components & Services
     initSidebar(router, i18n);
     initTopNav(appState, i18n);
-    keyboardService.registerDefaultShortcuts(); // ✨ NEW
+    keyboardService.registerDefaultShortcuts();
 
     // 4. Define Page Routes
     router.addRoute('/', renderHomePage);
     router.addRoute('/courses', (appState, i18n) => `<h1>${i18n.translate('courses')}</h1>`);
-    router.addRoute('/grades', (appState, i18n) => '<h1>Grades Page</h1>');
+    router.addRoute('/grades', (appState, i18n) => `<h1>${i18n.translate('grades')}</h1>`);
     router.addRoute('/schedule', renderSchedulePage);
     router.addRoute('/tasks', renderTasksPage);
-    router.addRoute('/resources', (appState, i18n) => '<h1>Resources Page</h1>');
+    router.addRoute('/resources', (appState, i18n) => `<h1>${i18n.translate('resources')}</h1>`);
     router.addRoute('/settings', renderSettingsPage);
 
     // 5. Initial Page Load
