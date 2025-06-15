@@ -1,4 +1,3 @@
-
 // js/services/printService.js
 
 /**
@@ -48,17 +47,4 @@ export function exportElementToPdf(elementId, pageTitle, filename) {
         pdf.text(pageTitle, pdfWidth / 2, 15, { align: 'center' });
 
         // Add the captured image
-        pdf.addImage(imgData, 'PNG', 10, 25, imgWidth, imgHeight);
-
-        // Footer
-        pdf.setFontSize(8);
-        pdf.setTextColor('#B0B0B0');
-        const today = new Date().toLocaleDateString();
-        pdf.text(`Exported on ${today}`, pdfWidth / 2, pdfHeight - 10, { align: 'center' });
-
-        pdf.save(filename);
-    }).catch(err => {
-        if(printButton) printButton.style.display = 'block'; // Ensure button is always visible on error
-        console.error("Error generating PDF:", err);
-    });
-}
+        pdf.addImage(imgData
