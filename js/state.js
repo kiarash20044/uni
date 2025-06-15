@@ -1,59 +1,71 @@
 // js/state.js
-import { StorageService } from './services/storageService.js';
 
-const initialState = {
-    theme: 'dark',
-    language: 'fa',
-    user: {
-        name: 'آرش', // Arash
-        avatar: 'https://bulma.io/images/placeholders/24x24.png'
-    },
-    dashboardStats: [
-        { value: '۱۷.۸', label: 'currentGPA', icon: '&#127891;' },
-        { value: '۵', label: 'coursesInProgress', icon: '&#128218;' },
-        { value: '۳', label: 'upcomingDeadlines', icon: '&#9203;' },
-        { value: '۹۲٪', label: 'attendanceRate', icon: '&#128200;' }
-    ],
-    // Add more complex state here, e.g., courses, grades, tasks
-    courses: [],
-    tasks: [],
-};
+import { StorageService } from './services/storageService.js';
 
 export class AppState {
     constructor() {
-        this.storage = new StorageService('student-dashboard-state-v1');
-        // Load from storage, or use initial state if nothing is stored
-        this.state = this.storage.get() || initialState;
+        this.storage = new StorageService();
+        this.state = this.loadStateFromStorage();
+        this.listeners = new Map();
     }
 
     /**
-     * Get a value from the state. If key is null, returns the whole state.
-     * @param {string | null} key - The key of the state property.
-     * @returns {*} The value from the state.
+     * Loads the initial state from localStorage.
+     * @returns {object} The state object.
+     */
+    loadStateFromStorage() {
+        // We can define default values here if needed
+        const initialState = {
+            language: this.storage.get('language', 'fa'),
+            theme: this.storage.get('theme', 'dark'),
+            accentColor: this.storage.get('accentColor', 'cyan'),
+            tasks: this.storage.get('tasks', []),
+            user_stats: this.storage.get('user_stats', {}),
+            timeline_events: this.storage.get('timeline_events', [])
+        };
+        return initialState;
+    }
+
+    /**
+     * Gets a value from the state.
+     * @param {string} key The state key.
+     * @returns {*} The value associated with the key.
      */
     get(key) {
-        if (key === null) {
-            return this.state;
-        }
         return this.state[key];
     }
 
     /**
-     * Set a value in the state and persist it to localStorage.
-     * If key is null, the entire state is replaced by the value.
-     * @param {string | null} key - The key of the state property, or null to replace the state.
-     * @param {*} value - The new value to set.
+     * Sets a value in the state and persists it to localStorage.
+     * @param {string} key The state key.
+     * @param {*} value The new value.
      */
     set(key, value) {
-        if (key === null) {
-            // Replace the entire state object
-            this.state = value;
-        } else {
-            // Set a specific property
-            this.state[key] = value;
-        }
+        this.state[key] = value;
+        this.storage.set(key, value);
+        this.notify(key, value);
+    }
 
-        this.storage.set(this.state);
-        document.dispatchEvent(new CustomEvent('state-change', { detail: { key, value } }));
+    /**
+     * Subscribes a listener function to a state key.
+     * @param {string} key The state key to listen to.
+     * @param {function} listener The callback function.
+     */
+    subscribe(key, listener) {
+        if (!this.listeners.has(key)) {
+            this.listeners.set(key, []);
+        }
+        this.listeners.get(key).push(listener);
+    }
+
+    /**
+     * Notifies all listeners subscribed to a specific key.
+     * @param {string} key The state key that changed.
+     * @param {*} value The new value.
+     */
+    notify(key, value) {
+        if (this.listeners.has(key)) {
+            this.listeners.get(key).forEach(listener => listener(value));
+        }
     }
 }
