@@ -7,6 +7,8 @@ import { I18nService } from './services/i18nService.js';
 import { initTopNav } from './components/TopNav.js';
 import { renderHomePage } from './pages/home.js';
 import { renderTasksPage } from './pages/tasks.js';
+// ✨ NEW: Import the settings page renderer
+import { renderSettingsPage } from './pages/settings.js';
 
 /**
  * Registers the service worker for offline support.
@@ -39,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Set initial theme and language from state
     document.body.dataset.theme = appState.get('theme') || 'dark';
-    // ✨ NEW: Apply the saved accent color on load
     document.body.dataset.accentColor = appState.get('accentColor') || 'cyan';
     document.documentElement.lang = appState.get('language') || 'fa';
     document.documentElement.dir = appState.get('language') === 'en' ? 'ltr' : 'rtl';
@@ -55,6 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
     router.addRoute('/schedule', (appState, i18n) => '<h1>Schedule Page</h1>');
     router.addRoute('/tasks', renderTasksPage);
     router.addRoute('/resources', (appState, i18n) => '<h1>Resources Page</h1>');
+    // ✨ NEW: Add the settings page route
+    router.addRoute('/settings', renderSettingsPage);
 
     // 5. Initial Page Load
     router.handleLocation();
