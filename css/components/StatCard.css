@@ -1,1 +1,57 @@
-# ...existing content from /workspaces/uni/student-dashboard/src/components/StatCard/StatCard.scss...
+/* css/components/StatCard.css */
+.home-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: calc(var(--spacing-unit) * 3);
+}
+
+.welcome-banner {
+    grid-column: 1 / -1; /* Span full width */
+    padding: calc(var(--spacing-unit) * 4);
+}
+
+.stat-card {
+    padding: calc(var(--spacing-unit) * 2.5);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: transform var(--transition-speed-fast), box-shadow var(--transition-speed-fast);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px var(--shadow-color);
+}
+
+.stat-card .stat-icon {
+    font-size: 2rem;
+    margin-right: var(--spacing-unit) * 2;
+    padding: var(--spacing-unit);
+    border-radius: 50%;
+    background-color: var(--bg-primary);
+    line-height: 1; /* Fixes icon alignment */
+}
+
+.stat-card .stat-details .stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: var(--font-english); /* Values are often numbers */
+    direction: ltr; /* Ensure numbers read left-to-right */
+}
+
+.stat-card .stat-details .stat-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.chart-container, .tasks-overview {
+    grid-column: span 2; /* Make these larger */
+    padding: calc(var(--spacing-unit) * 3);
+}
+
+@media (max-width: 1024px) {
+    .chart-container, .tasks-overview {
+        grid-column: span 1;
+    }
+}
