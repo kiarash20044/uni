@@ -1,7 +1,6 @@
 // js/pages/home.js
 
 import { fadeIn } from '../utils/animations.js';
-// ✨ NEW: Import the circular progress component
 import { createCircularProgress, initCircularProgressAnimation } from '../components/CircularProgress.js';
 
 // --- Icon SVGs ---
@@ -14,7 +13,7 @@ export function renderHomePage(appState, i18n) {
     pageContainer.className = 'home-page-container';
 
     // --- Mock Data ---
-    const stats = {
+    const stats = appState.get('user_stats') || {
         gpa: { value: 3.8, max: 4.0 },
         credits: { value: 92, max: 120 },
         semesterProgress: { value: 10, max: 16 } // e.g., week 10 of 16
