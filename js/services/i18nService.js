@@ -1,100 +1,54 @@
 // js/services/i18nService.js
 
-const translations = {
-    fa: {
-        // General
-        home: 'خانه',
-        courses: 'درس‌ها',
-        grades: 'نمرات',
-        schedule: 'برنامه هفتگی',
-        tasks: 'وظایف',
-        resources: 'منابع',
-        settings: 'تنظیمات',
-        profile: 'پروفایل',
-        logout: 'خروج',
-        pageNotFound: 'صفحه پیدا نشد',
-        exportData: 'خروجی گرفتن از داده‌ها',
-        importData: 'وارد کردن داده‌ها',
-        navigation: 'راهبری',
-        // Dashboard
-        welcome: 'خوش آمدید',
-        dashboardQuote: 'پیشرفت خود را دنبال کنید و سازماندهی شده بمانید.',
-        currentGPA: 'معدل کل',
-        coursesInProgress: 'دروس در حال گذراندن',
-        upcomingDeadlines: 'ددلاین‌های نزدیک',
-        attendanceRate: 'نرخ حضور',
-        gradeDistribution: 'توزیع نمرات',
-        upcomingTasks: 'وظایف پیش رو',
-        taskFinishLab: 'تکمیل گزارش آزمایشگاه',
-        taskSubmitAssignment: 'ارسال تمرین',
-        taskPrepareForExam: 'آمادگی برای امتحان',
-    },
-    en: {
-        // General
-        home: 'Home',
-        courses: 'Courses',
-        grades: 'Grades',
-        schedule: 'Schedule',
-        tasks: 'Tasks',
-        resources: 'Resources',
-        settings: 'Settings',
-        profile: 'Profile',
-        logout: 'Logout',
-        pageNotFound: 'Page Not Found',
-        exportData: 'Export Data',
-        importData: 'Import Data',
-        navigation: 'Navigation',
-        // Dashboard
-        welcome: 'Welcome',
-        dashboardQuote: 'Track your progress and stay organized.',
-        currentGPA: 'Current GPA',
-        coursesInProgress: 'Courses In Progress',
-        upcomingDeadlines: 'Upcoming Deadlines',
-        attendanceRate: 'Attendance Rate',
-        gradeDistribution: 'Grade Distribution',
-        upcomingTasks: 'Upcoming Tasks',
-        taskFinishLab: 'Finish lab report',
-        taskSubmitAssignment: 'Submit assignment',
-        taskPrepareForExam: 'Prepare for exam',
-    }
-};
-
 export class I18nService {
     constructor(appState) {
         this.appState = appState;
-        this.lang = this.appState.get('language') || 'fa';
+        this.translations = {
+            en: {
+                dashboard: 'Dashboard',
+                courses: 'Courses',
+                grades: 'Grades',
+                schedule: 'Schedule',
+                tasks: 'Tasks',
+                resources: 'Resources',
+                settings: 'Settings',
+                logout: 'Logout',
+                welcome_back: 'Welcome Back',
+                current_gpa: 'Current GPA',
+                completed_credits: 'Completed Credits',
+                upcoming_deadlines: 'Upcoming Deadlines',
+                recent_grades: 'Recent Grades',
+                // ✨ NEW Translations
+                todo: 'To Do',
+                inProgress: 'In Progress',
+                done: 'Done',
+                addTask: 'Add a task'
+            },
+            fa: {
+                dashboard: 'داشبورد',
+                courses: 'درس‌ها',
+                grades: 'نمرات',
+                schedule: 'برنامه هفتگی',
+                tasks: 'کارها',
+                resources: 'منابع',
+                settings: 'تنظیمات',
+                logout: 'خروج',
+                welcome_back: 'خوش آمدید',
+                current_gpa: 'معدل کل',
+                completed_credits: 'واحدهای گذرانده',
+                upcoming_deadlines: 'ددلاین‌های پیش‌رو',
+                recent_grades: 'نمرات اخیر',
+                // ✨ NEW Translations
+                todo: 'برای انجام',
+                inProgress: 'در حال انجام',
+                done: 'انجام شده',
+                addTask: 'افزودن کار جدید'
+            }
+        };
     }
 
-    /**
-     * Translates a given key into the current language.
-     * @param {string} key - The key to translate.
-     * @returns {string} The translated string or the key itself if not found.
-     */
     translate(key) {
-        return translations[this.lang][key] || key;
-    }
-
-    /**
-     * Formats a number according to the current language.
-     * @param {number} num - The number to format.
-     * @returns {string} The formatted number string.
-     */
-    formatNumber(num) {
-        if (this.lang === 'fa') {
-            const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-            return String(num).replace(/[0-9]/g, w => persianDigits[+w]);
-        }
-        return String(num);
-    }
-
-    /**
-     * Converts a Gregorian date to a Jalaali date string.
-     * @param {Date} date - The date object.
-     * @returns {string} The formatted Jalaali date.
-     */
-    toPersianDate(date) {
-        if (typeof jalaali === 'undefined') return date.toLocaleDateString();
-        const jd = jalaali.toJalaali(date);
-        return `${this.formatNumber(jd.jy)}/${this.formatNumber(jd.jm)}/${this.formatNumber(jd.jd)}`;
+        const lang = this.appState.get('language') || 'fa';
+        return this.translations[lang][key] || key;
     }
 }
