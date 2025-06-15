@@ -1,0 +1,99 @@
+/* css/components/Kanban.css */
+
+.kanban-board-container {
+    padding: 2rem;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.kanban-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    min-width: 900px; /* Ensure columns don't get too squished */
+    height: 100%;
+}
+
+.kanban-column {
+    display: flex;
+    flex-direction: column;
+    background: var(--glass-bg-darker);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--glass-border-color);
+    padding: 1rem;
+    height: 100%; /* Make column fill container height */
+}
+
+.kanban-column-title {
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--accent-color);
+    text-shadow: 0 0 8px var(--accent-glow);
+}
+
+.kanban-cards {
+    flex-grow: 1; /* Allows this area to fill available space */
+    min-height: 200px;
+    overflow-y: auto; /* Scroll if cards overflow */
+    padding-right: 5px; /* space for scrollbar */
+}
+
+/* Custom scrollbar for card lists */
+.kanban-cards::-webkit-scrollbar {
+  width: 5px;
+}
+.kanban-cards::-webkit-scrollbar-track {
+  background: transparent;
+}
+.kanban-cards::-webkit-scrollbar-thumb {
+  background: var(--accent-color-translucent);
+  border-radius: 5px;
+}
+.kanban-cards::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+
+
+.kanban-card {
+    background: var(--glass-bg);
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--glass-border-color-light);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    cursor: grab;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    color: var(--text-secondary);
+}
+
+.kanban-card:hover {
+    background: var(--glass-bg-hover);
+    box-shadow: 0 0 15px var(--accent-glow-light);
+}
+
+.kanban-card.is-dragging {
+    opacity: 0.5;
+    background: var(--accent-color);
+    color: #fff;
+    box-shadow: 0 8px 30px var(--accent-glow);
+    cursor: grabbing;
+}
+
+.add-task-form {
+    margin-top: 1rem;
+}
+
+.add-task-input {
+    background-color: transparent !important;
+    border: 1px solid var(--glass-border-color);
+    color: var(--text-primary) !important;
+    box-shadow: none !important;
+}
+
+.add-task-input::placeholder {
+    color: var(--text-muted) !important;
+}
