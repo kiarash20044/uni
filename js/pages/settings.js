@@ -44,7 +44,6 @@ function addSettingsListeners(pageContainer, i18n) {
         const restoreBtn = e.target.closest('.restore-btn');
         if (restoreBtn) {
             const backupId = restoreBtn.dataset.backupId;
-            // Simple confirmation for now
             if (confirm(i18n.translate('restoreConfirm'))) {
                 const success = backupService.restoreBackup(backupId);
                 if (success) {
