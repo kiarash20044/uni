@@ -6,6 +6,8 @@ import { initSidebar } from './components/Sidebar.js';
 import { I18nService } from './services/i18nService.js';
 import { initTopNav } from './components/TopNav.js';
 import { renderHomePage } from './pages/home.js';
+// ✨ NEW: Import the new tasks page renderer
+import { renderTasksPage } from './pages/tasks.js';
 
 /**
  * Registers the service worker for offline support.
@@ -50,7 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
     router.addRoute('/courses', (appState, i18n) => `<h1>${i18n.translate('courses')}</h1>`);
     router.addRoute('/grades', (appState, i18n) => '<h1>Grades Page</h1>');
     router.addRoute('/schedule', (appState, i18n) => '<h1>Schedule Page</h1>');
-    router.addRoute('/tasks', (appState, i18n) => '<h1>Tasks Page</h1>');
+    // ✨ UPDATED: Connect the new tasks page renderer
+    router.addRoute('/tasks', renderTasksPage);
     router.addRoute('/resources', (appState, i18n) => '<h1>Resources Page</h1>');
 
     // 5. Initial Page Load
