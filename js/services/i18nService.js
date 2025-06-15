@@ -18,11 +18,17 @@ export class I18nService {
                 completed_credits: 'Completed Credits',
                 upcoming_deadlines: 'Upcoming Deadlines',
                 recent_grades: 'Recent Grades',
-                // ✨ NEW Translations
                 todo: 'To Do',
                 inProgress: 'In Progress',
                 done: 'Done',
-                addTask: 'Add a task'
+                addTask: 'Add a task',
+                // ✨ NEW Translations
+                themeSettings: 'Theme Settings',
+                accentColor: 'Accent Color',
+                theme_cyan: 'Cyan (Default)',
+                theme_purple: 'Purple',
+                theme_green: 'Green',
+                theme_orange: 'Orange',
             },
             fa: {
                 dashboard: 'داشبورد',
@@ -38,11 +44,17 @@ export class I18nService {
                 completed_credits: 'واحدهای گذرانده',
                 upcoming_deadlines: 'ددلاین‌های پیش‌رو',
                 recent_grades: 'نمرات اخیر',
-                // ✨ NEW Translations
                 todo: 'برای انجام',
                 inProgress: 'در حال انجام',
                 done: 'انجام شده',
-                addTask: 'افزودن کار جدید'
+                addTask: 'افزودن کار جدید',
+                // ✨ NEW Translations
+                themeSettings: 'تنظیمات پوسته',
+                accentColor: 'رنگ اصلی',
+                theme_cyan: 'فیروزه‌ای (پیش‌فرض)',
+                theme_purple: 'بنفش',
+                theme_green: 'سبز',
+                theme_orange: 'نارنجی',
             }
         };
     }
