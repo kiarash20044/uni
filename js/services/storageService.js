@@ -1,50 +1,55 @@
 // js/services/storageService.js
 
-/**
- * A robust service for interacting with localStorage,
- * including simple Base64 encryption for obfuscation.
- */
 export class StorageService {
     /**
-     * @param {string} key The localStorage key to use for this instance.
+     * Retrieves an item from localStorage and parses it as JSON.
+     * @param {string} key The key of the item to retrieve.
+     * @param {*} defaultValue The default value to return if the key doesn't exist.
+     * @returns {*} The retrieved item, or the default value.
      */
-    constructor(key) {
-        this.key = key;
-    }
-
-    /**
-     * Retrieves and decrypts data from localStorage.
-     * @returns {object | null} The parsed object or null if an error occurs or no data exists.
-     */
-    get() {
+    get(key, defaultValue = null) {
         try {
-            const encryptedData = localStorage.getItem(this.key);
-            if (!encryptedData) {
-                return null;
-            }
-            // Decrypt from Base64 and parse the JSON string
-            const jsonString = atob(encryptedData);
-            return JSON.parse(jsonString);
+            const item = localStorage.getItem(key);
+            return item ? JSON.parse(item) : defaultValue;
         } catch (error) {
-            console.error('Failed to retrieve or parse data from localStorage:', error);
-            // In case of corruption, it's safer to clear it
-            localStorage.removeItem(this.key);
-            return null;
+            console.error(`Error getting item from localStorage: ${key}`, error);
+            return defaultValue;
         }
     }
 
     /**
-     * Encrypts and saves data to localStorage.
-     * @param {object} data The JSON object to save.
+     * Stores an item in localStorage after converting it to a JSON string.
+     * @param {string} key The key under which to store the item.
+     * @param {*} value The value to store.
      */
-    set(data) {
+    set(key, value) {
         try {
-            const jsonString = JSON.stringify(data);
-            // Encrypt to Base64
-            const encryptedData = btoa(jsonString);
-            localStorage.setItem(this.key, encryptedData);
+            localStorage.setItem(key, JSON.stringify(value));
         } catch (error) {
-            console.error('Failed to save data to localStorage:', error);
+            console.error(`Error setting item in localStorage: ${key}`, error);
+        }
+    }
+
+    /**
+     * Removes an item from localStorage.
+     * @param {string} key The key of the item to remove.
+     */
+    remove(key) {
+        try {
+            localStorage.removeItem(key);
+        } catch (error) {
+            console.error(`Error removing item from localStorage: ${key}`, error);
+        }
+    }
+
+    /**
+     * Clears all items from localStorage.
+     */
+    clear() {
+        try {
+            localStorage.clear();
+        } catch (error) {
+            console.error('Error clearing localStorage', error);
         }
     }
 }
