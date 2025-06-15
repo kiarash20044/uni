@@ -1,7 +1,5 @@
 // js/components/CircularProgress.js
 
-import { gsap } from 'gsap';
-
 /**
  * Creates the HTML for a circular progress card.
  * @param {object} props - The properties for the progress card.
@@ -71,7 +69,7 @@ export function initCircularProgressAnimation(id, value, max) {
             duration: 1.5, 
             ease: 'power2.out',
             delay: 0.2,
-            snap: { innerText: 1 } // ensure we snap to whole numbers
+            snap: { innerText: 1 } // ensure we snap to whole numbers for integer values
         }
     );
 }
