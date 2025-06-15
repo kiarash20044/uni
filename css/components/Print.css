@@ -1,1 +1,22 @@
 
+/* css/components/Print.css */
+
+.export-pdf-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    z-index: 10;
+    background-color: var(--glass-bg-hover) !important;
+    border-color: var(--glass-border-color-light) !important;
+    color: var(--text-secondary) !important;
+}
+
+.export-pdf-btn:hover {
+    color: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 10px var(--accent-glow-light);
+}
+
+.export-pdf-btn .icon {
+    color: var(--accent-color);
+}
