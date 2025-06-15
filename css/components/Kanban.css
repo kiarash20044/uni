@@ -5,6 +5,7 @@
     height: 100%;
     overflow-x: auto;
     overflow-y: hidden;
+    position: relative; /* For the print button */
 }
 
 .kanban-board {
