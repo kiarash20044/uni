@@ -1,18 +1,48 @@
 /* css/main.css */
 
-/* 1. Variables and Fonts */
-@import 'variables.css';
+#app-container {
+    display: flex;
+    height: 100vh;
+}
 
-/* 2. Base & Global Styles */
-@import 'base.css';
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    padding-left: var(--sidebar-width); /* Default width */
+    transition: padding-left var(--transition-medium);
+}
 
-/* 3. Reusable Effects */
-@import 'effects.css';
+body[data-sidebar-collapsed='true'] .main-content {
+    padding-left: var(--sidebar-width-collapsed);
+}
 
-/* 4. Component-Specific Styles */
-@import 'components/Sidebar.css';
-@import 'components/StatCard.css';
-/* Add more component styles here as they are created */
+.top-nav {
+    height: var(--topnav-height);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--glass-border-color);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
 
-/* 5. RTL Overrides - Must come after component styles */
-@import 'rtl.css';
+.page-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 0; /* Page-specific components will add their own padding */
+    position: relative;
+}
+
+/* Home Page Specific Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
