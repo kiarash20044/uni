@@ -1,68 +1,15 @@
-// js/services/guideService.js
-
-import { StorageService } from './storageService.js';
-import { I18nService } from './i18nService.js';
-
-const storage = new StorageService();
-const TOUR_COMPLETED_KEY = 'tour_completed';
+// js/components/Tooltips.js
 
 /**
- * Manages the guided tour for first-time users.
+ * Initializes Tippy.js tooltips on elements with the 'data-tooltip' attribute.
  */
-export class GuideService {
-    constructor(appState, i18n) {
-        this.appState = appState;
-        this.i18n = i18n;
-        this.tourInstance = null;
-    }
-
-    /**
-     * Defines the steps for the guided tour.
-     * @returns {Array} An array of tour step objects.
-     */
-    getTourSteps() {
-        return [
-            {
-                element: '#sidebar-nav',
-                title: this.i18n.translate('tour_step1_title'),
-                content: this.i18n.translate('tour_step1_content'),
-                placement: 'right',
-            },
-            {
-                element: '#page-content',
-                title: this.i18n.translate('tour_step2_title'),
-                content: this.i18n.translate('tour_step2_content'),
-                placement: 'top',
-            },
-            {
-                element: '#theme-switcher',
-                title: this.i18n.translate('tour_step3_title'),
-                content: this.i18n.translate('tour_step3_content'),
-                placement: 'bottom',
-            },
-            {
-                element: '#tasks-link',
-                title: this.i18n.translate('tour_step4_title'),
-                content: this.i18n.translate('tour_step4_content'),
-                placement: 'right',
-            }
-        ];
-    }
-
-    /**
-     * Starts the tour if it hasn't been completed before.
-     */
-    startTourIfNeeded() {
-        if (storage.get(TOUR_COMPLETED_KEY)) {
-            return;
-        }
-
-        const steps = this.getTourSteps();
-        this.tourInstance = tippy.guided(steps, {
-            onGuideCompleted: () => {
-                storage.set(TOUR_COMPLETED_KEY, true);
-            },
-        });
-        this.tourInstance.start();
-    }
+export function initTooltips() {
+    tippy('[data-tooltip]', {
+        content(reference) {
+            return reference.getAttribute('data-tooltip');
+        },
+        animation: 'scale-subtle',
+        theme: 'translucent',
+        placement: 'top',
+    });
 }
