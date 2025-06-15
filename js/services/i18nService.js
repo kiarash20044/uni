@@ -13,6 +13,9 @@ const translations = {
         profile: 'پروفایل',
         logout: 'خروج',
         pageNotFound: 'صفحه پیدا نشد',
+        exportData: 'خروجی گرفتن از داده‌ها',
+        importData: 'وارد کردن داده‌ها',
+        navigation: 'راهبری',
         // Dashboard
         welcome: 'خوش آمدید',
         dashboardQuote: 'پیشرفت خود را دنبال کنید و سازماندهی شده بمانید.',
@@ -38,6 +41,9 @@ const translations = {
         profile: 'Profile',
         logout: 'Logout',
         pageNotFound: 'Page Not Found',
+        exportData: 'Export Data',
+        importData: 'Import Data',
+        navigation: 'Navigation',
         // Dashboard
         welcome: 'Welcome',
         dashboardQuote: 'Track your progress and stay organized.',
