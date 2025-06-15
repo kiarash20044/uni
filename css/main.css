@@ -1,1 +1,18 @@
-# ...existing content from /workspaces/uni/student-dashboard/src/styles/main.scss...
+/* css/main.css */
+
+/* 1. Variables and Fonts */
+@import 'variables.css';
+
+/* 2. Base & Global Styles */
+@import 'base.css';
+
+/* 3. Reusable Effects */
+@import 'effects.css';
+
+/* 4. Component-Specific Styles */
+@import 'components/Sidebar.css';
+@import 'components/StatCard.css';
+/* Add more component styles here as they are created */
+
+/* 5. RTL Overrides - Must come after component styles */
+@import 'rtl.css';
