@@ -4,7 +4,7 @@ import { StorageService } from './storageService.js';
 
 const storage = new StorageService();
 const BACKUP_KEY = 'dashboard_backups';
-const DATA_KEYS_TO_BACKUP = ['tasks', 'theme', 'accentColor', 'language', 'user_stats']; // Add any other keys you want to back up
+const DATA_KEYS_TO_BACKUP = ['tasks', 'theme', 'accentColor', 'language', 'user_stats', 'timeline_events'];
 
 export class BackupService {
     constructor() {
