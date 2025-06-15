@@ -136,15 +136,15 @@
                 <hr class="my-4">
                 <div>
                     <h3 class="font-bold mb-2 flex items-center gap-2"><i data-lucide="code" class="w-5 h-5"></i>پشتیبان‌گیری و بازیابی پیشرفت</h3>
-                    <p class="text-sm mb-2">برای اطمینان از عدم از دست رفتن اطلاعات، می‌توانید پیشرفت خود را به صورت یک کد JSON ذخیره کنید یا در سیستم جدید وارد نمایید.</p>
-                    <textarea id="progress-json" readonly class="w-full p-2 rounded border text-left font-mono text-xs bg-gray-100 dark:bg-gray-800 mb-2" rows="6"></textarea>
+                    <p class="text-sm mb-2">در این ویرایشگر پیشرفته می‌توانید کد JSON پیشرفت خود را مشاهده، ویرایش، کپی یا بازیابی کنید.</p>
+                    <div id="progress-editor" style="height: 220px; border-radius: 8px; overflow: hidden; margin-bottom: 0.5rem;"></div>
                     <div class="flex gap-2 mb-2">
                         <button id="copy-progress-json" class="header-icon-btn" type="button"><i data-lucide="copy" class="w-4 h-4"></i>کپی کد</button>
                         <button id="restore-progress-json" class="header-icon-btn" type="button"><i data-lucide="refresh-ccw" class="w-4 h-4"></i>بازیابی</button>
                     </div>
-                    <textarea id="import-progress-json" class="w-full p-2 rounded border text-left font-mono text-xs bg-gray-50 dark:bg-gray-900 mb-2" rows="3" placeholder="کد JSON را اینجا جای‌گذاری کنید..."></textarea>
                     <div id="progress-json-message" class="text-xs text-green-600 dark:text-green-400"></div>
                 </div>
+                <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/loader.js"></script>
             </div>
         </div>
     </div>

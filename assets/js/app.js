@@ -68,6 +68,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Monaco Editor integration for progress JSON
+    let monacoEditor = null;
+    function loadMonacoEditor(callback) {
+        if (window.monaco) {
+            if (callback) callback();
+            return;
+        }
+        window.require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs' } });
+        window.require(['vs/editor/editor.main'], function () {
+            if (callback) callback();
+        });
+    }
+
+    function initProgressEditor() {
+        const container = document.getElementById('progress-editor');
+        if (!container) return;
+        if (monacoEditor) {
+            monacoEditor.dispose();
+        }
+        monacoEditor = monaco.editor.create(container, {
+            value: JSON.stringify(getFullUserProgress(), null, 2),
+            language: 'json',
+            theme: document.documentElement.classList.contains('dark') ? 'vs-dark' : 'vs',
+            automaticLayout: true,
+            minimap: { enabled: false },
+            fontSize: 13,
+            scrollBeyondLastLine: false,
+            roundedSelection: false,
+            readOnly: false,
+        });
+    }
+
+    function updateProgressEditorValue() {
+        if (monacoEditor) {
+            monacoEditor.setValue(JSON.stringify(getFullUserProgress(), null, 2));
+        }
+    }
+
+    // Update editor theme on theme change
+    function updateMonacoTheme() {
+        if (monacoEditor) {
+            monaco.editor.setTheme(document.documentElement.classList.contains('dark') ? 'vs-dark' : 'vs');
+        }
+    }
+
     // --- Settings Modal Logic ---
     const settingsBtn = document.getElementById('settings-btn');
     const settingsModal = document.getElementById('settings-modal');
@@ -108,7 +153,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (settingsBtn && settingsModal && closeModalBtn) {
         settingsBtn.addEventListener('click', () => {
             settingsModal.classList.remove('hidden');
-            updateProgressJsonTextarea();
+            loadMonacoEditor(() => {
+                setTimeout(() => {
+                    initProgressEditor();
+                }, 100); // Wait for modal to render
+            });
             if (progressJsonMessage) progressJsonMessage.textContent = '';
         });
 
@@ -123,43 +172,59 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (copyProgressJsonBtn && progressJsonTextarea) {
+    // Copy button
+    if (copyProgressJsonBtn) {
         copyProgressJsonBtn.addEventListener('click', () => {
-            progressJsonTextarea.select();
-            document.execCommand('copy');
-            if (progressJsonMessage) {
-                progressJsonMessage.textContent = 'کد با موفقیت کپی شد!';
-                setTimeout(() => progressJsonMessage.textContent = '', 2000);
+            if (monacoEditor) {
+                const value = monacoEditor.getValue();
+                navigator.clipboard.writeText(value);
+                if (progressJsonMessage) {
+                    progressJsonMessage.textContent = 'کد با موفقیت کپی شد!';
+                    setTimeout(() => progressJsonMessage.textContent = '', 2000);
+                }
             }
         });
     }
-
-    if (restoreProgressJsonBtn && importProgressJsonTextarea) {
+    // Restore button
+    if (restoreProgressJsonBtn) {
         restoreProgressJsonBtn.addEventListener('click', () => {
-            try {
-                const data = JSON.parse(importProgressJsonTextarea.value);
-                setFullUserProgress(data);
-                if (progressJsonMessage) {
-                    progressJsonMessage.textContent = 'پیشرفت با موفقیت بازیابی شد. صفحه را رفرش کنید.';
-                    setTimeout(() => progressJsonMessage.textContent = '', 4000);
-                }
-                updateProgressJsonTextarea();
-            } catch (e) {
-                if (progressJsonMessage) {
-                    progressJsonMessage.textContent = 'کد وارد شده معتبر نیست!';
-                    setTimeout(() => progressJsonMessage.textContent = '', 4000);
+            if (monacoEditor) {
+                try {
+                    const data = JSON.parse(monacoEditor.getValue());
+                    setFullUserProgress(data);
+                    if (progressJsonMessage) {
+                        progressJsonMessage.textContent = 'پیشرفت با موفقیت بازیابی شد. صفحه را رفرش کنید.';
+                        setTimeout(() => progressJsonMessage.textContent = '', 4000);
+                    }
+                    updateProgressEditorValue();
+                } catch (e) {
+                    if (progressJsonMessage) {
+                        progressJsonMessage.textContent = 'کد وارد شده معتبر نیست!';
+                        setTimeout(() => progressJsonMessage.textContent = '', 4000);
+                    }
                 }
             }
         });
     }
 
-    // Update JSON textarea whenever progress changes
+    // Keep editor in sync with progress
     function updateProgressJsonOnChange() {
-        updateProgressJsonTextarea();
+        updateProgressEditorValue();
     }
-    // Listen for changes to progress and collapsible state
     window.addEventListener('storage', updateProgressJsonOnChange);
     document.addEventListener('change', updateProgressJsonOnChange);
+    // Also update on collapsible state changes
+    function syncCollapsibleStateAndJson() {
+        updateProgressEditorValue();
+    }
+    termContainers.forEach(container => {
+        const header = container.querySelector('.term-header');
+        if (!header) return;
+        header.addEventListener('click', syncCollapsibleStateAndJson);
+    });
+    // Update Monaco theme on theme change
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateMonacoTheme);
+
 
     // --- Tab Navigation Logic ---
     const tabButtons = document.getElementById('tab-buttons');
