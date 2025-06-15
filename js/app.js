@@ -6,7 +6,6 @@ import { initSidebar } from './components/Sidebar.js';
 import { I18nService } from './services/i18nService.js';
 import { initTopNav } from './components/TopNav.js';
 import { renderHomePage } from './pages/home.js';
-// ✨ NEW: Import the new tasks page renderer
 import { renderTasksPage } from './pages/tasks.js';
 
 /**
@@ -40,6 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Set initial theme and language from state
     document.body.dataset.theme = appState.get('theme') || 'dark';
+    // ✨ NEW: Apply the saved accent color on load
+    document.body.dataset.accentColor = appState.get('accentColor') || 'cyan';
     document.documentElement.lang = appState.get('language') || 'fa';
     document.documentElement.dir = appState.get('language') === 'en' ? 'ltr' : 'rtl';
 
@@ -52,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
     router.addRoute('/courses', (appState, i18n) => `<h1>${i18n.translate('courses')}</h1>`);
     router.addRoute('/grades', (appState, i18n) => '<h1>Grades Page</h1>');
     router.addRoute('/schedule', (appState, i18n) => '<h1>Schedule Page</h1>');
-    // ✨ UPDATED: Connect the new tasks page renderer
     router.addRoute('/tasks', renderTasksPage);
     router.addRoute('/resources', (appState, i18n) => '<h1>Resources Page</h1>');
 
