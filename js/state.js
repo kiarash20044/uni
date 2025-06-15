@@ -27,23 +27,33 @@ export class AppState {
     }
 
     /**
-     * Get a value from the state.
-     * @param {string} key - The key of the state property.
+     * Get a value from the state. If key is null, returns the whole state.
+     * @param {string | null} key - The key of the state property.
      * @returns {*} The value from the state.
      */
     get(key) {
+        if (key === null) {
+            return this.state;
+        }
         return this.state[key];
     }
 
     /**
      * Set a value in the state and persist it to localStorage.
-     * @param {string} key - The key of the state property.
+     * If key is null, the entire state is replaced by the value.
+     * @param {string | null} key - The key of the state property, or null to replace the state.
      * @param {*} value - The new value to set.
      */
     set(key, value) {
-        this.state[key] = value;
+        if (key === null) {
+            // Replace the entire state object
+            this.state = value;
+        } else {
+            // Set a specific property
+            this.state[key] = value;
+        }
+
         this.storage.set(this.state);
-        // Optionally, dispatch a custom event to notify components of state change
         document.dispatchEvent(new CustomEvent('state-change', { detail: { key, value } }));
     }
 }
