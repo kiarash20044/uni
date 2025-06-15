@@ -57,11 +57,11 @@ body[data-theme='dark'] {
 
 /* -- Light Theme Variables -- */
 body[data-theme='light'] {
-    /* ... (light theme variables would go here) */
+    /* Future light theme variables would go here */
 }
 
 
-/* ✨ NEW: Accent Color Themes ✨ */
+/* Accent Color Themes */
 
 /* Purple Theme */
 [data-accent-color="purple"] {
