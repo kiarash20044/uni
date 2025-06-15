@@ -1,1 +1,30 @@
-# ...existing content from /workspaces/uni/student-dashboard/public/robots.txt...
+# Disallow all web crawlers from accessing any part of the site
+User-agent: *
+Disallow: /
+
+# Prevent indexing of all content
+Noindex: /
+
+# Prevent archiving by the Wayback Machine
+User-agent: ia_archiver
+Disallow: /
+
+# Prevent specific bots (examples)
+User-agent: Googlebot
+Disallow: /
+User-agent: Bingbot
+Disallow: /
+User-agent: Slurp
+Disallow: /
+
+# Prevent image indexing
+User-agent: Googlebot-Image
+Disallow: /
+
+# Prevent video indexing
+User-agent: Googlebot-Video
+Disallow: /
+
+# Prevent all bots from accessing any files
+User-agent: *
+Disallow: /*
