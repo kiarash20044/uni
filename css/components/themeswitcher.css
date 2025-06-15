@@ -1,0 +1,54 @@
+/* css/components/ThemeSwitcher.css */
+
+.navbar-item.has-dropdown .navbar-link .icon {
+    color: var(--text-secondary);
+    transition: var(--transition-fast);
+}
+
+.navbar-item.has-dropdown:hover .navbar-link .icon {
+    color: var(--accent-color);
+}
+
+.navbar-dropdown {
+    background-color: var(--glass-bg-darker);
+    border: 1px solid var(--glass-border-color);
+    backdrop-filter: blur(10px);
+    border-radius: var(--border-radius-md);
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.dropdown-header {
+    padding: 0.5rem 1rem;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.dropdown-item {
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.25rem;
+}
+
+.dropdown-item:hover {
+    background-color: var(--glass-bg-hover);
+    color: var(--text-primary);
+}
+
+.dropdown-item.is-active {
+    background-color: var(--accent-color-translucent);
+    color: var(--text-primary);
+    font-weight: bold;
+}
+
+.theme-swatch {
+    width: 16px;
+    height: 16px;
+    border-radius: var(--border-radius-circle);
+    margin-right: 10px;
+    border: 1px solid var(--glass-border-color-light);
+    display: inline-block;
+    vertical-align: middle;
+}
