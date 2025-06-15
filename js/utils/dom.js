@@ -1,21 +1,21 @@
 // js/utils/dom.js
 
 /**
- * A shorthand for document.querySelector.
- * @param {string} selector - The CSS selector to find.
- * @param {Element|Document} [context=document] - The element to search within.
- * @returns {Element|null} The first matching element or null if not found.
+ * A simple utility function to query the DOM.
+ * @param {string} selector The CSS selector to find.
+ * @param {Element} [scope=document] The scope to search within.
+ * @returns {Element} The first matching element.
  */
-export function $(selector, context = document) {
-    return context.querySelector(selector);
+export function qs(selector, scope = document) {
+    return scope.querySelector(selector);
 }
 
 /**
- * A shorthand for document.querySelectorAll, returning an actual array.
- * @param {string} selector - The CSS selector to find.
- * @param {Element|Document} [context=document] - The element to search within.
- * @returns {Element[]} An array of matching elements.
+ * A simple utility function to query the DOM for multiple elements.
+ * @param {string} selector The CSS selector to find.
+ * @param {Element} [scope=document] The scope to search within.
+ * @returns {NodeList} A NodeList of matching elements.
  */
-export function $$(selector, context = document) {
-    return Array.from(context.querySelectorAll(selector));
+export function qsa(selector, scope = document) {
+    return scope.querySelectorAll(selector);
 }
