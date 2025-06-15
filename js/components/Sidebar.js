@@ -1,93 +1,71 @@
 // js/components/Sidebar.js
-import { $ } from '../utils/dom.js';
+
+import { I18nService } from '../services/i18nService.js';
+import { AppState } from '../state.js';
+import { fadeIn } from '../utils/animations.js';
+
+const icons = {
+    // ... (icons object is unchanged)
+};
+
 
 export function initSidebar(router, i18n) {
-    const sidebarContainer = $('#sidebar');
-    if (!sidebarContainer) return;
+    const sidebar = document.querySelector('.sidebar');
+    if (!sidebar) return;
 
-    // Define the structure of the sidebar menu
+    // ✨ NEW: Add shortcut keys here
     const menuItems = [
-        {
-            label: i18n.translate('home'), // 'Home'
-            icon: '&#127968;', // 🏠
-            path: '/'
-        },
-        {
-            label: i18n.translate('courses'), // 'Courses'
-            icon: '&#128218;', // 📚
-            path: '/courses'
-        },
-        {
-            label: i18n.translate('grades'), // 'Grades'
-            icon: '&#127891;', // 🎓
-            path: '/grades'
-        },
-        {
-            label: i18n.translate('schedule'), // 'Schedule'
-            icon: '&#128197;', // 📅
-            path: '/schedule'
-        },
-        {
-            label: i18n.translate('tasks'), // 'Tasks'
-            icon: '&#9989;', // ✅
-            path: '/tasks'
-        },
-        {
-            label: i18n.translate('resources'), // 'Resources'
-            icon: '&#128279;', // 🔗
-            path: '/resources'
-        }
+        { name: 'dashboard', path: '/', icon: 'dashboard', shortcut: 'D' },
+        { name: 'courses', path: '/courses', icon: 'courses', shortcut: 'C' },
+        { name: 'grades', path: '/grades', icon: 'grades', shortcut: 'G' },
+        { name: 'schedule', path: '/schedule', icon: 'schedule', shortcut: 'S' },
+        { name: 'tasks', path: '/tasks', icon: 'tasks', shortcut: 'T' },
+        { name: 'resources', path: '/resources', icon: 'resources', shortcut: 'R' },
+        { name: 'settings', path: '/settings', icon: 'settings', shortcut: ',' }
     ];
 
-    const menuHTML = `
-        <div class="sidebar-header">
-            <h1 class="title is-4 has-text-centered neon-glow-text">${i18n.translate('profile')}</h1>
+    const menuHtml = menuItems.map(item => {
+        // ✨ NEW: Add shortcut to tooltip
+        const tooltipText = `${i18n.translate(item.name)} (Alt + ${item.shortcut})`;
+        return `
+            <li>
+                <a href="${item.path}" 
+                   class="nav-link ${router.getCurrentPath() === item.path ? 'is-active' : ''}" 
+                   data-navigo 
+                   id="${item.name}-link"
+                   data-tooltip="${tooltipText}" 
+                >
+                    <span class="icon">${icons[item.icon]}</span>
+                    <span class="link-text">${i18n.translate(item.name)}</span>
+                </a>
+            </li>
+        `;
+    }).join('');
+
+    sidebar.innerHTML = `
+        <div class="sidebar-brand">
+            <span class="brand-icon">🎓</span>
+            <h1 class="brand-text">UniDash</h1>
         </div>
-        <p class="menu-label">${i18n.translate('navigation')}</p>
-        <ul class="menu-list">
-            ${menuItems.map(item => `
-                <li>
-                    <a href="${item.path}" data-path="${item.path}">
-                        <span class="icon">${item.icon}</span>
-                        <span>${item.label}</span>
-                    </a>
-                </li>
-            `).join('')}
+        <ul class="menu-list" id="sidebar-nav">
+            ${menuHtml}
         </ul>
+        <div class="sidebar-footer">
+             <a href="#" class="nav-link" data-tooltip="${i18n.translate('logout')}">
+                <span class="icon">${icons['logout']}</span>
+                <span class="link-text">${i18n.translate('logout')}</span>
+            </a>
+        </div>
     `;
 
-    sidebarContainer.innerHTML = menuHTML;
-
-    // Event Delegation for navigation
-    sidebarContainer.addEventListener('click', e => {
-        const link = e.target.closest('a');
-        if (link && link.dataset.path) {
+    // Re-attach listeners after re-rendering
+    const links = sidebar.querySelectorAll('a[data-navigo]');
+    links.forEach(link => {
+        link.addEventListener('click', (e) => {
             e.preventDefault();
-            router.navigateTo(link.dataset.path);
-            
-            // Close sidebar on mobile after clicking a link
-            const burger = $('.navbar-burger');
-            if (burger.classList.contains('is-active')) {
-                burger.classList.remove('is-active');
-                sidebarContainer.classList.remove('is-active');
-            }
-        }
+            router.navigate(link.getAttribute('href'));
+        });
     });
 
-    // Function to update the active link
-    function updateActiveLink() {
-        const currentPath = window.location.pathname;
-        sidebarContainer.querySelectorAll('a').forEach(link => {
-            if (link.dataset.path === currentPath) {
-                link.classList.add('is-active');
-            } else {
-                link.classList.remove('is-active');
-            }
-        });
-    }
-
-    // Update active link on initial load and on state changes
-    updateActiveLink();
-    document.addEventListener('state-change', updateActiveLink);
-    window.addEventListener('popstate', updateActiveLink);
+    fadeIn(sidebar);
 }
