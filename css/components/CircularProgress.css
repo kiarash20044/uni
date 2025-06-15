@@ -1,0 +1,85 @@
+/* css/components/CircularProgress.css */
+
+.circular-progress-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.circular-progress-card .progress-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circular-progress-card .progress-ring {
+    transform: rotate(-90deg); /* Start the circle from the top */
+}
+
+.circular-progress-card .progress-ring-track,
+.circular-progress-card .progress-ring-indicator {
+    fill: transparent;
+    stroke-width: 8px;
+}
+
+.circular-progress-card .progress-ring-track {
+    stroke: var(--glass-bg);
+}
+
+.circular-progress-card .progress-ring-indicator {
+    stroke: var(--accent-color);
+    stroke-linecap: round; /* Makes the line ends rounded */
+    transition: stroke-dashoffset 0.5s ease;
+    filter: drop-shadow(0 0 3px var(--accent-glow));
+}
+
+.circular-progress-card .progress-text {
+    position: absolute;
+    color: var(--text-primary);
+    font-weight: bold;
+    display: flex;
+    align-items: baseline;
+    font-family: var(--font-monospace);
+}
+
+.circular-progress-card .progress-value {
+    font-size: 1.75rem;
+}
+
+.circular-progress-card .progress-max {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-left: 2px;
+}
+
+.circular-progress-card .card-icon {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-secondary);
+    border-radius: var(--border-radius-circle);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--glass-bg-darker);
+}
+
+.circular-progress-card .card-icon svg {
+    width: 20px;
+    height: 20px;
+    color: var(--accent-color);
+}
+
+.circular-progress-card .card-label {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
