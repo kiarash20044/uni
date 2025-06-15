@@ -1,78 +1,76 @@
 /* css/rtl.css */
 
-/* Apply these styles only when the document direction is RTL */
 [dir="rtl"] {
     /* --- Layout --- */
-    #sidebar {
-        left: auto;
+    .main-content {
+        padding-left: 0;
+        padding-right: var(--sidebar-width);
+    }
+
+    body[data-sidebar-collapsed='true'] .main-content {
+        padding-right: var(--sidebar-width-collapsed);
+    }
+
+    /* --- Sidebar --- */
+    .sidebar {
         right: 0;
-        border-left: 1px solid var(--border-color);
+        left: auto;
+        border-left: 1px solid var(--glass-border-color);
         border-right: none;
     }
-
-    main#main-content {
-        margin-left: 0;
-        margin-right: var(--sidebar-width);
+    
+    .sidebar .nav-link .icon {
+        margin-left: 15px;
+        margin-right: 0;
     }
 
-    @media screen and (max-width: 768px) {
-        main#main-content {
-            margin-right: 0;
-        }
-        #sidebar.is-active {
-            transform: translateX(0);
-        }
+    .sidebar .sidebar-brand .brand-icon {
+        margin-left: 10px;
+        margin-right: 0;
+    }
+    
+    body[data-sidebar-collapsed='true'] .sidebar .link-text,
+    body[data-sidebar-collapsed='true'] .sidebar .brand-text {
+        opacity: 0;
+        visibility: hidden;
     }
 
-    /* --- Bulma Overrides --- */
-    .navbar-brand {
-        margin-left: 1rem;
-    }
 
-    .navbar-menu {
-        padding-right: 0;
-    }
-
-    .navbar-start {
+    /* --- Top Nav --- */
+    .top-nav .navbar-end {
         margin-right: auto;
         margin-left: 0;
     }
 
-    .navbar-end {
-        margin-left: auto;
+
+    /* --- Components --- */
+    .theme-swatch {
+        margin-left: 10px;
         margin-right: 0;
     }
 
-    .navbar-item.has-dropdown .navbar-link::after {
-        transform: rotate(135deg) translate(0.25em, -0.5em);
+    .circular-progress-card .progress-max {
+        margin-right: 2px;
+        margin-left: 0;
     }
 
-    .buttons {
-        justify-content: flex-start;
+    /* --- Timeline --- */
+    .timeline::before {
+        right: 20px;
+        left: auto;
     }
 
-    .buttons .button:not(:last-child) {
-        margin-right: 0;
-        margin-left: 0.5rem;
-    }
-
-    /* --- Component Specifics --- */
-    .stat-card .stat-icon {
-        margin-right: 0;
-        margin-left: var(--spacing-unit);
-    }
-
-    .tasks-overview ul {
-        padding-right: 20px;
+    .timeline-item {
         padding-left: 0;
+        padding-right: 60px;
     }
 
-    .chart-container .legend-labels {
-        text-align: right;
+    .timeline-marker {
+        right: 0;
+        left: auto;
     }
-
-    /* --- Text Alignment --- */
-    body, .title, .subtitle, .box, .card, .menu-list a {
-        text-align: right;
+    
+    .timeline-page-container {
+        grid-template-columns: 1fr 320px;
     }
 }
