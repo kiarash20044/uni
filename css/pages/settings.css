@@ -1,1 +1,26 @@
 
+/* css/pages/Settings.css */
+
+.settings-page-container {
+    padding: 2rem;
+}
+
+.settings-card {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--glass-bg-darker);
+    border: 1px solid var(--glass-border-color);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+}
+
+.backup-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--glass-bg);
+    border: 1px solid var(--glass-border-color-light);
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    padding: 1rem 1.5rem;
+}
