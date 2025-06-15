@@ -7,8 +7,9 @@ import { I18nService } from './services/i18nService.js';
 import { initTopNav } from './components/TopNav.js';
 import { renderHomePage } from './pages/home.js';
 import { renderTasksPage } from './pages/tasks.js';
-// ✨ NEW: Import the settings page renderer
 import { renderSettingsPage } from './pages/settings.js';
+// ✨ NEW: Import the schedule page renderer
+import { renderSchedulePage } from './pages/schedule.js';
 
 /**
  * Registers the service worker for offline support.
@@ -53,10 +54,10 @@ document.addEventListener('DOMContentLoaded', () => {
     router.addRoute('/', renderHomePage);
     router.addRoute('/courses', (appState, i18n) => `<h1>${i18n.translate('courses')}</h1>`);
     router.addRoute('/grades', (appState, i18n) => '<h1>Grades Page</h1>');
-    router.addRoute('/schedule', (appState, i18n) => '<h1>Schedule Page</h1>');
+    // ✨ UPDATED: Connect the new schedule page renderer
+    router.addRoute('/schedule', renderSchedulePage);
     router.addRoute('/tasks', renderTasksPage);
     router.addRoute('/resources', (appState, i18n) => '<h1>Resources Page</h1>');
-    // ✨ NEW: Add the settings page route
     router.addRoute('/settings', renderSettingsPage);
 
     // 5. Initial Page Load
