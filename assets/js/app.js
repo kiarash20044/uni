@@ -72,10 +72,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const settingsBtn = document.getElementById('settings-btn');
     const settingsModal = document.getElementById('settings-modal');
     const closeModalBtn = document.getElementById('close-modal-btn');
+    // Backup/restore elements
+    const progressJsonTextarea = document.getElementById('progress-json');
+    const copyProgressJsonBtn = document.getElementById('copy-progress-json');
+    const restoreProgressJsonBtn = document.getElementById('restore-progress-json');
+    const importProgressJsonTextarea = document.getElementById('import-progress-json');
+    const progressJsonMessage = document.getElementById('progress-json-message');
+
+    function getFullUserProgress() {
+        return {
+            computerEngineeringProgress: JSON.parse(localStorage.getItem('computerEngineeringProgress') || '{}'),
+            collapsibleState: JSON.parse(localStorage.getItem('collapsibleState') || '{}'),
+            theme: localStorage.getItem('theme') || null
+        };
+    }
+
+    function setFullUserProgress(data) {
+        if (data.computerEngineeringProgress) {
+            localStorage.setItem('computerEngineeringProgress', JSON.stringify(data.computerEngineeringProgress));
+        }
+        if (data.collapsibleState) {
+            localStorage.setItem('collapsibleState', JSON.stringify(data.collapsibleState));
+        }
+        if (data.theme) {
+            localStorage.setItem('theme', data.theme);
+        }
+    }
+
+    function updateProgressJsonTextarea() {
+        if (progressJsonTextarea) {
+            progressJsonTextarea.value = JSON.stringify(getFullUserProgress(), null, 2);
+        }
+    }
 
     if (settingsBtn && settingsModal && closeModalBtn) {
         settingsBtn.addEventListener('click', () => {
             settingsModal.classList.remove('hidden');
+            updateProgressJsonTextarea();
+            if (progressJsonMessage) progressJsonMessage.textContent = '';
         });
 
         closeModalBtn.addEventListener('click', () => {
@@ -88,6 +122,44 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    if (copyProgressJsonBtn && progressJsonTextarea) {
+        copyProgressJsonBtn.addEventListener('click', () => {
+            progressJsonTextarea.select();
+            document.execCommand('copy');
+            if (progressJsonMessage) {
+                progressJsonMessage.textContent = 'کد با موفقیت کپی شد!';
+                setTimeout(() => progressJsonMessage.textContent = '', 2000);
+            }
+        });
+    }
+
+    if (restoreProgressJsonBtn && importProgressJsonTextarea) {
+        restoreProgressJsonBtn.addEventListener('click', () => {
+            try {
+                const data = JSON.parse(importProgressJsonTextarea.value);
+                setFullUserProgress(data);
+                if (progressJsonMessage) {
+                    progressJsonMessage.textContent = 'پیشرفت با موفقیت بازیابی شد. صفحه را رفرش کنید.';
+                    setTimeout(() => progressJsonMessage.textContent = '', 4000);
+                }
+                updateProgressJsonTextarea();
+            } catch (e) {
+                if (progressJsonMessage) {
+                    progressJsonMessage.textContent = 'کد وارد شده معتبر نیست!';
+                    setTimeout(() => progressJsonMessage.textContent = '', 4000);
+                }
+            }
+        });
+    }
+
+    // Update JSON textarea whenever progress changes
+    function updateProgressJsonOnChange() {
+        updateProgressJsonTextarea();
+    }
+    // Listen for changes to progress and collapsible state
+    window.addEventListener('storage', updateProgressJsonOnChange);
+    document.addEventListener('change', updateProgressJsonOnChange);
 
     // --- Tab Navigation Logic ---
     const tabButtons = document.getElementById('tab-buttons');
@@ -226,11 +298,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateTermProgress(termContainer);
              }
              saveProgress();
+             updateProgressJsonTextarea(); // <-- Ensure JSON is updated in real time
         });
     });
 
     if (termPlanContainer) {
         loadProgress();
+        updateProgressJsonTextarea(); // <-- Sync JSON on load
     }
 
     // --- Sticky Progress Bar Logic ---
