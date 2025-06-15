@@ -16,6 +16,7 @@ export class StorageService {
                 return JSON.parse(item);
             } catch (jsonErr) {
                 // If item is a plain string (e.g., 'light'), just return it
+                console.warn(`Non-JSON value for key '${key}':`, item);
                 return item;
             }
         } catch (error) {

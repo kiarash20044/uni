@@ -15,15 +15,16 @@ export function renderHomePage(appState, i18n) {
     // --- Mock Data ---
     let stats = appState.get('user_stats');
     if (!stats || typeof stats !== 'object') stats = {};
-    stats.gpa = stats.gpa && typeof stats.gpa.value === 'number' && typeof stats.gpa.max === 'number'
-        ? stats.gpa
-        : { value: 3.8, max: 4.0 };
-    stats.credits = stats.credits && typeof stats.credits.value === 'number' && typeof stats.credits.max === 'number'
-        ? stats.credits
-        : { value: 92, max: 120 };
-    stats.semesterProgress = stats.semesterProgress && typeof stats.semesterProgress.value === 'number' && typeof stats.semesterProgress.max === 'number'
-        ? stats.semesterProgress
-        : { value: 10, max: 16 };
+    // Defensive: ensure stats.gpa, stats.credits, stats.semesterProgress are always objects with value/max
+    if (!stats.gpa || typeof stats.gpa !== 'object' || typeof stats.gpa.value !== 'number' || typeof stats.gpa.max !== 'number') {
+        stats.gpa = { value: 3.8, max: 4.0 };
+    }
+    if (!stats.credits || typeof stats.credits !== 'object' || typeof stats.credits.value !== 'number' || typeof stats.credits.max !== 'number') {
+        stats.credits = { value: 92, max: 120 };
+    }
+    if (!stats.semesterProgress || typeof stats.semesterProgress !== 'object' || typeof stats.semesterProgress.value !== 'number' || typeof stats.semesterProgress.max !== 'number') {
+        stats.semesterProgress = { value: 10, max: 16 };
+    }
     appState.set('user_stats', stats); // Save to state for backup service
 
     pageContainer.innerHTML = `
