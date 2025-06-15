@@ -10,7 +10,14 @@ export class StorageService {
     get(key, defaultValue = null) {
         try {
             const item = localStorage.getItem(key);
-            return item ? JSON.parse(item) : defaultValue;
+            if (item === null) return defaultValue;
+            // Try to parse as JSON, but if it fails and item is a plain string, return as is
+            try {
+                return JSON.parse(item);
+            } catch (jsonErr) {
+                // If item is a plain string (e.g., 'light'), just return it
+                return item;
+            }
         } catch (error) {
             console.error(`Error getting item from localStorage: ${key}`, error);
             return defaultValue;
