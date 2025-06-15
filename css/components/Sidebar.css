@@ -1,70 +1,122 @@
 /* css/components/Sidebar.css */
-#sidebar {
+
+.sidebar {
     width: var(--sidebar-width);
     height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
+    background: var(--bg-secondary);
+    border-right: 1px solid var(--glass-border-color);
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
     z-index: 1000;
-    padding: calc(var(--spacing-unit) * 3);
-    border-right: 1px solid var(--border-color);
-    transform: translateX(0);
-    transition: transform var(--transition-speed-normal) ease,
-                background-color var(--transition-speed-normal);
-    
-    /* Glassmorphism effect for the sidebar */
-    background: var(--bg-overlay);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
+    transition: width var(--transition-medium);
 }
 
-#sidebar .menu-label {
-    color: var(--text-secondary);
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-top: calc(var(--spacing-unit) * 2);
+body[data-sidebar-collapsed='true'] .sidebar {
+    width: var(--sidebar-width-collapsed);
 }
 
-#sidebar .menu-list a {
-    color: var(--text-secondary);
-    border-radius: 6px;
-    padding: 0.75em 1em;
-    transition: all var(--transition-speed-fast) ease;
-}
-
-#sidebar .menu-list a:hover {
-    background-color: var(--bg-primary);
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    margin-bottom: 2.5rem;
     color: var(--text-primary);
-    transform: translateX(5px);
 }
 
-#sidebar .menu-list a.is-active {
-    background-color: var(--accent-primary);
-    color: white;
-    box-shadow: var(--neon-glow-intensity) var(--accent-glow);
+.sidebar-brand .brand-icon {
+    font-size: 2rem;
+    margin-right: 10px;
 }
 
-[dir="rtl"] #sidebar .menu-list a:hover {
-    transform: translateX(-5px);
+.sidebar-brand .brand-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: opacity var(--transition-fast);
 }
 
-/* Mobile responsive behavior */
-@media screen and (max-width: 768px) {
-    #sidebar {
-        transform: translateX(-100%);
-    }
+.menu-list {
+    flex-grow: 1;
+}
 
-    #sidebar.is-active {
-        transform: translateX(0);
-        box-shadow: 10px 0px 30px -15px var(--shadow-color);
-    }
-    
-    [dir="rtl"] #sidebar {
-        transform: translateX(100%);
-    }
+.menu-list li {
+    margin-bottom: 0.5rem;
+}
 
-    [dir="rtl"] #sidebar.is-active {
-        transform: translateX(0);
-    }
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    border-radius: var(--border-radius-md);
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: var(--transition-fast);
+    position: relative;
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    background-color: var(--glass-bg);
+    color: var(--text-primary);
+}
+
+.nav-link.is-active {
+    background-color: var(--accent-color);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 4px 15px var(--accent-glow);
+}
+
+.nav-link.is-active::before {
+    content: '';
+    position: absolute;
+    left: -1rem;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: var(--accent-color-light);
+    border-radius: 0 4px 4px 0;
+}
+
+[dir="rtl"] .nav-link.is-active::before {
+    left: auto;
+    right: -1rem;
+    border-radius: 4px 0 0 4px;
+}
+
+
+.nav-link .icon {
+    margin-right: 15px;
+    width: 24px;
+    height: 24px;
+}
+
+.nav-link .link-text {
+    transition: opacity var(--transition-fast);
+}
+
+.sidebar-footer {
+    padding-top: 1rem;
+    border-top: 1px solid var(--glass-border-color);
+}
+
+
+/* Collapsed State */
+body[data-sidebar-collapsed='true'] .sidebar .link-text,
+body[data-sidebar-collapsed='true'] .sidebar .brand-text {
+    opacity: 0;
+    visibility: hidden;
+    width: 0;
+}
+
+body[data-sidebar-collapsed='true'] .sidebar .nav-link {
+    justify-content: center;
+}
+
+body[data-sidebar-collapsed='true'] .sidebar .nav-link .icon {
+    margin-right: 0;
 }
