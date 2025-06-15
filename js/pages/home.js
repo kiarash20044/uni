@@ -1,81 +1,64 @@
-
 // js/pages/home.js
-import { renderStatCard } from '../components/StatCard.js';
-import { animateElement } from '../utils/animations.js';
+
+import { fadeIn } from '../utils/animations.js';
+// ✨ NEW: Import the circular progress component
+import { createCircularProgress, initCircularProgressAnimation } from '../components/CircularProgress.js';
+
+// --- Icon SVGs ---
+const gpaIcon = `<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 3L1 9L12 15L23 9L12 3M5 13.18V17.18L12 21L19 17.18V13.18L12 17L5 13.18Z" /></svg>`;
+const creditsIcon = `<svg viewBox="0 0 24 24"><path fill="currentColor" d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>`;
+const semesterIcon = `<svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z" /></svg>`;
 
 export function renderHomePage(appState, i18n) {
-    const user = appState.get('user') || { name: 'Guest' };
-    const stats = appState.get('dashboardStats') || [
-        { value: '4.2', label: 'currentGPA', icon: '&#127891;' }, // 🎓
-        { value: '12', label: 'coursesInProgress', icon: '&#128218;' }, // 📚
-        { value: '3', label: 'upcomingDeadlines', icon: '&#9203;' }, // ⏳
-        { value: '85%', label: 'attendanceRate', icon: '&#128200;' } // 📈
-    ];
+    const pageContainer = document.createElement('div');
+    pageContainer.className = 'home-page-container';
 
-    const homeHTML = `
-        <div class="home-grid">
-            <div class="welcome-banner glassmorphism neon-border">
-                <h1 class="title is-3">${i18n.translate('welcome')}, ${user.name}!</h1>
-                <p class="subtitle is-5">${i18n.translate('dashboardQuote')}</p>
-            </div>
+    // --- Mock Data ---
+    const stats = {
+        gpa: { value: 3.8, max: 4.0 },
+        credits: { value: 92, max: 120 },
+        semesterProgress: { value: 10, max: 16 } // e.g., week 10 of 16
+    };
+    appState.set('user_stats', stats); // Save to state for backup service
 
-            ${stats.map(stat => renderStatCard(stat, i18n)).join('')}
+    pageContainer.innerHTML = `
+        <div class="header-container mb-6">
+            <h1 class="title has-text-weight-bold animate-fade-in-up">${i18n.translate('welcome_back')}, User!</h1>
+            <p class="subtitle has-text-muted animate-fade-in-up" style="animation-delay: 0.2s;">Here's what's happening today.</p>
+        </div>
 
-            <div class="chart-container box glassmorphism">
-                <h2 class="title is-4">${i18n.translate('gradeDistribution')}</h2>
-                <canvas id="gradesChart"></canvas>
-            </div>
-
-            <div class="tasks-overview box glassmorphism">
-                 <h2 class="title is-4">${i18n.translate('upcomingTasks')}</h2>
-                 <ul>
-                    <li><span class="is-family-monospace">[CS101]</span> - ${i18n.translate('taskFinishLab')} - <time>2025-06-20</time></li>
-                    <li><span class="is-family-monospace">[MA203]</span> - ${i18n.translate('taskSubmitAssignment')} - <time>2025-06-22</time></li>
-                    <li><span class="is-family-monospace">[PH150]</span> - ${i18n.translate('taskPrepareForExam')} - <time>2025-06-25</time></li>
-                 </ul>
-            </div>
+        <div class="stats-grid animate-fade-in-up" style="animation-delay: 0.4s;">
+            ${createCircularProgress({
+                id: 'gpa-progress',
+                label: i18n.translate('current_gpa'),
+                value: stats.gpa.value,
+                max: stats.gpa.max,
+                iconSVG: gpaIcon
+            })}
+            ${createCircularProgress({
+                id: 'credits-progress',
+                label: i18n.translate('completed_credits'),
+                value: stats.credits.value,
+                max: stats.credits.max,
+                iconSVG: creditsIcon
+            })}
+            ${createCircularProgress({
+                id: 'semester-progress',
+                label: i18n.translate('semesterProgress'),
+                value: stats.semesterProgress.value,
+                max: stats.semesterProgress.max,
+                iconSVG: semesterIcon
+            })}
         </div>
     `;
 
-    // Post-render actions (like initializing charts or animations)
+    // Use a timeout to ensure the DOM is updated before running animations
     setTimeout(() => {
-        // Animate elements on screen
-        animateElement('.welcome-banner');
-        document.querySelectorAll('.stat-card').forEach((card, index) => {
-            animateElement(card, { delay: 0.1 * (index + 1) });
-        });
-        animateElement('.chart-container', { delay: 0.5 });
-        animateElement('.tasks-overview', { delay: 0.6 });
-
-        // Initialize Chart.js
-        const ctx = document.getElementById('gradesChart')?.getContext('2d');
-        if (ctx) {
-            new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['A', 'B', 'C', 'D'],
-                    datasets: [{
-                        label: 'Grades',
-                        data: [12, 19, 5, 2],
-                        backgroundColor: ['#34d399', '#818cf8', '#f59e0b', '#ef4444'],
-                        borderColor: 'var(--bg-secondary)',
-                        borderWidth: 4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'right',
-                             labels: {
-                                color: 'var(--text-secondary)'
-                            }
-                        }
-                    }
-                }
-            });
-        }
+        fadeIn(pageContainer, { stagger: 0.1 });
+        initCircularProgressAnimation('gpa-progress', stats.gpa.value, stats.gpa.max);
+        initCircularProgressAnimation('credits-progress', stats.credits.value, stats.credits.max);
+        initCircularProgressAnimation('semester-progress', stats.semesterProgress.value, stats.semesterProgress.max);
     }, 0);
 
-    return homeHTML;
+    return pageContainer;
 }
