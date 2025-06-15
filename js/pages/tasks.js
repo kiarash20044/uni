@@ -3,6 +3,8 @@
 import { AppState } from '../state.js';
 import { StorageService } from '../services/storageService.js';
 import { fadeIn } from '../utils/animations.js';
+// ✨ NEW: Import the print service
+import { exportElementToPdf } from '../services/printService.js';
 
 const storage = new StorageService();
 
@@ -55,6 +57,7 @@ function renderKanbanColumns(i18n) {
 }
 
 function addDragAndDropListeners() {
+    // ... (rest of the function is unchanged)
     const cards = document.querySelectorAll('.kanban-card');
     const columns = document.querySelectorAll('.kanban-column');
 
@@ -111,6 +114,7 @@ function getDragAfterElement(column, y) {
 }
 
 function addTaskFormListeners() {
+    // ... (rest of the function is unchanged)
     const forms = document.querySelectorAll('.add-task-form');
     forms.forEach(form => {
         form.addEventListener('submit', e => {
@@ -140,19 +144,34 @@ function addTaskFormListeners() {
     });
 }
 
+// ✨ NEW: Add listeners for page-specific actions like printing
+function addPageActionListeners(i18n) {
+    const exportBtn = document.getElementById('export-tasks-btn');
+    if (exportBtn) {
+        exportBtn.addEventListener('click', () => {
+            exportElementToPdf('kanban-board', i18n.translate('tasks'), 'student-dashboard-tasks.pdf');
+        });
+    }
+}
+
 export function renderTasksPage(appState, i18n) {
     const pageContainer = document.createElement('div');
     pageContainer.className = 'kanban-board-container';
+    // ✨ NEW: Add an ID for capturing and a button for exporting
     pageContainer.innerHTML = `
-        <div class="kanban-board">
+        <button class="button is-small export-pdf-btn" id="export-tasks-btn">
+            <span class="icon"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19,12L12,19L5,12H9V4H15V12H19M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg></span>
+            <span>${i18n.translate('exportPdf')}</span>
+        </button>
+        <div class="kanban-board" id="kanban-board">
             ${renderKanbanColumns(i18n)}
         </div>
     `;
 
-    // Use a timeout to ensure the DOM is updated before adding listeners
     setTimeout(() => {
         addDragAndDropListeners();
         addTaskFormListeners();
+        addPageActionListeners(i18n); // ✨ NEW
         fadeIn(pageContainer);
     }, 0);
     
