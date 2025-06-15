@@ -1,1 +1,70 @@
-# ...existing content from /workspaces/uni/student-dashboard/src/components/Sidebar/Sidebar.scss...
+/* css/components/Sidebar.css */
+#sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    padding: calc(var(--spacing-unit) * 3);
+    border-right: 1px solid var(--border-color);
+    transform: translateX(0);
+    transition: transform var(--transition-speed-normal) ease,
+                background-color var(--transition-speed-normal);
+    
+    /* Glassmorphism effect for the sidebar */
+    background: var(--bg-overlay);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+}
+
+#sidebar .menu-label {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: calc(var(--spacing-unit) * 2);
+}
+
+#sidebar .menu-list a {
+    color: var(--text-secondary);
+    border-radius: 6px;
+    padding: 0.75em 1em;
+    transition: all var(--transition-speed-fast) ease;
+}
+
+#sidebar .menu-list a:hover {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transform: translateX(5px);
+}
+
+#sidebar .menu-list a.is-active {
+    background-color: var(--accent-primary);
+    color: white;
+    box-shadow: var(--neon-glow-intensity) var(--accent-glow);
+}
+
+[dir="rtl"] #sidebar .menu-list a:hover {
+    transform: translateX(-5px);
+}
+
+/* Mobile responsive behavior */
+@media screen and (max-width: 768px) {
+    #sidebar {
+        transform: translateX(-100%);
+    }
+
+    #sidebar.is-active {
+        transform: translateX(0);
+        box-shadow: 10px 0px 30px -15px var(--shadow-color);
+    }
+    
+    [dir="rtl"] #sidebar {
+        transform: translateX(100%);
+    }
+
+    [dir="rtl"] #sidebar.is-active {
+        transform: translateX(0);
+    }
+}
