@@ -1,48 +1,44 @@
 /* css/effects.css */
 
-/* --- Glassmorphism Effect --- */
-.glassmorphism {
-    background: var(--bg-overlay);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur)); /* For Safari */
-    border: 1px solid var(--border-color);
-    border-radius: var(--card-border-radius);
-    box-shadow: 0 4px 6px -1px var(--shadow-color);
+/* --- Glassmorphism --- */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius-lg);
 }
 
-/* --- Neon Border & Glow Effects --- */
-.neon-border {
-    position: relative;
-    overflow: hidden; /* Important for containing the glow effect */
-    border: 1px solid var(--accent-primary);
-    box-shadow: var(--neon-glow-intensity) var(--accent-glow);
-}
 
+/* --- Neon Glow Effects --- */
 .neon-glow-text {
-    color: var(--text-primary);
-    text-shadow: 0 0 5px var(--accent-glow), 0 0 10px var(--accent-glow);
+    color: var(--accent-color);
+    text-shadow: 0 0 5px var(--accent-glow), 
+                 0 0 10px var(--accent-glow), 
+                 0 0 15px var(--accent-color-dark);
 }
 
-/* --- Animated Grid Background --- */
-/* Apply this to the main content area or specific containers */
-.neon-grid-background {
-    background-color: var(--bg-primary);
-    background-image:
-        linear-gradient(var(--border-color) 1px, transparent 1px),
-        linear-gradient(to right, var(--border-color) 1px, transparent 1px);
-    background-size: 40px 40px;
-    animation: pan-grid 60s linear infinite;
+.neon-glow-box {
+    box-shadow: 0 0 5px var(--accent-glow), 
+                0 0 10px var(--accent-glow),
+                inset 0 0 5px var(--accent-glow);
+    border-color: var(--accent-color-light) !important;
 }
 
-@keyframes pan-grid {
-    0% { background-position: 0 0; }
-    100% { background-position: 480px 480px; }
+
+/* --- Animation Keyframes & Classes --- */
+.animate-fade-in-up {
+    animation: fadeInUp 0.7s both;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* --- General Hover & Focus Effects --- */
-.interactive-glow:hover,
-.interactive-glow:focus-within {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 15px -3px var(--shadow-color), var(--neon-glow-intensity) var(--accent-glow);
-    transition: transform var(--transition-speed-fast) ease, box-shadow var(--transition-speed-fast) ease;
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
 }
