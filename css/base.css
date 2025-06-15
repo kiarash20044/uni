@@ -1,1 +1,100 @@
-# ...existing content from /workspaces/uni/student-dashboard/src/styles/_base.scss...
+/* css/base.css */
+
+/* General Body Styles */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color var(--transition-speed-normal), color var(--transition-speed-normal);
+}
+
+/* App Layout */
+#app-container {
+    display: flex;
+    transition: opacity 0.5s ease-in-out;
+}
+
+main#main-content {
+    flex-grow: 1;
+    padding: calc(var(--top-nav-height) + var(--spacing-unit) * 3) var(--spacing-unit) * 3;
+    transition: margin-right var(--transition-speed-normal), margin-left var(--transition-speed-normal);
+}
+
+/* Typography */
+h1, h2, h3, h4, .title, .subtitle {
+    font-family: var(--font-primary);
+    color: var(--text-primary);
+}
+
+p {
+    color: var(--text-secondary);
+}
+
+a {
+    color: var(--accent-primary);
+    transition: color var(--transition-speed-fast) ease;
+}
+
+a:hover {
+    color: var(--accent-secondary);
+}
+
+/* Font Family Helpers */
+.is-family-english {
+    font-family: var(--font-english) !important;
+}
+
+.is-family-monospace {
+    font-family: var(--font-monospace) !important;
+    direction: ltr; /* Monospace content is usually LTR */
+    text-align: left;
+}
+
+/* Bulma Overrides */
+.button.is-primary {
+    background-color: var(--accent-primary);
+}
+.button.is-primary:hover {
+    box-shadow: var(--neon-glow-intensity) var(--accent-glow);
+}
+.navbar {
+    background-color: transparent;
+}
+.box, .card {
+    background-color: var(--bg-secondary);
+    box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color);
+    border-radius: var(--card-border-radius);
+}
+
+/* Loading Spinner */
+#app-loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-primary);
+    z-index: 9999;
+}
+
+.spinner {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 9px solid;
+    border-color: var(--border-color);
+    border-right-color: var(--accent-primary);
+    animation: spinner-d3wgkg 1s infinite linear;
+}
+
+@keyframes spinner-d3wgkg {
+    to {
+        transform: rotate(1turn);
+    }
+}
