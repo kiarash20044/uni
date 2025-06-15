@@ -1,100 +1,70 @@
 /* css/base.css */
 
-/* General Body Styles */
+/* --- Base Styles & Typography --- */
 body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     font-family: var(--font-primary);
-    font-size: 16px;
     line-height: 1.6;
-    overflow-x: hidden;
-    transition: background-color var(--transition-speed-normal), color var(--transition-speed-normal);
+    overflow: hidden; /* Prevent body scroll, main content will scroll instead */
 }
 
-/* App Layout */
-#app-container {
-    display: flex;
-    transition: opacity 0.5s ease-in-out;
-}
-
-main#main-content {
-    flex-grow: 1;
-    padding: calc(var(--top-nav-height) + var(--spacing-unit) * 3) var(--spacing-unit) * 3;
-    transition: margin-right var(--transition-speed-normal), margin-left var(--transition-speed-normal);
-}
-
-/* Typography */
-h1, h2, h3, h4, .title, .subtitle {
-    font-family: var(--font-primary);
+h1, h2, h3, h4, h5, h6, .title, .subtitle {
+    font-family: var(--font-secondary);
     color: var(--text-primary);
 }
 
-p {
-    color: var(--text-secondary);
+.title {
+    color: var(--text-primary) !important;
 }
 
-a {
-    color: var(--accent-primary);
-    transition: color var(--transition-speed-fast) ease;
+.subtitle {
+    color: var(--text-secondary) !important;
 }
 
-a:hover {
-    color: var(--accent-secondary);
+/* --- Custom Scrollbar --- */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--accent-color-translucent);
+    border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
 }
 
-/* Font Family Helpers */
-.is-family-english {
-    font-family: var(--font-english) !important;
-}
 
-.is-family-monospace {
-    font-family: var(--font-monospace) !important;
-    direction: ltr; /* Monospace content is usually LTR */
-    text-align: left;
-}
-
-/* Bulma Overrides */
-.button.is-primary {
-    background-color: var(--accent-primary);
-}
-.button.is-primary:hover {
-    box-shadow: var(--neon-glow-intensity) var(--accent-glow);
-}
-.navbar {
-    background-color: transparent;
-}
-.box, .card {
-    background-color: var(--bg-secondary);
-    box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color);
-    border-radius: var(--card-border-radius);
-}
-
-/* Loading Spinner */
-#app-loading-screen {
+/* --- Loading Screen --- */
+.app-loading-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
+    background-color: var(--bg-primary);
     display: flex;
-    align-items: center;
     justify-content: center;
-    background: var(--bg-primary);
+    align-items: center;
     z-index: 9999;
+    transition: opacity 0.5s ease;
 }
 
-.spinner {
-    width: 56px;
-    height: 56px;
+.loader {
+    width: 60px;
+    height: 60px;
+    border: 5px solid var(--glass-border-color);
+    border-top-color: var(--accent-color);
     border-radius: 50%;
-    border: 9px solid;
-    border-color: var(--border-color);
-    border-right-color: var(--accent-primary);
-    animation: spinner-d3wgkg 1s infinite linear;
+    animation: spin 1s linear infinite;
 }
 
-@keyframes spinner-d3wgkg {
+@keyframes spin {
     to {
-        transform: rotate(1turn);
+        transform: rotate(360deg);
     }
 }
