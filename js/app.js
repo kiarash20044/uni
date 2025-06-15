@@ -1,10 +1,29 @@
 // js/app.js
+
 import { createRouter } from './router.js';
 import { AppState } from './state.js';
 import { initSidebar } from './components/Sidebar.js';
 import { I18nService } from './services/i18nService.js';
 import { initTopNav } from './components/TopNav.js';
 import { renderHomePage } from './pages/home.js';
+
+/**
+ * Registers the service worker for offline support.
+ */
+function registerServiceWorker() {
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(registration => {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                })
+                .catch(err => {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+        });
+    }
+}
+
 
 // --- Main Application Entry Point ---
 document.addEventListener('DOMContentLoaded', () => {
@@ -36,6 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 5. Initial Page Load
     router.handleLocation();
+    
+    // Register the Service Worker for offline functionality
+    registerServiceWorker();
 
     // 6. Fade in the app
     setTimeout(() => {
